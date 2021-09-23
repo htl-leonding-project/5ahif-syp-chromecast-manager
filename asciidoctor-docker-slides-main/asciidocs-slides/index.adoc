@@ -32,4 +32,28 @@ image:https://images.pexels.com/photos/3966425/pexels-photo-3966425.jpeg?auto=co
 
 IMPORTANT: Something very important
 
-Was ist das Ziel?
+1 Was war (Was mache ich; warum mache ich)?
+
+1.1 Ausganssituation
+
+Die Htbla Leonding ist eine Schule mit 1100 Schülern im Zentralraum von Oberösterreich.
+
+1.2 Problemstellung
+
+Die Verteilung der Chromecast's soll übersichtlicher werden.
+Es wird eine App zum Managen der Chromecasts benötigt.
+
+1.3 Ziel → Leistungswirkung
+
+1.4 Aufgabenstellung (Was gab es bereits)
+
+1.5 Ergebnis → Leistung
+
+
+2 Was ist?
+2.1 Wie weit sind wir?
+2.2 Was funktioniert schon?
+
+3 Was wird sein?
+3.1 Was sind die nächsten Schritte?
+3.2 Meilensteine für Projekt
