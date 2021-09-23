@@ -1,0 +1,14 @@
+@startuml
+
+class Chromecast{
+  long id
+  String name
+}
+
+class Class{
+   long id
+   String className
+}
+
+Class "1" -- "0...1" Chromecast
+@enduml
