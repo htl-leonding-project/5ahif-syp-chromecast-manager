@@ -2,12 +2,13 @@
 
 class Chromecast{
   long id
-  String name
+  private Boolean borrowed
 }
 
 class Class{
    long id
    String className
+   String classRoom
 }
 
 Class "1" -- "0...1" Chromecast

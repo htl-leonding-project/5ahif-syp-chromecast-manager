@@ -8,4 +8,5 @@ public class Class {
     @Id
     private long id;
     private String className;
+    private  int classRoom;
 }

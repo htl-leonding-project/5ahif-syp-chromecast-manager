@@ -7,4 +7,5 @@ import javax.persistence.Id;
 public class Chromecast {
     @Id
     private long id;
+    private Boolean borrowed;
 }
