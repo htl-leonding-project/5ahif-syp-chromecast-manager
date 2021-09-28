@@ -8,7 +8,6 @@ rectangle manager {
   (install device) .> (deinstall device) : include
   (install device) .> (view devices) : include
   (install device) .> (refactor devic) : include
-  User -- (login)
 }
 @enduml
 
