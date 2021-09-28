@@ -2,12 +2,15 @@
 @startuml
 left to right direction
 skinparam packageStyle rectangle
-actor user
+actor User
+actor Authentication
 rectangle manager {
-  user -- (install device)
-  user -- (deinstall device)
-  user -- (update device)
-  user -- (list devices)
+  User -- (install device)
+  (install device) .> (deinstall device) : include
+  (install device) .> (view devices) : include
+  (install device) .> (refactor devic) : include
+  User -- (login)
+  (login) -- Authentication
 }
 @enduml
 
