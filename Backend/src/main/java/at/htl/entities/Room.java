@@ -4,9 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class Class {
+public class Room {
     @Id
-    private long id;
-    private String className;
-    private  int classRoom;
+    private int roomNumber;
+    private String roomName;
 }

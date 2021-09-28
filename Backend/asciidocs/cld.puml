@@ -13,8 +13,8 @@ class Room{
 }
 class User
 {
-String name
-string password
+    String name
+    String password
 }
 
 Device "1 .. *" --- "1" Room

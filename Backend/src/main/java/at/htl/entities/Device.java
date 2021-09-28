@@ -5,7 +5,7 @@ import javax.persistence.Id;
 import java.util.Date;
 
 @Entity
-public class Chromecast {
+public class Device {
     @Id
     private int serialNumber;
     private String name;
