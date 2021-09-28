@@ -3,11 +3,11 @@
 left to right direction
 skinparam packageStyle rectangle
 actor User
-rectangle manager {
-  User -- (install device)
-  (install device) .> (deinstall device) : include
-  (install device) .> (view devices) : include
-  (install device) .> (refactor devic) : include
+rectangle deviceManager {
+  User -- (manage user)
+  User --  (manage device)
+  User -- (manage room)
+  User -- (create report)
 }
 @enduml
 
