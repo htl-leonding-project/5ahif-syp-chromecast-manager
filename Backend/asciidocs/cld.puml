@@ -4,8 +4,7 @@ class Device{
   int serialNumber
   String name
   String brand
-  DateTime installedFrom
-  DateTime installedTo
+  Date installed
 }
 
 class Room{
