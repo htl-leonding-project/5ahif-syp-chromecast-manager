@@ -7,9 +7,6 @@ actor clerk
 rectangle manager {
   user -- (install)
   user -- (deinstall)
-  (checkout) .> (payment) : include
-  (help) .> (checkout) : extends
-  (checkout) -- clerk
 }
 @enduml
 
