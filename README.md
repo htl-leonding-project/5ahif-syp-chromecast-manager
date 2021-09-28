@@ -1,4 +1,4 @@
 # 5ahif-syp-chromecast-manager
  
-##Description##
+## Description 
 The Chromecast Manager is a project that shows you where which devices are.
