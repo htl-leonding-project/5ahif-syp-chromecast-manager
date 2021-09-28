@@ -1,16 +1,24 @@
 @startuml
 
-class Chromecast{
-  long id
-  private Boolean borrowed
+class Device{
+  int serialNumber
+  String name
+  String brand
+  DateTime installedFrom
+  DateTime installedTo
 }
 
-class Class{
-   long id
-   String className
-   String classRoom
+class Room{
+   String roomName
+   int roomNumber
+}
+class User
+{
+String name
+string password
 }
 
-Class "1" -- "0...1" Chromecast
+Device "1 .. *" --- "1" Room
+Device "1 .. *" --- "1" User
 
 @enduml
