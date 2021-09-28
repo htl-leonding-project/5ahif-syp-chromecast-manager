@@ -1,0 +1,15 @@
+
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+actor user
+actor clerk
+rectangle manager {
+  user -- (install)
+  user -- (deinstall)
+  (checkout) .> (payment) : include
+  (help) .> (checkout) : extends
+  (checkout) -- clerk
+}
+@enduml
+
