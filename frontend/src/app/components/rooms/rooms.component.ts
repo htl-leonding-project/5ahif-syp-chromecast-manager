@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AppRoutingModule } from 'src/app/app-routing.module';
 import { RoomsService } from 'src/app/service/rooms.service';
+import { AppRoutingModule } from 'src/app/app-routing.module';
 
 @Component({
   selector: 'app-rooms',
@@ -8,7 +8,7 @@ import { RoomsService } from 'src/app/service/rooms.service';
   styleUrls: ['./rooms.component.scss']
 })
 export class RoomsComponent implements OnInit {
-
+  
   constructor(public roomsService: RoomsService,
     public router: AppRoutingModule) { }
 

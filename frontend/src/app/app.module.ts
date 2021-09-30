@@ -14,7 +14,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    RoomsComponent
   ],
   imports: [
     BrowserModule,
@@ -26,8 +27,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatInputModule,
     HttpClientModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule,
-    RoomsComponent
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
