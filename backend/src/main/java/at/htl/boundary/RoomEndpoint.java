@@ -5,17 +5,31 @@ import at.htl.entities.Room;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.*;
+import java.util.List;
 
 @RequestScoped
-@Path("room")
+@Path("/rooms")
 public class RoomEndpoint {
     @Inject
     RoomRepository roomRepository;
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAllRooms(){
+        List<Room> rooms = Room.listAll();
+        return Response.ok(roomRepository.findAllRooms()).build();
+    }
+
+    @GET
+    @Path("{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getById(@PathParam("id") Long id){
+        return Room.findByIdOptional(id)
+                .map(room -> Response.ok(room).build())
+                .orElse(Response.status(Response.Status.NOT_FOUND).build());
+    }
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)

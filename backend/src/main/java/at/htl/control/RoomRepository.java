@@ -2,9 +2,14 @@ package at.htl.control;
 
 import at.htl.entities.Room;
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
+import io.quarkus.panache.common.Sort;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.transaction.Transactional;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @ApplicationScoped
 @Transactional
@@ -17,14 +22,11 @@ public class RoomRepository implements PanacheRepository<Room> {
      * @param roomToSave - object to persist
      * @return the managed instance of the object
      */
-    @Transactional
     public Room save(Room roomToSave) {
         return getEntityManager().merge(roomToSave);
     }
 
-    @Transactional
-    public void generateRoom() {
-        Room room = new Room("XXX");
-        save(room);
+    public List<Room> findAllRooms(){
+        return Collections.unmodifiableList(listAll(Sort.by("ROOM_NUMBER")));
     }
 }

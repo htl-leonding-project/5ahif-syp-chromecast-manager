@@ -1,16 +1,20 @@
 package at.htl.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import io.quarkus.hibernate.orm.panache.PanacheEntity;
+
+import javax.persistence.*;
 
 @Entity
-public class Room {
+@Table(name = "ROOM")
+public class Room extends PanacheEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @Column(name = "ROOMNUMBER")
     private int roomNumber;
+
+    @Column(name = "ROOMNAME")
     private String roomName;
 
 
@@ -19,6 +23,7 @@ public class Room {
         this.roomName = roomName;
     }
 
+    public Room() { }
 
     public Long getId() {
         return id;
