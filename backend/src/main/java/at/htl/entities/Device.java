@@ -1,6 +1,7 @@
 package at.htl.entities;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Table(name = "DEVICE")
 public class Device {
@@ -14,6 +15,10 @@ public class Device {
     @Column(name = "NAME")
     private String name;
 
+
+    @OneToMany
+    private List<InstallAt> installs;
+
     @Column(name = "BRAND")
     private String brand;
 
@@ -23,11 +28,6 @@ public class Device {
         this.name = name;
         this.brand = brand;
     }
-
-    public Device() {
-
-    }
-
 
     public Long getId() {
         return id;
