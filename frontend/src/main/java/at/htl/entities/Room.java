@@ -2,12 +2,11 @@ package at.htl.entities;
 
 import javax.persistence.*;
 
-@Entity
+@Entity (name = "ROOM")
 @NamedQueries({
         @NamedQuery(name = "Room.findAll", query = "select r from Room r")
 })
 public class Room {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

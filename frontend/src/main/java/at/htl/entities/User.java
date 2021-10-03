@@ -2,7 +2,7 @@ package at.htl.entities;
 
 import javax.persistence.*;
 
-@Entity
+@Entity (name = "USER")
 @NamedQueries({
         @NamedQuery(name = "User.findAll", query = "select u from Room u")
 })

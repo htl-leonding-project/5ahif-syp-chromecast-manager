@@ -3,7 +3,7 @@ package at.htl.entities;
 import javax.persistence.*;
 import java.time.LocalDate;
 
-@Entity
+@Entity (name = "INSTALL_AT")
 @NamedQueries({
         @NamedQuery(name = "InstallAt.findAll", query = "select i from INSTALL_AT i")
 })
