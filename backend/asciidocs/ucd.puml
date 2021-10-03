@@ -1,0 +1,13 @@
+
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+actor User
+rectangle deviceManager {
+  User -- (manage user)
+  User --  (manage device)
+  User -- (manage room)
+  User -- (create report)
+}
+@enduml
+

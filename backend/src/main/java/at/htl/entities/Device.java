@@ -2,23 +2,21 @@ package at.htl.entities;
 
 import javax.persistence.*;
 
-@Entity
-@NamedQueries({
-        @NamedQuery(name = "Device.findAll", query = "select d from Device d")
-})
+@Table(name = "DEVICE")
 public class Device {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column
+    @Column(name = "SERIAL_NUMBER")
     private int serialNumber;
 
-    @Column
+    @Column(name = "NAME")
     private String name;
 
-    @Column
+    @Column(name = "BRAND")
     private String brand;
+
 
     public Device(int serialNumber, String name, String brand) {
         this.serialNumber = serialNumber;

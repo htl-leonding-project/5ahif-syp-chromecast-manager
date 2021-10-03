@@ -1,21 +1,19 @@
 package at.htl.entities;
 
+import io.quarkus.hibernate.orm.panache.PanacheEntity;
+
 import javax.persistence.*;
 
-@Entity
-@NamedQueries({
-        @NamedQuery(name = "Room.findAll", query = "select r from Room r")
-})
-public class Room {
-
+@Table(name = "ROOM")
+public class Room extends PanacheEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column
+    @Column(name = "ROOMNUMBER")
     private int roomNumber;
 
-    @Column
+    @Column(name = "ROOMNAME")
     private String roomName;
 
 

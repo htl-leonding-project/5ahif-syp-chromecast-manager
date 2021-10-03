@@ -1,0 +1,13 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <a>Chromecast Manager</a>
+      <span class="menu-spacer"></span>
+      <div>
+        <a mat-button [routerLink]="['/rooms']"> Rooms </a>
+      </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<router-outlet></router-outlet>

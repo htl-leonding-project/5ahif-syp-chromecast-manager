@@ -3,22 +3,19 @@ package at.htl.entities;
 import javax.persistence.*;
 import java.time.LocalDate;
 
-@Entity
-@NamedQueries({
-        @NamedQuery(name = "InstallAt.findAll", query = "select i from INSTALL_AT i")
-})
+@Table(name="INSTALL_AT")
 public class InstallAt {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column
+    @Column(name = "INSTALL_DATE")
     private LocalDate installDate;
 
-    @Column
+    @Column(name = "REMOVE_DATE")
     private LocalDate removeDate;
 
-    @Column
+    @Column(name = "DESCRIPTION")
     private String description;
 
     @ManyToOne

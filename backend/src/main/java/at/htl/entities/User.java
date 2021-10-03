@@ -2,19 +2,16 @@ package at.htl.entities;
 
 import javax.persistence.*;
 
-@Entity
-@NamedQueries({
-        @NamedQuery(name = "User.findAll", query = "select u from Room u")
-})
+@Table(name = "USER")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column
+    @Column(name = "NAME")
     private String name;
 
-    @Column
+    @Column(name = "PASSWORD")
     private String password;
 
     public User(String name, String password) {

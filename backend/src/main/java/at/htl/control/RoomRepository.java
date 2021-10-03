@@ -1,14 +1,17 @@
 package at.htl.control;
 
 import at.htl.entities.Room;
+import io.quarkus.hibernate.orm.panache.PanacheRepository;
+import io.quarkus.panache.common.Sort;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.transaction.Transactional;
+import java.util.Collections;
 import java.util.List;
 
 @ApplicationScoped
 @Transactional
-public class RoomRepository extends MyEntityManagerFactory<Room> {
+public class RoomRepository implements PanacheRepository<Room> {
     /**
      * Use the method 'merge' of the EntityManager to persist the entity
      * - when the object doesn't exist in the database or the id is null, a new database entry is created (persist)
@@ -22,7 +25,6 @@ public class RoomRepository extends MyEntityManagerFactory<Room> {
     }
 
     public List<Room> findAllRooms(){
-        return (List<Room>)getEntityManager().createNamedQuery("Room.findAll")
-                .getResultList();
+        return Collections.unmodifiableList(listAll(Sort.by("ROOM_NUMBER")));
     }
 }
