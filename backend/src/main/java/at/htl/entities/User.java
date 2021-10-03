@@ -2,14 +2,16 @@ package at.htl.entities;
 
 import javax.persistence.*;
 
-@Entity
+@Table(name = "USER")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(name = "NAME")
     private String name;
 
+    @Column(name = "PASSWORD")
     private String password;
 
     public User(String name, String password) {

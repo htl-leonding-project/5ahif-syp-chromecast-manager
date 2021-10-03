@@ -1,18 +1,20 @@
 package at.htl.entities;
 
 import javax.persistence.*;
-import java.util.Date;
 
-@Entity
+@Table(name = "DEVICE")
 public class Device {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(name = "SERIAL_NUMBER")
     private int serialNumber;
 
+    @Column(name = "NAME")
     private String name;
 
+    @Column(name = "BRAND")
     private String brand;
 
 
