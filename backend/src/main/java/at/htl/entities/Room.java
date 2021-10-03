@@ -3,12 +3,16 @@ package at.htl.entities;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Table(name = "ROOM")
 public class Room extends PanacheEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @OneToMany
+    private List<InstallAt> installs;
 
     @Column(name = "ROOMNUMBER")
     private int roomNumber;
@@ -21,8 +25,6 @@ public class Room extends PanacheEntity {
         this.roomNumber = roomNumber;
         this.roomName = roomName;
     }
-
-    public Room() { }
 
     public Long getId() {
         return id;

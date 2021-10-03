@@ -1,6 +1,7 @@
 package at.htl.entities;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Table(name = "USER")
 public class User {
@@ -13,6 +14,9 @@ public class User {
 
     @Column(name = "PASSWORD")
     private String password;
+
+    @OneToMany
+    private List<InstallAt> installs;
 
     public User(String name, String password) {
         this.name = name;
