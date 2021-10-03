@@ -18,17 +18,7 @@ public class RoomEndpoint {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllRooms(){
-        List<Room> rooms = Room.listAll();
         return Response.ok(roomRepository.findAllRooms()).build();
-    }
-
-    @GET
-    @Path("{id}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response getById(@PathParam("id") Long id){
-        return Room.findByIdOptional(id)
-                .map(room -> Response.ok(room).build())
-                .orElse(Response.status(Response.Status.NOT_FOUND).build());
     }
 
     @POST
