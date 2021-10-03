@@ -3,19 +3,20 @@ package at.htl.entities;
 import javax.persistence.*;
 import java.util.List;
 
+@Entity
 @Table(name = "USER")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "NAME")
     private String name;
-
     @Column(name = "PASSWORD")
     private String password;
 
     @OneToMany
+    @JoinColumn(name = "USER_INSTALLS")
     private List<InstallAt> installs;
 
     public User(String name, String password) {
@@ -26,7 +27,6 @@ public class User {
     public User() {
 
     }
-
 
     public Long getId() {
         return id;

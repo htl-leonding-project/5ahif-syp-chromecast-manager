@@ -3,13 +3,14 @@ package at.htl.entities;
 import javax.persistence.*;
 import java.util.List;
 
+@Entity
 @Table(name = "DEVICE")
 public class Device {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "SERIAL_NUMBER")
+    @Column(name = "SERIALNUMBER")
     private int serialNumber;
 
     @Column(name = "NAME")
@@ -17,6 +18,7 @@ public class Device {
 
 
     @OneToMany
+    @JoinColumn(name = "DEVICE_INSTALLS")
     private List<InstallAt> installs;
 
     @Column(name = "BRAND")
@@ -27,6 +29,9 @@ public class Device {
         this.serialNumber = serialNumber;
         this.name = name;
         this.brand = brand;
+    }
+
+    public Device() {
     }
 
     public Long getId() {

@@ -5,18 +5,19 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import javax.persistence.*;
 import java.util.List;
 
+@Entity
 @Table(name = "ROOM")
-public class Room extends PanacheEntity {
+public class Room  {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @OneToMany
+    @JoinColumn(name = "ROOM_INSTALLS")
     private List<InstallAt> installs;
 
     @Column(name = "ROOMNUMBER")
     private int roomNumber;
-
     @Column(name = "ROOMNAME")
     private String roomName;
 
@@ -24,6 +25,10 @@ public class Room extends PanacheEntity {
     public Room(int roomNumber, String roomName) {
         this.roomNumber = roomNumber;
         this.roomName = roomName;
+    }
+
+    public Room() {
+
     }
 
     public Long getId() {
