@@ -5,16 +5,13 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "ROOM")
 public class Room extends PanacheEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "ROOMNUMBER")
     private int roomNumber;
 
-    @Column(name = "ROOMNAME")
     private String roomName;
 
 

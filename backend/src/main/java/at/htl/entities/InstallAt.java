@@ -4,19 +4,15 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name="INSTALL_AT")
 public class InstallAt {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "INSTALL_DATE")
     private LocalDate installDate;
 
-    @Column(name = "REMOVE_DATE")
     private LocalDate removeDate;
 
-    @Column(name = "DESCRIPTION")
     private String description;
 
     @ManyToOne

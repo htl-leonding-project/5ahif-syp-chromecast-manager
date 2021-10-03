@@ -8,8 +8,6 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.transaction.Transactional;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @ApplicationScoped
 @Transactional
