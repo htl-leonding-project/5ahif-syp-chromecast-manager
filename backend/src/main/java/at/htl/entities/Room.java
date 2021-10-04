@@ -7,6 +7,9 @@ import java.util.List;
 
 @Entity
 @Table(name = "ROOM")
+@NamedQueries({
+        @NamedQuery(name = "Room.findAll", query = "select r from Room r")
+})
 public class Room  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
