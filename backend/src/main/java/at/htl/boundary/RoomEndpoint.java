@@ -1,6 +1,6 @@
-package at.htl.entities.boundary;
+package at.htl.boundary;
 
-import at.htl.entities.control.RoomRepository;
+import at.htl.control.RoomRepository;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
