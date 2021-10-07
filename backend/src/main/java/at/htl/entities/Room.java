@@ -21,6 +21,7 @@ public class Room  {
 
     @Column(name = "ROOMNUMBER")
     private int roomNumber;
+
     @Column(name = "ROOMNAME")
     private String roomName;
 
