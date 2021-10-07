@@ -13,6 +13,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -37,12 +38,16 @@ public class RoomRepository implements PanacheRepository<Room> {
         return Collections.unmodifiableList(listAll(Sort.by("ROOMNUMBER")));
     }
 
+
+
     public List<Room> readCSV(String fileName)
     {
-        URL url = Thread.currentThread().getContextClassLoader().getResource(fileName);
+        //URL url = Thread.currentThread().getContextClassLoader().getResource(fileName);
+        //assert url != null;
 
         try {
-            Stream<String> stream = Files.lines(Paths.get(url.getPath()), StandardCharsets.UTF_8);
+            Path findCSV = find("rooms.csv", ".").stream().findFirst().get();
+            Stream<String> stream = Files.lines(findCSV, StandardCharsets.UTF_8);
             return stream.skip(1).map(line ->
                     {
                         String [] splitted = line.split(";"); return new Room(Integer.parseInt(splitted[0]),"");
@@ -52,5 +57,14 @@ public class RoomRepository implements PanacheRepository<Room> {
             e.printStackTrace();
         }
         return null;
+    }
+
+    protected static Collection<Path> find(String fileName, String searchDirectory) throws IOException {
+        try (Stream<Path> files = Files.walk(Paths.get(searchDirectory))) {
+            return files
+                    .filter(f -> f.getFileName().toString().equals(fileName))
+                    .collect(Collectors.toList());
+
+        }
     }
 }
