@@ -8,7 +8,7 @@ import { DataSource } from '@angular/cdk/collections';
   providedIn: 'root'
 })
 export class RoomsService {
-  displayedColumns: string[] = ['id','roomnumber','roomname'];
+  displayedColumns: string[] = ['id','roomName','roomNumber'];
   datasource: MatTableDataSource<Room> = new MatTableDataSource();
   
   url: string;
@@ -18,8 +18,8 @@ export class RoomsService {
   }
 
   async getRooms(): Promise<Room[]>{
-    const x: Room[]  = await this.httpClient.get<Room[]>(`${this.url}/rooms`).toPromise();
-    const data: Room[] = x.map(room => new Room(room.id, room.roomnumber, room.roomname));
+    const data: Room[]  = await this.httpClient.get<Room[]>(`${this.url}/rooms`).toPromise();
+    //console.log(x)
     return this.datasource.data = data;
   }
 }
