@@ -13,7 +13,6 @@ import javax.ws.rs.core.Response;
 public class RoomEndpoint {
     @Inject
     RoomRepository roomRepository;
-
     @GET
     public Response findAll(){
         return Response.ok(roomRepository.findAllRooms()).build();
