@@ -8,18 +8,18 @@ import { DataSource } from '@angular/cdk/collections';
   providedIn: 'root'
 })
 export class RoomsService {
-  displayedColumns: string[] = ['room','class'];
+  displayedColumns: string[] = ['id','roomnumber','roomname'];
   datasource: MatTableDataSource<Room> = new MatTableDataSource();
   
-  rooms: MatTableDataSource<Room> = new MatTableDataSource();
   url: string;
   
   constructor(private httpClient: HttpClient) { 
-    this.url = 'http://localhost:2000'
+    this.url = 'http://localhost:8080';
   }
 
   async getRooms(): Promise<Room[]>{
-    const data: Room[] = await this.httpClient.get<Room[]>(`${this.url}/rooms`).toPromise();
-    return this.rooms.data = data;
+    const x: Room[]  = await this.httpClient.get<Room[]>(`${this.url}/rooms`).toPromise();
+    const data: Room[] = x.map(room => new Room(room.id, room.roomnumber, room.roomname));
+    return this.datasource.data = data;
   }
 }

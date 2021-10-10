@@ -16,6 +16,6 @@ public class RoomEndpoint {
 
     @GET
     public Response findAll(){
-        return Response.ok(roomRepository.findAll()).build();
+        return Response.ok(roomRepository.findAllRooms()).build();
     }
 }
