@@ -11,8 +11,12 @@ import javax.ws.rs.core.Response;
 @RequestScoped
 @Path("/rooms")
 public class RoomEndpoint {
+
+
     @Inject
     RoomRepository roomRepository;
+
+
     @GET
     public Response findAll(){
         return Response.ok(roomRepository.findAllRooms()).build();

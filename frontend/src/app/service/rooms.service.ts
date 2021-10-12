@@ -8,7 +8,7 @@ import { DataSource } from '@angular/cdk/collections';
   providedIn: 'root'
 })
 export class RoomsService {
-  displayedColumns: string[] = ['id','roomName','roomNumber'];
+  displayedColumns: string[] = ['roomName','roomNumber'];
   datasource: MatTableDataSource<Room> = new MatTableDataSource();
   
   url: string;
