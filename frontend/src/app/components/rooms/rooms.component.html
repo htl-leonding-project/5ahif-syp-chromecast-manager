@@ -3,9 +3,19 @@
 <h1>Rooms</h1>
 
 <div>
+    <form>
+        <button style="margin:5px;">create</button> 
+    
+        <button style="margin:5px;">update</button>
+
+        <button style="margin:5px;">delete</button>
+    
+        <button style="margin:5px;">cancel</button>
+
+        <button style="margin:5px;">submit</button>
+    </form>
+
     <table style="width: 100%; margin: auto; margin-top: 10px" mat-table [dataSource]="roomsService.datasource" class="mat-elevation-z8" matSort>
-        
-        
 
         <ng-container matColumnDef="roomName">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>RoomName</th>

@@ -11,12 +11,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { HttpClientModule } from '@angular/common/http';
+import { CreateRoomComponent } from './components/create-room/create-room.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    RoomsComponent
+    RoomsComponent,
+    CreateRoomComponent
   ],
   imports: [
     BrowserModule,
