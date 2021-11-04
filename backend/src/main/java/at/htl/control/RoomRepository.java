@@ -31,6 +31,11 @@ public class RoomRepository implements PanacheRepository<Room> {
      */
     @Transactional
     public Room save(Room roomToSave) {
+        if (roomToSave == null)
+        {
+            throw new NullPointerException("Room to save is null");
+        }
+
         return getEntityManager().merge(roomToSave);
     }
 
@@ -50,7 +55,7 @@ public class RoomRepository implements PanacheRepository<Room> {
             Stream<String> stream = Files.lines(findCSV, StandardCharsets.UTF_8);
             return stream.skip(1).map(line ->
                     {
-                        String [] splitted = line.split(";"); return new Room(Integer.parseInt(splitted[0]),"");
+                        String [] splitted = line.split(";"); return new Room(Integer.parseInt(splitted[0]),splitted[1]);
                     })
                     .collect(Collectors.toList());
         } catch (IOException e) {
