@@ -8,20 +8,22 @@ import java.util.List;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "U_ID")
     private Long id;
 
-    @Column(name = "NAME")
+    @Column(name = "U_NAME")
     private String name;
-    @Column(name = "PASSWORD")
-    private String password;
+
+    @Column(name = "U_PASSWORD_HASH")
+    private String passwordHash;
 
     @OneToMany
-    @JoinColumn(name = "USER_INSTALLS")
+    @JoinColumn(name = "U_INSTALLS_AT")
     private List<InstallAt> installs;
 
-    public User(String name, String password) {
+    public User(String name, String passwordHash) {
         this.name = name;
-        this.password = password;
+        this.passwordHash = passwordHash;
     }
 
     public User() {
@@ -36,7 +38,7 @@ public class User {
         return name;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPasswordHash() {
+        return passwordHash;
     }
 }

@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "ROOM")
+@Table(name = "HTL_ROOM")
 @NamedQueries({
         @NamedQuery(name = "Room.findAll", query = "select r from Room r")
 })
