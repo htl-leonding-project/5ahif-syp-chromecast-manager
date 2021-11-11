@@ -22,9 +22,8 @@ class installedAt{
     description : String
 }
  
-Device "1" -  installedAt
-Room "1" -left-  installedAt
-User "1" --  installedAt
-
+Device "1" - "1 .. *" installedAt
+Room "1" -left- "1 .. *" installedAt
+User "1" -- "1 .. *" installedAt
 
 @enduml

@@ -1,0 +1,31 @@
+@startuml
+entity User {
+   * id
+   - name
+   - passwordHash
+}
+
+entity Device{
+   * id
+   - brand
+   - name
+}
+
+entity InstallAt {
+   * id
+   - installDate
+   - removeDate
+   -  description
+}
+
+entity Room{
+    * id
+    - roomName
+    - roomNumber
+}
+
+User ||--|{ InstallAt
+Device ||--|{ InstallAt
+InstallAt ||--|{ Room
+
+@enduml
