@@ -8,6 +8,7 @@ import java.util.List;
 public class Device {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "D_ID")
     private Long id;
 
     @Column(name = "D_SERIALNUMBER")
@@ -15,7 +16,6 @@ public class Device {
 
     @Column(name = "D_NAME")
     private String name;
-
 
     @OneToMany
     @JoinColumn(name = "D_INSTALLS")
@@ -38,15 +38,50 @@ public class Device {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public int getSerialNumber() {
         return serialNumber;
+    }
+
+    public void setSerialNumber(int serialNumber) {
+        this.serialNumber = serialNumber;
     }
 
     public String getName() {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<InstallAt> getInstalls() {
+        return installs;
+    }
+
+    public void setInstalls(List<InstallAt> installs) {
+        this.installs = installs;
+    }
+
     public String getBrand() {
         return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    @Override
+    public String toString() {
+        return "Device{" +
+                "id=" + id +
+                ", serialNumber=" + serialNumber +
+                ", name='" + name + '\'' +
+                ", installs=" + installs +
+                ", brand='" + brand + '\'' +
+                '}';
     }
 }
