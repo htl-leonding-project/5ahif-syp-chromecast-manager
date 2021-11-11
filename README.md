@@ -9,5 +9,5 @@ Many Devices should be registered in our school, and each of this devices is in 
 ## User Stories
 
 * As a User i want to manage Devices.
-* As a User i want to Manage Classes.
-* As
+* As a User i want to manage Classes.
+* As a User i want to manage Rooms.
