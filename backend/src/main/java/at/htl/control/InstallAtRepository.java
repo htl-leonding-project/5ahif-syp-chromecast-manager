@@ -20,4 +20,12 @@ public class InstallAtRepository implements PanacheRepository<InstallAt> {
 
         return getEntityManager().merge(installAtToSave);
     }
+
+    @Transactional
+    public void delete(Long id)
+    {
+        InstallAt installAt = findById(id);
+        getEntityManager().remove(installAt);
+    }
+
 }
