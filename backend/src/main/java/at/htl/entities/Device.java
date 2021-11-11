@@ -10,18 +10,18 @@ public class Device {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "SERIALNUMBER")
+    @Column(name = "D_SERIALNUMBER")
     private int serialNumber;
 
-    @Column(name = "NAME")
+    @Column(name = "D_NAME")
     private String name;
 
 
     @OneToMany
-    @JoinColumn(name = "DEVICE_INSTALLS")
+    @JoinColumn(name = "D_INSTALLS")
     private List<InstallAt> installs;
 
-    @Column(name = "BRAND")
+    @Column(name = "D_BRAND")
     private String brand;
 
 

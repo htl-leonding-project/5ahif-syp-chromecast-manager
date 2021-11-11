@@ -14,13 +14,13 @@ public class Room  {
     private Long id;
 
     @OneToMany
-    @JoinColumn(name = "ROOM_INSTALLS")
+    @JoinColumn(name = "R_INSTALLS")
     private List<InstallAt> installs;
 
-    @Column(name = "ROOMNUMBER")
+    @Column(name = "R_NUMBER")
     private int roomNumber;
 
-    @Column(name = "ROOMNAME")
+    @Column(name = "R_NAME")
     private String roomName;
 
 
