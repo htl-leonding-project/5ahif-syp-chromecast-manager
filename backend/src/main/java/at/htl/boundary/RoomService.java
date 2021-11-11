@@ -26,7 +26,6 @@ public class RoomService {
 
 
 
-
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
@@ -39,4 +38,7 @@ public class RoomService {
         logger.infof("Room created: %s",newRoom.getRoomName());
         return Response.ok(newRoom).build();
     }
+
+
+
 }

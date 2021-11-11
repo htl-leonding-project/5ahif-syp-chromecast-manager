@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "INSTALLAT")
+@Table(name = "HTL_INSTALLAT")
 public class InstallAt {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
