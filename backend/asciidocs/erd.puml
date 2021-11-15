@@ -7,8 +7,8 @@ entity User {
 
 entity Device{
    * id
-   - brand
    - name
+   - brand
 }
 
 entity InstallAt {

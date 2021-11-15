@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @ApplicationScoped
+@Transactional
 public class RoomRepository implements PanacheRepository<Room> {
     /**
      * Use the method 'merge' of the EntityManager to persist the entity
@@ -71,5 +72,14 @@ public class RoomRepository implements PanacheRepository<Room> {
                     .collect(Collectors.toList());
 
         }
+    }
+
+    public Room getRoomDummy(){
+        Room room = new Room();
+
+        room.setRoomNumber(4);
+        room.setRoomName("5AHIF");
+
+        return room;
     }
 }

@@ -11,22 +11,17 @@ public class Device {
     @Column(name = "D_ID")
     private Long id;
 
-    @Column(name = "D_SERIALNUMBER")
-    private int serialNumber;
-
     @Column(name = "D_NAME")
     private String name;
+
+    @Column(name = "D_BRAND")
+    private String brand;
 
     @OneToMany
     @JoinColumn(name = "D_INSTALLS")
     private List<InstallAt> installs;
 
-    @Column(name = "D_BRAND")
-    private String brand;
-
-
-    public Device(int serialNumber, String name, String brand) {
-        this.serialNumber = serialNumber;
+    public Device(String name, String brand) {
         this.name = name;
         this.brand = brand;
     }
@@ -42,28 +37,12 @@ public class Device {
         this.id = id;
     }
 
-    public int getSerialNumber() {
-        return serialNumber;
-    }
-
-    public void setSerialNumber(int serialNumber) {
-        this.serialNumber = serialNumber;
-    }
-
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public List<InstallAt> getInstalls() {
-        return installs;
-    }
-
-    public void setInstalls(List<InstallAt> installs) {
-        this.installs = installs;
     }
 
     public String getBrand() {
@@ -74,14 +53,21 @@ public class Device {
         this.brand = brand;
     }
 
+    public List<InstallAt> getInstalls() {
+        return installs;
+    }
+
+    public void setInstalls(List<InstallAt> installs) {
+        this.installs = installs;
+    }
+
     @Override
     public String toString() {
         return "Device{" +
                 "id=" + id +
-                ", serialNumber=" + serialNumber +
                 ", name='" + name + '\'' +
-                ", installs=" + installs +
                 ", brand='" + brand + '\'' +
+                ", installs=" + installs +
                 '}';
     }
 }

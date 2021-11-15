@@ -18,7 +18,7 @@ public class InstallAtTest {
     {
         user = new User("Moritz","Deadlift123");
         room = new Room(91,"K05");
-        device = new Device("4512351AF13","Chromecast","Google");
+        device = new Device("Chromecast","Google");
 
     }
 
