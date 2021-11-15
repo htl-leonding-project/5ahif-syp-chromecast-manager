@@ -17,9 +17,6 @@ public class Device {
     @Column(name = "D_BRAND")
     private String brand;
 
-    @OneToMany
-    @JoinColumn(name = "D_INSTALLS")
-    private List<InstallAt> installs;
 
     public Device(String name, String brand) {
         this.name = name;
@@ -53,13 +50,6 @@ public class Device {
         this.brand = brand;
     }
 
-    public List<InstallAt> getInstalls() {
-        return installs;
-    }
-
-    public void setInstalls(List<InstallAt> installs) {
-        this.installs = installs;
-    }
 
     @Override
     public String toString() {
@@ -67,7 +57,6 @@ public class Device {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", brand='" + brand + '\'' +
-                ", installs=" + installs +
                 '}';
     }
 }
