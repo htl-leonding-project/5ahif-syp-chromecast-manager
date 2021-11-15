@@ -29,7 +29,7 @@ public class InstallAt {
 
 
     public InstallAt(LocalDate installDate, LocalDate removeDate, String description, User user, Room room, Device device) {
-        this.installDate = installDate;
+        setInstallDate(installDate);
         setRemoveDate(removeDate);
         this.description = description;
         this.room = room;
@@ -54,8 +54,9 @@ public class InstallAt {
 
     public void setInstallDate(LocalDate installDate) {
 
-
-
+        if (installDate.isAfter(getRemoveDate())){
+            installDate = null;
+        }
         this.installDate = installDate;
     }
 

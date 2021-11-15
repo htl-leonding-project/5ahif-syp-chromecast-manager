@@ -47,6 +47,19 @@ public class InstallAtTest {
 
         Assert.assertTrue(isNull);
     }
+    @Test
+    void checkInstallDate() {
+        InstallAt installAt = new InstallAt(LocalDate.now().plusDays(3),LocalDate.now().plusDays(2),"Test",user,room,device);
+
+        boolean isNull = installAt.getInstallDate() == null;
+
+        Assert.assertTrue(isNull);
+    }
+
+
+
+
+
 
 
 
