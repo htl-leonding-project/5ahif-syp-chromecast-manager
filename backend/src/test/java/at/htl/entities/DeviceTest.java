@@ -65,10 +65,11 @@ class DeviceTest {
         device2.setBrand("iiyama");
 
         Device device3 = mock(Device.class);
+
         //act
         when(device3.getName()).thenReturn("Mouse");
         when(device3.getBrand()).thenReturn("Razer");
-        when(device3.getInstalls()).thenReturn(installAtList);
+
         //assert
         assertEquals(device1.getName(), "Beamer");
         assertEquals(device1.getBrand(), "Epson");
@@ -78,8 +79,6 @@ class DeviceTest {
 
         assertEquals(device3.getName(), "Mouse");
         assertEquals(device3.getBrand(), "Razer");
-        assertEquals(device3.getInstalls().size(), 1);
-        assertEquals(device3.getInstalls().get(0).getInstallDate(), LocalDate.of(2021, Month.JANUARY, 1));
     }
 
     @Test

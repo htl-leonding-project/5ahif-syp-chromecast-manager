@@ -24,8 +24,8 @@ entity Room{
     - roomNumber
 }
 
-User ||--|{ InstallAt
-Device ||--|{ InstallAt
-InstallAt ||--|{ Room
+User ||--|| InstallAt
+Device ||--|| InstallAt
+InstallAt ||--|| Room
 
 @enduml
