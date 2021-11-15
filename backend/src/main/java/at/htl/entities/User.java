@@ -5,6 +5,8 @@ import java.util.List;
 
 @Entity
 @Table(name = "HTL_USER")
+
+//changed
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,9 +19,6 @@ public class User {
     @Column(name = "U_PASSWORD_HASH")
     private String passwordHash;
 
-    @OneToMany
-    @JoinColumn(name = "U_INSTALLS_AT")
-    private List<InstallAt> installs;
 
     public User(String name, String passwordHash) {
         this.name = name;
@@ -54,13 +53,6 @@ public class User {
         this.passwordHash = passwordHash;
     }
 
-    public List<InstallAt> getInstalls() {
-        return installs;
-    }
-
-    public void setInstalls(List<InstallAt> installs) {
-        this.installs = installs;
-    }
 
     @Override
     public String toString() {
@@ -68,7 +60,7 @@ public class User {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", passwordHash='" + passwordHash + '\'' +
-                ", installs=" + installs +
+
                 '}';
     }
 }

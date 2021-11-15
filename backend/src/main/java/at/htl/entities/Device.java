@@ -11,14 +11,19 @@ public class Device {
     @Column(name = "D_ID")
     private Long id;
 
+    @Column(name = "D_SERIALNUMBER")
+    private String serialNumber;
+
     @Column(name = "D_NAME")
     private String name;
+
 
     @Column(name = "D_BRAND")
     private String brand;
 
 
-    public Device(String name, String brand) {
+    public Device(String serialNumber, String name, String brand) {
+        this.serialNumber = serialNumber;
         this.name = name;
         this.brand = brand;
     }
@@ -32,6 +37,14 @@ public class Device {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getSerialNumber() {
+        return serialNumber;
+    }
+
+    public void setSerialNumber(String serialNumber) {
+        this.serialNumber = serialNumber;
     }
 
     public String getName() {
@@ -50,12 +63,13 @@ public class Device {
         this.brand = brand;
     }
 
-
     @Override
     public String toString() {
         return "Device{" +
                 "id=" + id +
+                ", serialNumber=" + serialNumber +
                 ", name='" + name + '\'' +
+
                 ", brand='" + brand + '\'' +
                 '}';
     }

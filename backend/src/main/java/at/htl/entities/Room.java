@@ -8,15 +8,13 @@ import java.util.List;
 @NamedQueries({
         @NamedQuery(name = "Room.findAll", query = "select r from Room r")
 })
+//changed
 public class Room  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "R_ID")
     private Long id;
 
-    @OneToMany
-    @JoinColumn(name = "R_INSTALLS")
-    private List<InstallAt> installs;
 
     @Column(name = "R_NUMBER")
     private int roomNumber;
@@ -42,13 +40,6 @@ public class Room  {
         this.id = id;
     }
 
-    public List<InstallAt> getInstalls() {
-        return installs;
-    }
-
-    public void setInstalls(List<InstallAt> installs) {
-        this.installs = installs;
-    }
 
     public int getRoomNumber() {
         return roomNumber;
@@ -70,7 +61,6 @@ public class Room  {
     public String toString() {
         return "Room{" +
                 "id=" + id +
-                ", installs=" + installs +
                 ", roomNumber=" + roomNumber +
                 ", roomName='" + roomName + '\'' +
                 '}';
