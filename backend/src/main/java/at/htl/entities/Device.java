@@ -12,20 +12,17 @@ public class Device {
     private Long id;
 
     @Column(name = "D_SERIALNUMBER")
-    private int serialNumber;
+    private String serialNumber;
 
     @Column(name = "D_NAME")
     private String name;
 
-    @OneToMany
-    @JoinColumn(name = "D_INSTALLS")
-    private List<InstallAt> installs;
 
     @Column(name = "D_BRAND")
     private String brand;
 
 
-    public Device(int serialNumber, String name, String brand) {
+    public Device(String serialNumber, String name, String brand) {
         this.serialNumber = serialNumber;
         this.name = name;
         this.brand = brand;
@@ -42,11 +39,11 @@ public class Device {
         this.id = id;
     }
 
-    public int getSerialNumber() {
+    public String getSerialNumber() {
         return serialNumber;
     }
 
-    public void setSerialNumber(int serialNumber) {
+    public void setSerialNumber(String serialNumber) {
         this.serialNumber = serialNumber;
     }
 
@@ -56,14 +53,6 @@ public class Device {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public List<InstallAt> getInstalls() {
-        return installs;
-    }
-
-    public void setInstalls(List<InstallAt> installs) {
-        this.installs = installs;
     }
 
     public String getBrand() {
@@ -80,7 +69,7 @@ public class Device {
                 "id=" + id +
                 ", serialNumber=" + serialNumber +
                 ", name='" + name + '\'' +
-                ", installs=" + installs +
+
                 ", brand='" + brand + '\'' +
                 '}';
     }
