@@ -1,8 +1,6 @@
 package at.htl.control;
 
 import at.htl.entities.Device;
-import at.htl.entities.InstallAt;
-import at.htl.entities.Room;
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 import io.quarkus.panache.common.Sort;
 

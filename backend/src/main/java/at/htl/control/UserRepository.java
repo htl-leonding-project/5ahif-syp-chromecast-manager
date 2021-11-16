@@ -1,10 +1,8 @@
 package at.htl.control;
 
-import at.htl.entities.Device;
 import at.htl.entities.User;
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 import io.quarkus.panache.common.Sort;
-
 import javax.enterprise.context.ApplicationScoped;
 import javax.transaction.Transactional;
 import java.util.Collections;
@@ -12,7 +10,7 @@ import java.util.List;
 
 @ApplicationScoped
 @Transactional
-public class UserRepository implements PanacheRepository<User>{
+public class UserRepository implements PanacheRepository<User> {
     public User save(User userToSave) {
         if (userToSave == null)
         {

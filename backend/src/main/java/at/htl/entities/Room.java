@@ -1,7 +1,6 @@
 package at.htl.entities;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "HTL_ROOM")

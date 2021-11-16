@@ -1,7 +1,6 @@
 package at.htl.entities;
 
 import javax.persistence.*;
-import java.security.InvalidParameterException;
 import java.time.LocalDate;
 
 @Entity

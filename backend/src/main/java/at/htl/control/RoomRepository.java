@@ -3,12 +3,9 @@ package at.htl.control;
 import at.htl.entities.Room;
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 import io.quarkus.panache.common.Sort;
-
 import javax.enterprise.context.ApplicationScoped;
 import javax.transaction.Transactional;
-import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;

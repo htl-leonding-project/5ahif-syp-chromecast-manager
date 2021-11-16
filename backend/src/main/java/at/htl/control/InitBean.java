@@ -1,6 +1,5 @@
 package at.htl.control;
 
-
 import at.htl.entities.Room;
 import io.quarkus.runtime.StartupEvent;
 import org.jboss.logging.Logger;
