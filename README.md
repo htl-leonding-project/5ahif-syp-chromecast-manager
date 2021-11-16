@@ -18,7 +18,7 @@ Many Devices should be registered in our school, and each of this devices is in 
 ![image](backend/asciidocs/images/erd.png)
 
 ### 2.CLD
-![image](backend/asciidocs/images/cld.png)
+![image](backend/asciidocs/images/cld1.png)
 
 ### 3.UCD
 ![image](backend/asciidocs/images/ucd.png)
