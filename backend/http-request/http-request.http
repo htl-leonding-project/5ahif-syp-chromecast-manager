@@ -3,3 +3,7 @@ Content-Type: application/x-www-form-urlencoded
 Accept: application/json
 
 roomNumber=999&roomName=test
+###
+
+DELETE http://localhost:8080/rooms/delete/63
+Content-Type: application/json

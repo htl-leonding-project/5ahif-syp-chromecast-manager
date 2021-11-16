@@ -99,5 +99,9 @@ public class InstallAtTest {
         assertEquals(installAt3.getRoom(),room);
         assertEquals(installAt3.getDevice(),device);
     }
+
+
+
+
 }
 

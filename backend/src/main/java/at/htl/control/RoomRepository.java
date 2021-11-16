@@ -1,5 +1,6 @@
 package at.htl.control;
 
+import at.htl.entities.InstallAt;
 import at.htl.entities.Room;
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 import io.quarkus.panache.common.Sort;
@@ -42,6 +43,13 @@ public class RoomRepository implements PanacheRepository<Room> {
     }
 
 
+    @Transactional
+    public Room delete(Long id)
+    {
+        Room room = findById(id);
+        getEntityManager().remove(room);
+        return room;
+    }
 
     public List<Room> readCSV(String fileName)
     {
