@@ -13,7 +13,6 @@ import java.time.Month;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
 class DeviceTest {
     private DeviceRepository deviceRepository;
@@ -43,7 +42,7 @@ class DeviceTest {
 
     @Test
     @Order(1)
-    public void test_000_AllFieldsNotNull() {
+    public void test_000_globalVariablesNotNull() {
         //assert
         assertNotNull(device);
         assertNotNull(room);
@@ -63,12 +62,7 @@ class DeviceTest {
         Device device2 = new Device();
         device2.setName("Monitor");
         device2.setBrand("iiyama");
-
-        Device device3 = mock(Device.class);
-
         //act
-        when(device3.getName()).thenReturn("Mouse");
-        when(device3.getBrand()).thenReturn("Razer");
 
         //assert
         assertEquals(device1.getName(), "Beamer");
@@ -76,13 +70,10 @@ class DeviceTest {
 
         assertEquals(device2.getName(), "Monitor");
         assertEquals(device2.getBrand(), "iiyama");
-
-        assertEquals(device3.getName(), "Mouse");
-        assertEquals(device3.getBrand(), "Razer");
     }
 
     @Test
-    @Order(2)
+    @Order(3)
     public void test_002_saveEmptyDevice(){
         //arrange
         Device device1 = null;

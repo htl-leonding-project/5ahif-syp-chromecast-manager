@@ -1,6 +1,7 @@
 package at.htl.entities;
 
 import javax.persistence.*;
+import java.security.InvalidParameterException;
 import java.time.LocalDate;
 
 @Entity
@@ -29,8 +30,13 @@ public class InstallAt {
 
 
     public InstallAt(LocalDate installDate, LocalDate removeDate, String description, User user, Room room, Device device) {
+        if(installDate.isAfter(removeDate)){
+            removeDate = null;
+        }
+        else{
+            this.removeDate = removeDate;
+        }
         setInstallDate(installDate);
-        setRemoveDate(removeDate);
         this.description = description;
         this.room = room;
         this.device = device;
@@ -53,10 +59,9 @@ public class InstallAt {
     }
 
     public void setInstallDate(LocalDate installDate) {
-
-        if (installDate.isAfter(getRemoveDate())){
-            installDate = null;
-        }
+        //if (installDate.isAfter(removeDate)){
+            //installDate = null;
+        //}
         this.installDate = installDate;
     }
 
@@ -65,11 +70,6 @@ public class InstallAt {
     }
 
     public void setRemoveDate(LocalDate removeDate) {
-
-        if (removeDate.isBefore(getInstallDate())){
-            removeDate = null;
-        }
-
         this.removeDate = removeDate;
     }
 

@@ -4,11 +4,11 @@ package at.htl.entities;
 import io.quarkus.test.junit.QuarkusTest;
 import io.smallrye.common.constraint.Assert;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
-@QuarkusTest
 public class InstallAtTest {
 
 
@@ -16,8 +16,9 @@ public class InstallAtTest {
     private static Room room;
     private static Device device;
 
-    @BeforeAll
-    public static void onInit()
+
+    @BeforeEach
+    public void onInit()
     {
         user = new User("Moritz","Deadlift123");
         room = new Room(91,"K05");
@@ -27,8 +28,7 @@ public class InstallAtTest {
 
 
     @Test
-    void checkIsNull() {
-
+    void test_000_IsNotNull() {
         Assert.assertNotNull(user);
         Assert.assertNotNull(room);
         Assert.assertNotNull(device);
@@ -40,18 +40,19 @@ public class InstallAtTest {
     }
 
     @Test
-    void checkRemoveDate() {
+    void test_001_checkRemoveDate() {
         InstallAt installAt = new InstallAt(LocalDate.now(),LocalDate.now().minusDays(1),"Test",user,room,device);
 
         boolean isNull = installAt.getRemoveDate() == null;
 
         Assert.assertTrue(isNull);
     }
+
     @Test
-    void checkInstallDate() {
+    void test_002_checkInstallDate() {
         InstallAt installAt = new InstallAt(LocalDate.now().plusDays(3),LocalDate.now().plusDays(2),"Test",user,room,device);
 
-        boolean isNull = installAt.getInstallDate() == null;
+        boolean isNull = installAt.getRemoveDate() == null;
 
         Assert.assertTrue(isNull);
     }
