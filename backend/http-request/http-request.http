@@ -7,3 +7,12 @@ roomNumber=999&roomName=test
 
 DELETE http://localhost:8080/rooms/delete/63
 Content-Type: application/json
+###
+
+PUT http://localhost:8080/rooms/update/63
+Content-Type: application/json
+
+{
+"roomNumber": "187",
+"roomName": "K03"
+}

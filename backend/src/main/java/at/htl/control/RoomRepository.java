@@ -50,6 +50,15 @@ public class RoomRepository implements PanacheRepository<Room> {
         getEntityManager().remove(room);
         return room;
     }
+    @Transactional
+    public Room update(Long id,int number,String name)
+    {
+        Room room = findById(id);
+        room.setRoomName(name);
+        room.setRoomNumber(number);
+        getEntityManager().merge(room);
+        return room;
+    }
 
     public List<Room> readCSV(String fileName)
     {

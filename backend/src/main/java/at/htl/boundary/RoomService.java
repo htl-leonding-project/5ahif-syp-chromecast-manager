@@ -6,6 +6,7 @@ import org.jboss.logging.Logger;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.json.JsonObject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -49,5 +50,14 @@ public class RoomService {
         return Response.ok(room.getRoomName()).build();
     }
 
+    @PUT
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/update/{id}")
+    public Response updateRoom(@PathParam("id") String roomId, String number,String name)
+    {
+        Room room = roomRepository.update(Long.parseLong(roomId),Integer.parseInt(number),name);
+        return Response.ok(room.getRoomName()).build();
+    }
 
 }
