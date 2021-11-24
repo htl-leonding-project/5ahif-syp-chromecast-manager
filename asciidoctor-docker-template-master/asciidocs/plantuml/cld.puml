@@ -1,0 +1,29 @@
+@startuml
+
+class Device{
+  String serialNumber
+  String name
+  String brand
+}
+
+class Room{
+   String roomName
+   int roomNumber
+}
+class User
+{
+    String name
+    String password
+}
+
+class installedAt{
+    installDate : LocalDate
+    removeDate : LocalDate
+    description : String
+}
+ 
+Device "1" -  installedAt
+Room "1" -left- installedAt
+User "1" --  installedAt
+
+@enduml
