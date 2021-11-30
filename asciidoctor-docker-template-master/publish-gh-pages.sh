@@ -6,7 +6,7 @@
 BUILD_DIR="gh-pages"
 OLD=$(PWD)
 ORIGIN_URL=$(git config --get remote.origin.url)
-${PWD}/build-slides-docker.sh
+${PWD}/build-html-docker.sh
 cd $BUILD_DIR
 git init
 git add .
@@ -28,7 +28,6 @@ echo "***********************************************************"
 echo created gh-pages under following url
 echo https://${TEMP[3]}.github.io/${REPO_NAME%.*}
 echo "***********************************************************"
-
 
 
 # Sources:
