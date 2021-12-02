@@ -100,8 +100,5 @@ public class InstallAtTest {
         assertEquals(installAt3.getDevice(),device);
     }
 
-
-
-
 }
 
