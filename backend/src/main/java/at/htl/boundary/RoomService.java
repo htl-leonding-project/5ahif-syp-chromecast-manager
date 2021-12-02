@@ -21,7 +21,7 @@ public class RoomService {
     Logger logger;
 
     @GET
-    public Response findAll(){
+    public Response findAllRooms(){
         return Response.ok(roomRepository.findAll()).build();
     }
 

@@ -100,6 +100,12 @@ class DeviceTest {
     @Test
     @Order(5)
     public void test_004_removeDeviceThatDoesNotExist(){
+        
+    }
+
+    @Test
+    @Order(6)
+    public void test_005_firstDBTest(){
 
     }
 }

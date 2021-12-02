@@ -12,13 +12,15 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { HttpClientModule } from '@angular/common/http';
 import { CreateRoomComponent } from './components/create-room/create-room.component';
+import { UpdateRoomComponent } from './components/update-room/update-room.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     RoomsComponent,
-    CreateRoomComponent
+    CreateRoomComponent,
+    UpdateRoomComponent
   ],
   imports: [
     BrowserModule,

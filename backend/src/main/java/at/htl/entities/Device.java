@@ -16,7 +16,6 @@ public class Device {
     @Column(name = "D_BRAND")
     private String brand;
 
-
     public Device(String name, String brand) {
         this.name = name;
         this.brand = brand;
