@@ -84,4 +84,22 @@ class DeviceTest {
         //assert
         assertEquals(exception.getMessage(), expectedMessage);
     }
+
+    @Test
+    @Order(4)
+    public void test_003_removeDevice(){
+        //arrange
+        Device device1 = deviceRepository.getDeviceDummy();
+        //act
+        deviceRepository.save(device1);
+        deviceRepository.delete(device1);
+        //assert
+        assertEquals(deviceRepository.count(),0);
+    }
+
+    @Test
+    @Order(5)
+    public void test_004_removeDeviceThatDoesNotExist(){
+
+    }
 }
