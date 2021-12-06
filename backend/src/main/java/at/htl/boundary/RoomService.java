@@ -12,7 +12,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 @RequestScoped
-@Path("/rooms")
+@Path("/api")
 public class RoomService {
     @Inject
     RoomRepository roomRepository;
@@ -21,13 +21,27 @@ public class RoomService {
     Logger logger;
 
     @GET
+    @Path("/rooms")
     public Response findAllRooms(){
         return Response.ok(roomRepository.findAll()).build();
     }
 
+    @GET
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/room/{id}")
+    public Response getRoomById(@PathParam("id") Long id){
+        Room room;
+        room = roomRepository.findById(id);
 
+        if(room != null){
+            return Response.ok(room).build();
+        }
+        return Response.status(Response.Status.NOT_FOUND).build();
+    }
 
     @POST
+    @Path("/room")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     public Response createRoom(@FormParam("roomNumber") int roomNumber

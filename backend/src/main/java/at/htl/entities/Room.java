@@ -4,13 +4,14 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "HTL_ROOM")
-@NamedQueries({
-        @NamedQuery(name = "Room.findAll", query = "select r from Room r")
-})
-//changed
+@SequenceGenerator(
+        name = "roomSequence",
+        sequenceName = "room_id_seq",
+        allocationSize = 1, //increment
+        initialValue = 1000) //start
 public class Room  {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "roomSequence")
     @Column(name = "R_ID")
     private Long id;
 

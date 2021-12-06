@@ -25,7 +25,7 @@ public class InitBean {
     void onStartUp(@Observes StartupEvent event)
     {
         List<Room> rooms = roomRepository.readCSV(FILE_NAME);
-        //log.info(rooms);
+        log.info(rooms);
         rooms.forEach(r -> System.out.println(r));
         for (Room r: rooms) {
             roomRepository.save(r);

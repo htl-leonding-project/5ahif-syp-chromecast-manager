@@ -1,9 +1,7 @@
 package at.htl.control;
 
-import at.htl.entities.InstallAt;
 import at.htl.entities.Room;
-import io.quarkus.hibernate.orm.panache.PanacheRepository;
-import io.quarkus.panache.common.Sort;
+import io.quarkus.hibernate.orm.panache.PanacheRepositoryBase;
 import javax.enterprise.context.ApplicationScoped;
 import javax.transaction.Transactional;
 import java.io.IOException;
@@ -19,7 +17,7 @@ import java.util.stream.Stream;
 
 @ApplicationScoped
 @Transactional
-public class RoomRepository implements PanacheRepository<Room> {
+public class RoomRepository implements PanacheRepositoryBase<Room, Long> {
     /**
      * Use the method 'merge' of the EntityManager to persist the entity
      * - when the object doesn't exist in the database or the id is null, a new database entry is created (persist)
@@ -28,29 +26,28 @@ public class RoomRepository implements PanacheRepository<Room> {
      * @param roomToSave - object to persist
      * @return the managed instance of the object
      */
-    @Transactional
     public Room save(Room roomToSave) {
         if (roomToSave == null)
         {
             throw new NullPointerException("Room to save is null");
         }
 
+        for(Room currentRoom : Collections.unmodifiableList(listAll())){
+            if( (roomToSave.getId() == currentRoom.getId()) || roomToSave.getId() == currentRoom.getId() ){
+                return currentRoom;
+            }
+        }
+
         return getEntityManager().merge(roomToSave);
     }
 
-    public List<Room> findAllRooms(){
-        return Collections.unmodifiableList(listAll(Sort.by("ROOMNUMBER")));
-    }
-
-
-    @Transactional
     public Room delete(Long id)
     {
         Room room = findById(id);
         getEntityManager().remove(room);
         return room;
     }
-    @Transactional
+
     public Room update(Long id,int number,String name)
     {
         Room room = findById(id);
