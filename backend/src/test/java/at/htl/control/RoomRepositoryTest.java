@@ -73,7 +73,14 @@ public class RoomRepositoryTest {
     @Order(003)
     @Test
     @Transactional
-    void test_003_(){
+    void test_003_persistRoomWithInstallAt(){
         //todo
+    }
+
+    @Order(004)
+    @Test
+    @Transactional
+    void test_004_persistRoomAndDevice(){
+
     }
 }
