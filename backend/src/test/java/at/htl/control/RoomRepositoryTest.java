@@ -44,7 +44,7 @@ public class RoomRepositoryTest {
     @Test
     void t210_isTableStructureRoomCorrect() {
 
-        Table table = new Table(ds, roomTable);
+        Table table = new Table(ds,"HTL_ROOM");
         org.assertj.db.api.Assertions.assertThat(table)
                 .hasNumberOfColumns(3)
                 .column(0).hasColumnName("R_ID")
