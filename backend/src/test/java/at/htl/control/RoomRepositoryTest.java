@@ -33,14 +33,14 @@ public class RoomRepositoryTest {
         roomRepository.deleteAll(); //does not work somehow
     }
 
-    @DisplayName("Returns the method 'readFile()' a list with 70 names?")
+    @DisplayName("Returns the method 'readCSV' a list with 62 names?")
     @Test
     void t200_readFile() {
         List<Room> rooms = roomRepository.readCSV("rooms.csv");
         assertThat(rooms).hasSize(62);
     }
 
-    @DisplayName("Is the table-structure of H_ROOM correct?")
+    @DisplayName("Is the table-structure of HTL_ROOM correct?")
     @Test
     void t210_isTableStructureRoomCorrect() {
 
