@@ -8,6 +8,7 @@ import org.jboss.logging.Logger;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.json.bind.JsonbBuilder;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -53,4 +54,13 @@ public class DeviceService {
         logger.infof("Device created: %s",newDevice.getName());
         return Response.ok(newDevice).build();
     }
+    @DELETE
+    @Path("device/{id}")
+    public Response deleteDevice(@PathParam("id") Long id){
+        Device d = deviceRepository.delete(id);
+        return Response.ok(d.getName()).build();
+
+    }
+
+
 }

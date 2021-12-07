@@ -1,6 +1,7 @@
 package at.htl.control;
 
 import at.htl.entities.Device;
+import at.htl.entities.Room;
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 import io.quarkus.panache.common.Sort;
 
@@ -25,10 +26,11 @@ public class DeviceRepository implements PanacheRepository<Device> {
         return Collections.unmodifiableList(listAll(Sort.by("D_ID")));
     }
 
-    public void delete(Long id)
+    public Device delete(Long id)
     {
         Device device = findById(id);
         getEntityManager().remove(device);
+        return device;
     }
 
     public Device getDeviceDummy() {
