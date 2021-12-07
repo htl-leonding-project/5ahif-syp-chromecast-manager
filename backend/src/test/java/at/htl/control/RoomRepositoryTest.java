@@ -49,13 +49,20 @@ public class RoomRepositoryTest {
     @Order(002)
     @Test
     @Transactional
-    void test_002_persist2DifferentRoomsWithSameName(){
+    void test_002_persist2DifferentRoomsWithSameNameAndOrRoomNumber(){
         //arrange
         Room room1 = new Room(1000, "TestRoom01");
-        Room room2 = new Room(1000, "TestRoom02");
+        Room room2 = new Room(1000, "TestRoom01");
 
         //act
         roomRepository.save(room1);
+        roomRepository.save(room2);
+
+        room2.setRoomName("TestRoom02");
+        roomRepository.save(room2);
+
+        room2.setRoomName("TestRoom01");
+        room2.setRoomNumber(1001);
         roomRepository.save(room2);
 
         //assert

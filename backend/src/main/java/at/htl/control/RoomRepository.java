@@ -33,7 +33,7 @@ public class RoomRepository implements PanacheRepositoryBase<Room, Long> {
         }
 
         for(Room currentRoom : Collections.unmodifiableList(listAll())){
-            if( (roomToSave.getId() == currentRoom.getId()) || roomToSave.getId() == currentRoom.getId() ){
+            if( (roomToSave.getId() == currentRoom.getId()) || roomToSave.getRoomName().equals(currentRoom.getRoomName()) || currentRoom.getRoomNumber() == roomToSave.getRoomNumber()){
                 return currentRoom;
             }
         }
