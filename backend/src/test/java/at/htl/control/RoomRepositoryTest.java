@@ -10,6 +10,7 @@ import org.junit.jupiter.api.*;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 @QuarkusTest
@@ -30,7 +31,7 @@ public class RoomRepositoryTest {
     @Transactional
     public void onInit(){
         roomRepository = new RoomRepository();
-        roomRepository.deleteAll(); //does not work somehow
+        roomRepository.deleteAll();
     }
 
     @DisplayName("Returns the method 'readCSV' a list with 62 names?")
@@ -68,9 +69,11 @@ public class RoomRepositoryTest {
         //assert
         Table table = new Table(ds, "HTL_ROOM");
         org.assertj.db.api.Assertions.assertThat(table).hasNumberOfRows(1);
+        table.getColumn(1).toString();
         org.assertj.db.api.Assertions.assertThat(table)
-                //There were alread rooms created (InitBean Id's: 1000-1061)
-                .column("R_ID").value().isEqualTo(1062)
+                //There were alread rooms created (InitBean Id's: 1000-1027)
+                .column(1)
+                .column("R_ID").value().isEqualTo(1028)
                 .column("R_NUMBER").value().isEqualTo(1000)
                 .column("R_NAME").value().isEqualTo("TestRoom01");
     }
@@ -97,19 +100,5 @@ public class RoomRepositoryTest {
         //assert
         Table table = new Table(ds, "HTL_ROOM");
         org.assertj.db.api.Assertions.assertThat(table).hasNumberOfRows(1);
-    }
-
-    @Order(003)
-    @Test
-    @Transactional
-    void test_003_persistRoomWithInstallAt(){
-        //todo
-    }
-
-    @Order(004)
-    @Test
-    @Transactional
-    void test_004_persistRoomAndDevice(){
-
     }
 }

@@ -32,9 +32,11 @@ public class RoomRepository implements PanacheRepositoryBase<Room, Long> {
             throw new NullPointerException("Room to save is null");
         }
 
-        for(Room currentRoom : Collections.unmodifiableList(listAll())){
-            if( (roomToSave.getId() == currentRoom.getId()) || roomToSave.getRoomName().equals(currentRoom.getRoomName()) || currentRoom.getRoomNumber() == roomToSave.getRoomNumber()){
-                return currentRoom;
+        if(Collections.unmodifiableList(listAll()).size()!=0){
+            for(Room currentRoom : Collections.unmodifiableList(listAll())){
+                if( (roomToSave.getId() == currentRoom.getId()) || roomToSave.getRoomName().equals(currentRoom.getRoomName()) || currentRoom.getRoomNumber() == roomToSave.getRoomNumber()){
+                    return currentRoom;
+                }
             }
         }
 
