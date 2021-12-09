@@ -1,21 +1,38 @@
 package at.htl.entities;
 
+import at.htl.control.DeviceRepository;
+import at.htl.control.RoomRepository;
+import at.htl.control.UserRepository;
 import io.smallrye.common.constraint.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
+import javax.inject.Inject;
 import java.time.LocalDate;
 import java.time.Month;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class InstallAtTest {
-    private static User user;
-    private static Room room;
-    private static Device device;
-    private static InstallAt installAt;
+    @Inject
+    private UserRepository userRepository;
+    @Inject
+    private RoomRepository roomRepository;
+    @Inject
+    private DeviceRepository deviceRepository;
+
+    private User user;
+    private Room room;
+    private Device device;
+    private InstallAt installAt;
+    private LocalDate installDate;
+    private LocalDate removeDate;
+
 
     @BeforeEach
     public void onInit()
@@ -23,47 +40,17 @@ public class InstallAtTest {
         user = new User("Moritz","Deadlift123");
         room = new Room(91,"K05");
         device = new Device("Chromecast","Google");
+
+        installDate = LocalDate.now();
+        removeDate = LocalDate.now().plusDays(3);
+        installAt = new InstallAt(installDate, removeDate, "Test",user,room,device);
     }
 
 
+    @Order(001)
     @Test
-    @Order(1)
-    public void test_000_IsNotNull() {
+    public void test_001_createInstallAT() {
         //arrange
-        InstallAt installAt = new InstallAt(LocalDate.now(),LocalDate.now().plusDays(3),"Test",user,room,device);
-
-        //assert
-        Assert.assertNotNull(user);
-        Assert.assertNotNull(room);
-        Assert.assertNotNull(device);
-
-        Assert.assertNotNull(installAt);
-    }
-
-    @Test
-    @Order(2)
-    public void test_001_checkRemoveDate() {
-        InstallAt installAt = new InstallAt(LocalDate.now(),LocalDate.now().minusDays(1),"Test",user,room,device);
-
-        boolean isNull = installAt.getRemoveDate() == null;
-
-        Assert.assertTrue(isNull);
-    }
-
-    @Test
-    @Order(3)
-    public void test_002_checkInstallDate() {
-        InstallAt installAt = new InstallAt(LocalDate.now().plusDays(3),LocalDate.now().plusDays(2),"Test",user,room,device);
-
-        boolean isNull = installAt.getRemoveDate() == null;
-
-        Assert.assertTrue(isNull);
-    }
-
-    @Test
-    @Order(4)
-    public void test_003_installAt(){
-        //arragnge
         InstallAt installAt1 = new InstallAt(
                 LocalDate.of(2021, Month.JANUARY, 1),
                 LocalDate.of(2021, Month.JANUARY, 11),
@@ -98,7 +85,18 @@ public class InstallAtTest {
         assertEquals(installAt3.getUser(),user);
         assertEquals(installAt3.getRoom(),room);
         assertEquals(installAt3.getDevice(),device);
-    }
 
+        Assert.assertNotNull(user);
+        Assert.assertNotNull(room);
+        Assert.assertNotNull(device);
+
+        Assert.assertNotNull(installAt);
+        Assert.assertNotNull(installAt.getUser());
+        Assert.assertNotNull(installAt.getRoom());
+        Assert.assertNotNull(installAt.getDevice());
+
+        assertThat(installAt.getInstallDate()).isEqualTo(installDate);
+        assertThat(installAt.getRemoveDate()).isEqualTo(removeDate);
+    }
 }
 
