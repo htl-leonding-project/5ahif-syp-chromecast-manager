@@ -26,14 +26,10 @@ public class InstallAt {
     @OneToOne(cascade = CascadeType.PERSIST)
     private Device device;
 
-
-
-
     public InstallAt(LocalDate installDate, LocalDate removeDate, String description, User user, Room room, Device device) {
-        if( ( installDate.isAfter(removeDate) && !removeDate.isEqual(null) ) || installDate.equals(null)){
-            throw new NullPointerException("installDate is either null or after the removeDate");
+        if( installDate.equals(null) || ( !removeDate.isEqual(null) && installDate.isAfter(removeDate) ) ){
+            throw new NullPointerException("installDate is either null or after removeDate");
         }
-
         this.installDate = installDate;
         this.removeDate = removeDate;
         this.description = description;
@@ -58,9 +54,9 @@ public class InstallAt {
     }
 
     public void setInstallDate(LocalDate installDate) {
-        //if (installDate.isAfter(removeDate)){
-            //installDate = null;
-        //}
+        if(installDate.isEqual(null) || installDate.isAfter(this.removeDate)){
+            throw new NullPointerException("installDate is either null or after the removeDate");
+        }
         this.installDate = installDate;
     }
 
@@ -69,6 +65,9 @@ public class InstallAt {
     }
 
     public void setRemoveDate(LocalDate removeDate) {
+        if(this.installDate.isAfter(removeDate)){
+            throw new NullPointerException("installDate is after the removeDate");
+        }
         this.removeDate = removeDate;
     }
 
