@@ -1,6 +1,7 @@
 package at.htl.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Entity
@@ -29,13 +30,12 @@ public class InstallAt {
 
 
     public InstallAt(LocalDate installDate, LocalDate removeDate, String description, User user, Room room, Device device) {
-        if(installDate.isAfter(removeDate)){
-            removeDate = null;
+        if( ( installDate.isAfter(removeDate) && !removeDate.isEqual(null) ) || installDate.equals(null)){
+            throw new NullPointerException("installDate is either null or after the removeDate");
         }
-        else{
-            this.removeDate = removeDate;
-        }
-        setInstallDate(installDate);
+
+        this.installDate = installDate;
+        this.removeDate = removeDate;
         this.description = description;
         this.room = room;
         this.device = device;
