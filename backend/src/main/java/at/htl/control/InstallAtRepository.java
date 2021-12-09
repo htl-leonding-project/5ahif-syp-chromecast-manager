@@ -1,12 +1,14 @@
 package at.htl.control;
 
 import at.htl.entities.InstallAt;
+import at.htl.entities.Room;
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -20,6 +22,14 @@ public class InstallAtRepository implements PanacheRepository<InstallAt> {
         if (installAtToSave == null)
         {
             throw new NullPointerException("Installation is null");
+        }
+
+        if(Collections.unmodifiableList(listAll()).size()!=0){
+            for(InstallAt currentInstallAt : Collections.unmodifiableList(listAll())){
+                if(installAtToSave.getId() == currentInstallAt.getId()){
+                    return installAtToSave;
+                }
+            }
         }
 
         return getEntityManager().merge(installAtToSave);

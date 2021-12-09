@@ -47,7 +47,7 @@ public class InstallAtTest {
     }
 
 
-    @Order(1)
+    @Order(001)
     @Test
     public void test_001_createInstallAT() {
         //arrange
@@ -98,34 +98,5 @@ public class InstallAtTest {
         assertThat(installAt.getInstallDate()).isEqualTo(installDate);
         assertThat(installAt.getRemoveDate()).isEqualTo(removeDate);
     }
-
-    @Test
-    @Order(2)
-    public void test_002_newInstallAtRemoveDateIsNull() {
-        //arrange
-        InstallAt install1 = installAt;
-        Exception exception1;
-        String expectedMessage1 = "installDate is either null or after removeDate";
-        Exception exception2;
-        String expectedMessage2 = "installDate is after the removeDate";
-        Exception exception3;
-        String expectedMessage3 = "removeDate can only be set if installDate exists";
-
-        //act
-        exception1 = assertThrows(NullPointerException.class, () -> {
-           new InstallAt(null, null, "Test",user,room,device);
-        });
-
-        exception2 = assertThrows(NullPointerException.class, () -> {
-            install1.setInstallDate(LocalDate.now().minusDays(3));
-        });
-
-        //assert
-        assertEquals(expectedMessage1, exception1.getMessage());
-        assertEquals(expectedMessage2, exception2.getMessage());
-    }
-
-
-
 }
 

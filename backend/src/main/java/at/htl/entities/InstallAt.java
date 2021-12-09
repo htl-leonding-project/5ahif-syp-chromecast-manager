@@ -1,14 +1,18 @@
 package at.htl.entities;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "HTL_INSTALLAT")
+@SequenceGenerator(
+        name = "installAtSequence",
+        sequenceName = "installAt_id_seq",
+        allocationSize = 1, //increment
+        initialValue = 2000) //start
 public class InstallAt {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "installAtSequence")
     @Column(name = "I_ID")
     private Long id;
 
@@ -19,17 +23,14 @@ public class InstallAt {
     @Column(name ="I_DESCRIPTION")
     private String description;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private User user;
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Room room;
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Device device;
 
     public InstallAt(LocalDate installDate, LocalDate removeDate, String description, User user, Room room, Device device) {
-        if( installDate.equals(null) || ( !removeDate.isEqual(null) && installDate.isAfter(removeDate) ) ){
-            throw new NullPointerException("installDate is either null or after removeDate");
-        }
         this.installDate = installDate;
         this.removeDate = removeDate;
         this.description = description;
@@ -54,9 +55,7 @@ public class InstallAt {
     }
 
     public void setInstallDate(LocalDate installDate) {
-        if(installDate.isEqual(null) || installDate.isAfter(this.removeDate)){
-            throw new NullPointerException("installDate is either null or after the removeDate");
-        }
+        if(installDate.equals(null))throw new NullPointerException("installDate not set");
         this.installDate = installDate;
     }
 
@@ -65,9 +64,7 @@ public class InstallAt {
     }
 
     public void setRemoveDate(LocalDate removeDate) {
-        if(this.installDate.isAfter(removeDate)){
-            throw new NullPointerException("installDate is after the removeDate");
-        }
+        if(removeDate.equals(null))throw new NullPointerException("removeDate not set");
         this.removeDate = removeDate;
     }
 
