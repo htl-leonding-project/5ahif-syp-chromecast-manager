@@ -1,21 +1,37 @@
 package at.htl.entities;
 
+import at.htl.control.DeviceRepository;
+import at.htl.control.RoomRepository;
+import at.htl.control.UserRepository;
 import io.smallrye.common.constraint.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
+import javax.inject.Inject;
+import java.lang.reflect.InaccessibleObjectException;
 import java.time.LocalDate;
 import java.time.Month;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 public class InstallAtTest {
-    private static User user;
-    private static Room room;
-    private static Device device;
-    private static InstallAt installAt;
+    @Inject
+    private UserRepository userRepository;
+    @Inject
+    private RoomRepository roomRepository;
+    @Inject
+    private DeviceRepository deviceRepository;
+
+    private User user;
+    private Room room;
+    private Device device;
+    private InstallAt installAt;
+    private LocalDate installDate;
+    private LocalDate removeDate;
+
 
     @BeforeEach
     public void onInit()
@@ -23,36 +39,58 @@ public class InstallAtTest {
         user = new User("Moritz","Deadlift123");
         room = new Room(91,"K05");
         device = new Device("Chromecast","Google");
+
+        installDate = LocalDate.now();
+        removeDate = LocalDate.now().plusDays(3);
+        installAt = new InstallAt(installDate, removeDate, "Test",user,room,device);
+
     }
 
 
-    @Test
     @Order(1)
-    public void test_000_IsNotNull() {
-        //arrange
-        InstallAt installAt = new InstallAt(LocalDate.now(),LocalDate.now().plusDays(3),"Test",user,room,device);
-
+    @Test
+    public void test_001_createInstallAT() {
         //assert
         Assert.assertNotNull(user);
         Assert.assertNotNull(room);
         Assert.assertNotNull(device);
 
         Assert.assertNotNull(installAt);
+        Assert.assertNotNull(installAt.getUser());
+        Assert.assertNotNull(installAt.getRoom());
+        Assert.assertNotNull(installAt.getDevice());
+
+        assertThat(installAt.getInstallDate()).isEqualTo(installDate);
+        assertThat(installAt.getRemoveDate()).isEqualTo(removeDate);
     }
 
     @Test
     @Order(2)
-    public void test_001_checkRemoveDate() {
-        InstallAt installAt = new InstallAt(LocalDate.now(),LocalDate.now().minusDays(1),"Test",user,room,device);
+    public void test_002_checkRemoveDate() {
+        //arrange
+        InstallAt installAt1 = new InstallAt(LocalDate.now(),LocalDate.now().minusDays(1),"Test",user,room,device);
+        InstallAt installAt2 = new InstallAt(LocalDate.now(), null, "Test",user,room,device);
+        InstallAt installAt3 = installAt;
+        installAt3.setRemoveDate(LocalDate.now().minusDays(1));
+        InstallAt installAt4 = installAt1;
 
-        boolean isNull = installAt.getRemoveDate() == null;
+        //act
+        boolean isNull1 = installAt1.getRemoveDate() == null;
+        boolean isNull2 =  installAt2.getRemoveDate() == null;
+        boolean isNull3 =  installAt3.getRemoveDate() == null;
+        installAt4.setRemoveDate(LocalDate.now().minusDays(1));
+        boolean isNull4 = installAt4.getRemoveDate() == null;
 
-        Assert.assertTrue(isNull);
+        //assert
+        Assert.assertTrue(isNull1);
+        Assert.assertTrue(isNull2);
+        Assert.assertTrue(isNull3);
+        Assert.assertTrue(isNull4);
     }
 
     @Test
     @Order(3)
-    public void test_002_checkInstallDate() {
+    public void test_003_checkInstallDate() {
         InstallAt installAt = new InstallAt(LocalDate.now().plusDays(3),LocalDate.now().plusDays(2),"Test",user,room,device);
 
         boolean isNull = installAt.getRemoveDate() == null;
@@ -62,7 +100,7 @@ public class InstallAtTest {
 
     @Test
     @Order(4)
-    public void test_003_installAt(){
+    public void test_004_installAt(){
         //arragnge
         InstallAt installAt1 = new InstallAt(
                 LocalDate.of(2021, Month.JANUARY, 1),
