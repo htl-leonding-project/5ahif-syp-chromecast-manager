@@ -24,10 +24,13 @@ public class InstallAt {
     private String description;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "I_U_ID")
     private User user;
     @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "I_R_ID")
     private Room room;
     @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "I_D_ID")
     private Device device;
 
     public InstallAt(LocalDate installDate, LocalDate removeDate, String description, User user, Room room, Device device) {
