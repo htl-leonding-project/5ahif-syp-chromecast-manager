@@ -5,6 +5,7 @@ import at.htl.entities.Room;
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.Month;
@@ -15,7 +16,12 @@ import java.util.List;
 @ApplicationScoped
 @Transactional
 public class InstallAtRepository implements PanacheRepository<InstallAt> {
-
+    @Inject
+    RoomRepository roomRepository = new RoomRepository();
+    @Inject
+    DeviceRepository deviceRepository = new DeviceRepository();
+    @Inject
+    UserRepository userRepository = new UserRepository();
 
     @Transactional
     public InstallAt save(InstallAt installAtToSave) {
@@ -30,6 +36,10 @@ public class InstallAtRepository implements PanacheRepository<InstallAt> {
                     return installAtToSave;
                 }
             }
+        }
+
+        if(!deviceRepository.getAllDevices().contains(installAtToSave.getDevice())){
+                deviceRepository.getEntityManager().merge(installAtToSave.getDevice());
         }
 
         return getEntityManager().merge(installAtToSave);

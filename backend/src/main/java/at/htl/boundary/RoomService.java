@@ -23,7 +23,7 @@ public class RoomService {
     @GET
     @Path("/rooms")
     public Response findAllRooms(){
-        return Response.ok(roomRepository.findAll()).build();
+        return Response.ok(roomRepository.findAllRooms()).build();
     }
 
     @GET

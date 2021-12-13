@@ -95,4 +95,8 @@ public class RoomRepository implements PanacheRepositoryBase<Room, Long> {
 
         return room;
     }
+
+    public List<Room> findAllRooms() {
+        return Collections.unmodifiableList(listAll());
+    }
 }

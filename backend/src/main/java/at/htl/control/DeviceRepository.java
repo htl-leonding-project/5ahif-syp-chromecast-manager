@@ -7,6 +7,7 @@ import io.quarkus.panache.common.Sort;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.transaction.Transactional;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -40,5 +41,9 @@ public class DeviceRepository implements PanacheRepository<Device> {
         device.setBrand("Brand");
 
         return device;
+    }
+
+    public List<Device> getAllDevices() {
+        return Collections.unmodifiableList(listAll());
     }
 }
