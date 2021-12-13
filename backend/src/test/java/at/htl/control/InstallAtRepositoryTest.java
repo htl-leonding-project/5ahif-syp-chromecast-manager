@@ -12,6 +12,10 @@ import org.junit.jupiter.api.*;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
+import java.time.LocalDate;
+
+import static org.assertj.db.output.Outputs.output;
+
 @QuarkusTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class InstallAtRepositoryTest {
@@ -52,6 +56,22 @@ public class InstallAtRepositoryTest {
                 .column(6).hasColumnName("I_U_ID");
     }
 
+    @Order(003)
+    @Test
+    @Transactional
+    void test_003_persistMultipleDevicesWithSameInstallAt(){
+        Device d1 = new Device("Apple", "Monitor");
+
+        InstallAt installAt1= new InstallAt(LocalDate.now(), null , "installation1", null, null, d1);
+        InstallAt installAt2= new InstallAt(LocalDate.now(), null , "installation2", null, null, d1);
+
+        installAtRepository.save(installAt1);
+        installAtRepository.save(installAt2);
+
+        Table table = new Table(ds, "HTL_DEVICE");
+        org.assertj.db.api.Assertions.assertThat(table).hasNumberOfRows(1);
+    }
+
     @Order(002)
     @Test
     @Transactional
@@ -72,6 +92,7 @@ public class InstallAtRepositoryTest {
 
         //assert
         Table table = new Table(ds, "HTL_INSTALLAT");
+        output(table).toConsole();
         org.assertj.db.api.Assertions.assertThat(table).hasNumberOfRows(1);
         table.getColumn(1).toString();
         org.assertj.db.api.Assertions.assertThat(table)

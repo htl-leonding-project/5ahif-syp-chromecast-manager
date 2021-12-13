@@ -29,7 +29,7 @@ public class InstallAt {
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "I_R_ID")
     private Room room;
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     @JoinColumn(name = "I_D_ID")
     private Device device;
 
