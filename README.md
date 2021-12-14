@@ -23,6 +23,3 @@ asciidoctor-docker-template-master/images/cld.png
 
 ### 3.UCD
 ![image](asciidoctor-docker-template-master/images/ucd.png)
-
-## Video-Clip
-![video](/CLIP_ORIGINAL_NEWEST.mp4)
