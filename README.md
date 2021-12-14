@@ -15,11 +15,14 @@ Many Devices should be registered in our school, and each of this devices is in 
 ## Data Model
 
 ### 1.ERD
-![image](backend/asciidocs/images/erd.png)
+asciidoctor-docker-template-master/images/cld.png
+![image](asciidoctor-docker-template-master/images/erd.png)
 
 ### 2.CLD
-![image](backend/asciidocs/images/cld1.png)
+![image](asciidoctor-docker-template-master/images/cld.png)
 
 ### 3.UCD
-![image](backend/asciidocs/images/ucd.png)
+![image](asciidoctor-docker-template-master/images/ucd.png)
 
+## Video-Clip
+![video](/CLIP_ORIGINAL_NEWEST.mp4)
