@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class UserTest {
@@ -50,6 +51,15 @@ public class UserTest {
         assertNotNull(deviceRepository);
         assertNotNull(roomRepository);
         assertNotNull(userRepository);
+    }
+
+
+    @Test
+    @Order(2)
+    public void test_02_UserIsValid() {
+        User user = new User("Felix","HungrigerGorilla13");
+        assertThat(user.getName()).isNotNull();
+
     }
 
 }

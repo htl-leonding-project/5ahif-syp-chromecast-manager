@@ -101,4 +101,10 @@ public class RoomRepositoryTest {
         Table table = new Table(ds, "HTL_ROOM");
         org.assertj.db.api.Assertions.assertThat(table).hasNumberOfRows(1);
     }
+
+
+
+
+
+
 }

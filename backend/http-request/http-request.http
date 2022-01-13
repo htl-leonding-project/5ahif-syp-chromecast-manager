@@ -1,18 +1,26 @@
-POST http://localhost:8080/rooms
+GET http://localhost:8080/api/rooms
+Accept: application/json
+
+###
+POST http://localhost:8080/api/create
 Content-Type: application/x-www-form-urlencoded
 Accept: application/json
 
 roomNumber=999&roomName=test
 ###
 
-DELETE http://localhost:8080/rooms/delete/63
+DELETE http://localhost:8080/api/delete/63
 Content-Type: application/json
 ###
 
-PUT http://localhost:8080/rooms/update/63
+PUT http://localhost:8080/api/update/1028
 Content-Type: application/json
 
 {
-"roomNumber": "187",
+"roomNumber": 187,
 "roomName": "K03"
 }
+
+
+
+

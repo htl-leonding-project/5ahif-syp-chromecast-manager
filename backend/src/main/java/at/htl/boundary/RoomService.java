@@ -7,6 +7,7 @@ import org.jboss.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.json.JsonObject;
+import javax.json.JsonValue;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -41,14 +42,14 @@ public class RoomService {
     }
 
     @POST
-    @Path("/room")
+    @Path("/create")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     public Response createRoom(@FormParam("roomNumber") int roomNumber
             ,@FormParam("roomName") String roomName)
     {
         Room newRoom = new Room(roomNumber,roomName);
-        roomRepository.save(newRoom);
+        newRoom = roomRepository.save(newRoom);
 
         logger.infof("Room created: %s",newRoom.getRoomName());
         return Response.ok(newRoom).build();
@@ -68,10 +69,12 @@ public class RoomService {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/update/{id}")
-    public Response updateRoom(@PathParam("id") String roomId, String number,String name)
+    public Response updateRoom(@PathParam("id") Long roomId, JsonValue jsonValue)
     {
-        Room room = roomRepository.update(Long.parseLong(roomId),Integer.parseInt(number),name);
-        return Response.ok(room.getRoomName()).build();
+        var jobj = jsonValue.asJsonObject();
+        Room room = roomRepository.update(roomId,
+                jobj.getInt("roomNumber"),
+                jobj.getString("roomName"));
+        return Response.ok(room).build();
     }
-
 }
