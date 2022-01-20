@@ -24,6 +24,6 @@ export class RoomsService {
   }
 
   async postRoom(room : Room): Promise<void>{
-      await this.httpClient.post<any>(this.url + '/create', JSON.stringify(room)).toPromise();
+      await this.httpClient.post<any>(this.url + '/create', room).toPromise();
   }
 }
