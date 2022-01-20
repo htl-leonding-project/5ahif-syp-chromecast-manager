@@ -22,4 +22,8 @@ export class RoomsService {
     //console.log(x)
     return this.datasource.data = data;
   }
+
+  async postRoom(room : Room): Promise<void>{
+      await this.httpClient.post<any>(this.url + '/create', JSON.stringify(room)).toPromise();
+  }
 }
