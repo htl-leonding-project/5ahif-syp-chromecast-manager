@@ -16,7 +16,15 @@ public class UserRepository implements PanacheRepository<User> {
         {
             throw new NullPointerException("User to save is null");
         }
-
+        if(Collections.unmodifiableList(listAll()).size() != 0){
+            for (User user: Collections.unmodifiableList(listAll()))
+            {
+                if (user.getName() == userToSave.getName() || user.getId() == userToSave.getId())
+                {
+                    return user;
+                }
+            }
+        }
         return getEntityManager().merge(userToSave);
     }
 

@@ -71,10 +71,10 @@ public class RoomService {
     @Path("/update/{id}")
     public Response updateRoom(@PathParam("id") Long roomId, JsonValue jsonValue)
     {
-        var jobj = jsonValue.asJsonObject();
+        var job = jsonValue.asJsonObject();
         Room room = roomRepository.update(roomId,
-                jobj.getInt("roomNumber"),
-                jobj.getString("roomName"));
+                job.getInt("roomNumber"),
+                job.getString("roomName"));
         return Response.ok(room).build();
     }
 }
