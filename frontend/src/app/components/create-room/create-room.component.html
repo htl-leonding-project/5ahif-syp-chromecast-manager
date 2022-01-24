@@ -22,12 +22,12 @@
               </mat-form-field>
         </div>
 
-        <div> style="margin-left: 10px">
-          <button type="button" [disabled]="!createRoomForm.valid" color="primary" (click)="onSave(); router.navigate(['/rooms/'])" mat-raised-button><mat-icon>save</mat-icon></button>
+        <div> 
+          <button type="button" style="margin-left: 10px" [disabled]="!createRoomForm.valid" color="primary" (click)="onSave(); router.navigate(['/rooms/'])" mat-raised-button><mat-icon>save</mat-icon></button>
         </div>
 
     </mat-card-content>
 </mat-card>
 
-
+<button style="margin-top: 20px;margin-left: 20px;" mat-raised-button color="primary" (click)="router.navigate(['/rooms/'])">Go back</button>
 <router-outlet></router-outlet>
