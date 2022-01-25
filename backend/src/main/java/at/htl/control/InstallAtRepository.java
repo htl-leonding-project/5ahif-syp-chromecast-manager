@@ -16,12 +16,12 @@ import java.util.List;
 @ApplicationScoped
 @Transactional
 public class InstallAtRepository implements PanacheRepository<InstallAt> {
-    @Inject
-    RoomRepository roomRepository = new RoomRepository();
-    @Inject
-    DeviceRepository deviceRepository = new DeviceRepository();
-    @Inject
-    UserRepository userRepository = new UserRepository();
+//    @Inject
+//    RoomRepository roomRepository = new RoomRepository();
+//    @Inject
+//    DeviceRepository deviceRepository = new DeviceRepository();
+//    @Inject
+//    UserRepository userRepository = new UserRepository();
 
     @Transactional
     public InstallAt save(InstallAt installAtToSave) {
@@ -32,15 +32,15 @@ public class InstallAtRepository implements PanacheRepository<InstallAt> {
 
         if(Collections.unmodifiableList(listAll()).size()!=0){
             for(InstallAt currentInstallAt : Collections.unmodifiableList(listAll())){
-                if(installAtToSave.getId() == currentInstallAt.getId()){
+                if(installAtToSave.getId() == currentInstallAt.getId() ){
                     return installAtToSave;
                 }
             }
         }
 
-        if(!deviceRepository.getAllDevices().contains(installAtToSave.getDevice())){
-                deviceRepository.getEntityManager().merge(installAtToSave.getDevice());
-        }
+//        if(!deviceRepository.getAllDevices().contains(installAtToSave.getDevice())){
+//                deviceRepository.getEntityManager().merge(installAtToSave.getDevice());
+//        }
 
         return getEntityManager().merge(installAtToSave);
     }

@@ -21,6 +21,13 @@ Content-Type: application/json
 "roomName": "K03"
 }
 
+###
 
+POST http://localhost:8080/users/create
+Content-Type: application/x-www-form-urlencoded
+Accept: application/json
 
+name=Batuhan&passwordHash=Batu123
+
+###
 

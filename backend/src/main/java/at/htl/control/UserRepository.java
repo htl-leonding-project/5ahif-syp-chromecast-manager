@@ -38,6 +38,16 @@ public class UserRepository implements PanacheRepository<User> {
         getEntityManager().remove(user);
     }
 
+    public User update(Long userId,String name,String passwordHash)
+    {
+        User userToChange = findById(userId);
+        userToChange.setName(name);
+        userToChange.setPasswordHash(passwordHash);
+        getEntityManager().merge(userToChange);
+
+        return userToChange;
+    }
+
     public User getUserDummy() {
         User user = new User();
 

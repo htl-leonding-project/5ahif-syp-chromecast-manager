@@ -8,12 +8,13 @@ import org.jboss.logging.Logger;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.json.JsonValue;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 @RequestScoped
-@Path("/api")
+@Path("/users")
 public class UserService {
 
 
@@ -24,7 +25,7 @@ public class UserService {
     Logger logger;
 
     @GET
-    @Path("/users")
+    @Path("/allUsers")
     public Response getAllUser()
     {
        return Response.ok(userRepository.findAllUsers()).build();
@@ -56,6 +57,20 @@ public class UserService {
 
         logger.infof("User created: %s",newUser.getName());
         return Response.ok(newUser).build();
+    }
+
+
+    @PUT
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/update/{id}")
+    public Response updateRoom(@PathParam("id") Long userId, JsonValue jsonValue)
+    {
+        var job = jsonValue.asJsonObject();
+        User user = userRepository.update(userId,
+                job.getString("name"),
+                job.getString("passwordHash"));
+        return Response.ok(user).build();
     }
 
 }
