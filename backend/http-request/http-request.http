@@ -2,13 +2,14 @@ GET http://localhost:8080/api/rooms
 Accept: application/json
 
 ###
+//info
 POST http://localhost:8080/api/create
 Content-Type: application/json
 Accept: application/json
 
 {
   "roomNumber": "999",
-  "roomName": "födfjk"
+  "roomName": "gym"
 }
 
 ###

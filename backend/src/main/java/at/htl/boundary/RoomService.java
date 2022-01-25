@@ -49,7 +49,7 @@ public class RoomService {
     {
         var roomToAdd = new Room(Integer.parseInt(room.getString("roomNumber")),room.getString("roomName"));
         var newRoom = roomRepository.save(roomToAdd);
-
+        // info
         logger.infof("Room created: %s",newRoom.getRoomName());
         return Response.ok(newRoom).build();
     }
