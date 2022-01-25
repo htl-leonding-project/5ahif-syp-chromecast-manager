@@ -44,12 +44,11 @@ public class RoomService {
     @POST
     @Path("/create")
     @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public Response createRoom(@FormParam("roomNumber") int roomNumber
-            ,@FormParam("roomName") String roomName)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response createRoom(JsonObject room)
     {
-        Room newRoom = new Room(roomNumber,roomName);
-        newRoom = roomRepository.save(newRoom);
+        var roomToAdd = new Room(Integer.parseInt(room.getString("roomNumber")),room.getString("roomName"));
+        var newRoom = roomRepository.save(roomToAdd);
 
         logger.infof("Room created: %s",newRoom.getRoomName());
         return Response.ok(newRoom).build();

@@ -19,7 +19,7 @@ export class CreateRoomComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
       this.createRoomForm = this.formBuilder.group({
-        number: 0,
+        number: '0',
         name: 'new Room'
       });
   }
@@ -28,9 +28,11 @@ export class CreateRoomComponent implements OnInit {
     const number = this.createRoomForm.get('number')?.value;
     const name = this.createRoomForm.get('name')?.value;
 
-    const room = new Room(number, name);
+    const x = new Room(name, number);
 
-    await this.roomService.postRoom(room);
+    alert('ROOMNUMBER XXXXXXXX'+ x.roomName);
+
+    await this.roomService.postRoom(x);
   }
 
 

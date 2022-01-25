@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import {Room} from '../model/room';
@@ -24,6 +24,19 @@ export class RoomsService {
   }
 
   async postRoom(room : Room): Promise<void>{
-      await this.httpClient.post<any>(this.url + '/create', room).toPromise();
-  }
+      //roomNumber=999&roomName=test
+      //let obj:string = 'roomNumber=' + room.roomNumber + 'roomName=' + room.roomName
+    
+      //let body = 'roomName=${}'
+
+      //await this.httpClient.post<any>(this.url + '/create?' + obj, {}).toPromise();
+      
+      const myheader = new HttpHeaders().set('content-type', 'application/json')
+      const body = { roomNumber: room.roomNumber,
+                     roomName: room.roomName};
+      console.log(JSON.stringify(room));            
+      this.httpClient.post<any>(this.url + '/create', JSON.stringify(room), {
+        headers: myheader
+        }).subscribe();
+    } 
 }
