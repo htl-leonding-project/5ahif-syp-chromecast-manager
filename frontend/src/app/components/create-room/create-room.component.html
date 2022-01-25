@@ -2,14 +2,32 @@
 
 <h1>Create Rooms</h1>
 
-<div>
-    <form>
-        <button style="margin:5px;">cancel</button>
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>
+            Add Room
+        </mat-card-title>
+    </mat-card-header>
 
-        <button style="margin:5px;">submit</button>
-    </form>
+    <mat-card-content>
+        <div form [formGroup]="createRoomForm">
+            <mat-form-field style="min-width: 20px">
+                <mat-label>Room-Number</mat-label>
+                <input formControlName="number" id="number" matInput required>
+              </mat-form-field>
 
-    
-</div>
+              <mat-form-field style="min-width: 20px">
+                <mat-label>Room-Name</mat-label>
+                <input formControlName="name" id="name" matInput unrequired>
+              </mat-form-field>
+        </div>
 
+        <div> 
+          <button type="button" style="margin-left: 10px" [disabled]="!createRoomForm.valid" color="primary" (click)="onSave(); router.navigate(['/rooms/'])" mat-raised-button><mat-icon>save</mat-icon></button>
+        </div>
+
+    </mat-card-content>
+</mat-card>
+
+<button style="margin-top: 20px;margin-left: 20px;" mat-raised-button color="primary" (click)="router.navigate(['/rooms/'])">Go back</button>
 <router-outlet></router-outlet>
