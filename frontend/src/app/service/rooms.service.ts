@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import {Room} from '../model/room';
@@ -22,6 +22,7 @@ export class RoomsService {
     //console.log(x)
     return this.datasource.data = data;
   }
+<<<<<<< HEAD
 
   async postRoom(room : Room): Promise<void>{
       const myheader = new HttpHeaders().set('content-type', 'application/json')
@@ -32,4 +33,6 @@ export class RoomsService {
         headers: myheader
         }).subscribe();
     } 
+=======
+>>>>>>> parent of c8d4889... new-Branch commit
 }
