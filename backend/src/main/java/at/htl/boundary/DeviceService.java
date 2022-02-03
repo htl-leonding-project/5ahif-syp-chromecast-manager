@@ -8,6 +8,7 @@ import org.jboss.logging.Logger;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.json.JsonObject;
 import javax.json.bind.JsonbBuilder;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -45,23 +46,29 @@ public class DeviceService {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public Response createDevice(@FormParam("name") String name
-            , @FormParam("brand") String brand)
+    public Response createDevice(JsonObject device)
     {
-        Device newDevice = new Device(name,brand);
+        Device newDevice = new Device(device.getString("name"),device.getString("brand"));
         deviceRepository.save(newDevice);
 
         logger.infof("Device created: %s",newDevice.getName());
         return Response.ok(newDevice).build();
     }
     @DELETE
-    @Path("device/{id}")
+    @Path("delete/{id}")
     public Response deleteDevice(@PathParam("id") Long id){
         Device d = deviceRepository.delete(id);
         return Response.ok(d.getName()).build();
 
     }
-
+    @PUT
+    @Path("update/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response updateDevice(@PathParam("id") Long id,JsonObject jsonObject)
+    {
+        Device device = deviceRepository.update(id,jsonObject.getString("name"),jsonObject.getString("brand"));
+        return Response.ok(device).build();
+    }
 
 
 

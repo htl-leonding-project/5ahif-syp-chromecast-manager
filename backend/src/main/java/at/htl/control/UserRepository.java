@@ -32,10 +32,11 @@ public class UserRepository implements PanacheRepository<User> {
         return Collections.unmodifiableList(listAll(Sort.by("U_ID")));
     }
 
-    public void delete(Long id)
+    public User delete(Long id)
     {
         User user = findById(id);
         getEntityManager().remove(user);
+        return user;
     }
 
     public User update(Long userId,String name,String passwordHash)

@@ -2,6 +2,7 @@ package at.htl.control;
 
 import at.htl.entities.Device;
 import at.htl.entities.Room;
+import at.htl.entities.User;
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 import io.quarkus.panache.common.Sort;
 
@@ -32,6 +33,16 @@ public class DeviceRepository implements PanacheRepository<Device> {
         Device device = findById(id);
         getEntityManager().remove(device);
         return device;
+    }
+
+    public Device update(Long userId, String name, String brand)
+    {
+        Device deviceToChange = findById(userId);
+        deviceToChange.setName(name);
+        deviceToChange.setBrand(brand);
+        getEntityManager().merge(deviceToChange);
+
+        return deviceToChange;
     }
 
     public Device getDeviceDummy() {

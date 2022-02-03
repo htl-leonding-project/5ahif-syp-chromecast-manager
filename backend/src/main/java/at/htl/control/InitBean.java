@@ -20,14 +20,20 @@ public class InitBean {
     RoomRepository roomRepository;
 
     @Inject
+    UserRepository userRepository;
+
+    @Inject
     Logger log;
+
+    User user1 = new User("Felix","123124ASD");
+    User user2 = new User("Moritz","456754DFG");
+    User user3 = new User("Patrick","asdasd3242");
 
     @Transactional
     void onStartUp(@Observes StartupEvent event)
     {
-        User user1 = new User("Felix","123124ASD");
-        User user2 = new User("Moritz","456754DFG");
-        User user3 = new User("Patrick","asdasd3242");
+
+        addTestUsers();
 
         List<Room> rooms = roomRepository.readCSV(FILE_NAME);
         log.info(rooms);
@@ -35,6 +41,13 @@ public class InitBean {
         for (Room r: rooms) {
             roomRepository.save(r);
         }
+    }
+
+    void addTestUsers()
+    {
+        userRepository.save(user1);
+        userRepository.save(user2);
+        userRepository.save(user3);
     }
 
 }

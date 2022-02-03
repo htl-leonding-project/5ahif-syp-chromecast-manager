@@ -8,6 +8,7 @@ import org.jboss.logging.Logger;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.json.JsonObject;
 import javax.json.JsonValue;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -49,16 +50,22 @@ public class UserService {
     @Path("/create")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public Response createRoom(@FormParam("name") String name
-            ,@FormParam("passwordHash") String passwordHash)
+    public Response createRoom(JsonObject jsonObject)
     {
-        User newUser = new User(name,passwordHash);
+        User newUser = new User(jsonObject.getString("name"),jsonObject.getString("passwordHash"));
         newUser = userRepository.save(newUser);
 
         logger.infof("User created: %s",newUser.getName());
         return Response.ok(newUser).build();
     }
 
+    @Path("/delete/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response delete(@PathParam("id") String userId){
+
+        User user = userRepository.delete(Long.parseLong(userId));
+        return Response.ok(user.getName()).build();
+    }
 
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
