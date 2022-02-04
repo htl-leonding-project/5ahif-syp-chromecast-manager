@@ -50,9 +50,11 @@ public class RoomRepository implements PanacheRepositoryBase<Room, Long> {
         return room;
     }
 
-    public Room update(Long roomId,int number,String name)
+    public Room update(String roomName,int number,String name)
     {
-        Room room = findById(roomId);
+        Room room = (Room) getEntityManager().createNamedQuery("Room.findByName")
+                .setParameter("roomName",roomName)
+                .getSingleResult();
         room.setRoomName(name);
         room.setRoomNumber(number);
         getEntityManager().merge(room);
