@@ -1,1 +1,31 @@
-<p>update-room works!</p>
+<h1>Edit Room</h1>
+
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>
+            Edit Room
+        </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+        <div form [formGroup]="editRoomForm">
+            <mat-form-field style="min-width: 20px">
+                <mat-label>Room-Number</mat-label>
+                <input formControlName="number" id="number" matInput required>
+              </mat-form-field>
+
+              <mat-form-field style="min-width: 20px">
+                <mat-label>Room-Name</mat-label>
+                <input formControlName="name" id="name" matInput unrequired>
+              </mat-form-field>
+        </div>
+
+        <div> 
+          <button type="button" style="margin-left: 10px" [disabled]="!editRoomForm.valid" color="primary" (click)="onSave(); router.navigate(['/rooms/'])" mat-raised-button><mat-icon>save</mat-icon></button>
+        </div>
+
+    </mat-card-content>
+</mat-card>
+
+<button style="margin-top: 20px;margin-left: 20px;" mat-raised-button color="primary" (click)="router.navigate(['/rooms/'])">Go back</button>
+<router-outlet></router-outlet>

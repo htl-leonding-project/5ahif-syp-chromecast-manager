@@ -30,9 +30,10 @@ export class CreateRoomComponent implements OnInit {
 
     const x = new Room(name, number);
 
-    alert('ROOMNUMBER XXXXXXXX'+ x.roomName);
+    alert('You added following Room: '+ x.roomName);
 
     await this.roomService.postRoom(x);
+    await this.roomService.getRooms();
   }
 
 
