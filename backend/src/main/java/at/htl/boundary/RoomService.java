@@ -57,10 +57,10 @@ public class RoomService {
     @DELETE
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/delete/{id}")
-    public Response deleteRoom(@PathParam("id") String roomId)
+    @Path("/delete/{name}")
+    public Response deleteRoom(@PathParam("name") String roomName)
     {
-        Room room = roomRepository.delete(Long.parseLong(roomId));
+        Room room = roomRepository.delete(roomName);
         return Response.ok(room.getRoomName()).build();
     }
 

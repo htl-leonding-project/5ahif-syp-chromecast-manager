@@ -43,9 +43,11 @@ public class RoomRepository implements PanacheRepositoryBase<Room, Long> {
         return getEntityManager().merge(roomToSave);
     }
 
-    public Room delete(Long id)
+    public Room delete(String roomName)
     {
-        Room room = findById(id);
+        Room room = (Room) getEntityManager().createNamedQuery("Room.findByName")
+                .setParameter("roomName",roomName)
+                .getSingleResult();;
         getEntityManager().remove(room);
         return room;
     }

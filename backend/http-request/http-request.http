@@ -14,7 +14,7 @@ Accept: application/json
 
 ###
 
-DELETE http://localhost:8080/api/delete/63
+DELETE http://localhost:8080/api/delete/x
 Content-Type: application/json
 ###
 
@@ -22,8 +22,8 @@ PUT http://localhost:8080/api/update/5BHIF
 Content-Type: application/json
 
 {
-  "roomNumber": 183,
-  "roomName": "HungrigerGorilla13"
+  "roomNumber": 1231,
+  "roomName": "Hund"
 }
 
 ###
