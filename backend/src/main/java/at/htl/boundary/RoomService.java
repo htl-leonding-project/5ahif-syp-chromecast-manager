@@ -68,12 +68,12 @@ public class RoomService {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/update/{id}")
-    public Response updateRoom(@PathParam("id") Long roomId, JsonValue jsonValue)
+    public Response updateRoom(@PathParam("id") Long roomId, JsonObject jsonObject)
     {
-        var job = jsonValue.asJsonObject();
+
         Room room = roomRepository.update(roomId,
-                job.getInt("roomNumber"),
-                job.getString("roomName"));
+                jsonObject.getInt("roomNumber"),
+                jsonObject.getString("roomName"));
         return Response.ok(room).build();
     }
 }
