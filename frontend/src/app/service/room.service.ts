@@ -18,6 +18,8 @@ export class RoomsService {
   }
 
   public async getRooms(): Promise<Room[]>{
+    await this.sleep(10);
+
     const data: Room[]  = await this.httpClient.get<Room[]>(`${this.url}/rooms`).toPromise();
     //console.log(x)
     return this.datasource.data = data;
@@ -28,9 +30,11 @@ export class RoomsService {
       const body = { roomNumber: room.roomNumber,
                      roomName: room.roomName};
       console.log(JSON.stringify(room));            
-      this.httpClient.post<any>(this.url + '/create', JSON.stringify(room), {
+      this.httpClient.post<any>(this.url + '/create-room', JSON.stringify(room), {
         headers: myheader
         }).subscribe();
+
+      this.getRooms();
   }
   
   async putRoom(room : Room, oldRoomName: string): Promise<void> {
@@ -41,6 +45,8 @@ export class RoomsService {
     this.httpClient.put<any>(this.url + '/update/' + oldRoomName, JSON.stringify(room), {
       headers: myheader
       }).subscribe();
+
+    this.getRooms();
   }
 
   deleteRoom(zName : string) {
@@ -49,7 +55,24 @@ export class RoomsService {
     this.httpClient.delete<Room>(this.url + '/delete/' + zName, {
       headers: myheader
     }).subscribe();
-    alert('Delete Endpoint ausgeführt');
+
+    this.getRooms();
   }
   
+  public async reloadCurrentWindow(){
+    await this.sleep(10);
+
+    window.location.reload();
+  }
+
+  public sleep(milliseconds:number) {
+    var start = new Date().getTime();
+    for (var i = 0; i < 1e7; i++) {
+      if ((new Date().getTime() - start) > milliseconds){
+        break;
+      }
+    }
+  }
 }
+
+

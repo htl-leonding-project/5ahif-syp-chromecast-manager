@@ -8,9 +8,16 @@ import io.quarkus.panache.common.Sort;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.transaction.Transactional;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @ApplicationScoped
 @Transactional
@@ -22,10 +29,6 @@ public class DeviceRepository implements PanacheRepository<Device> {
         }
 
         return getEntityManager().merge(deviceToSave);
-    }
-
-    public List<Device> findAllDevices(){
-        return Collections.unmodifiableList(listAll(Sort.by("D_ID")));
     }
 
     public Device delete(Long id)
@@ -54,7 +57,31 @@ public class DeviceRepository implements PanacheRepository<Device> {
         return device;
     }
 
-    public List<Device> getAllDevices() {
+    public List<Device> findAllDevices() {
         return Collections.unmodifiableList(listAll());
+    }
+
+    public List<Device> readCSV(String file_name) {
+        try{
+            Path findCSV = find("devices.csv", ".").stream().findFirst().get();
+            /*Stream<String> stream = Files.lines(findCSV, StandardCharsets.UTF_8);
+            return stream.skip(1).map(line ->
+            {
+                String [] splitted = line.split(";"); return new Device(splitted[0],splitted[1]);
+            })
+                    .collect(Collectors.toList());*/
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    protected static Collection<Path> find(String fileName, String searchDirectory) throws IOException {
+        try (Stream<Path> files = Files.walk(Paths.get(searchDirectory))) {
+            return files
+                    .filter(f -> f.getFileName().toString().equals(fileName))
+                    .collect(Collectors.toList());
+
+        }
     }
 }

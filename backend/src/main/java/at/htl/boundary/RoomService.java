@@ -42,7 +42,7 @@ public class RoomService {
     }
 
     @POST
-    @Path("/create")
+    @Path("/create-room")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createRoom(JsonObject room)

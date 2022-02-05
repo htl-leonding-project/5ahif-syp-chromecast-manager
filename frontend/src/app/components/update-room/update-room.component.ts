@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Room } from 'src/app/model/room';
-import { RoomsService } from 'src/app/service/rooms.service';
+import { RoomsService } from 'src/app/service/room.service';
 
 @Component({
   selector: 'app-update-room',
@@ -36,11 +36,10 @@ public static set oldName(value: string){
   this._oldName = value;
 }
 
-
   editRoomForm!: FormGroup
 
   constructor(private readonly formBuilder: FormBuilder,
-    private roomService: RoomsService,
+    public roomService: RoomsService,
     public router: Router) { }
 
   async ngOnInit(): Promise<void> {
@@ -59,6 +58,7 @@ public static set oldName(value: string){
     alert('You added following Room: '+ x.roomName);
 
     await this.roomService.putRoom(x, UpdateRoomComponent._oldName);
+
     await this.roomService.getRooms();
   }
 

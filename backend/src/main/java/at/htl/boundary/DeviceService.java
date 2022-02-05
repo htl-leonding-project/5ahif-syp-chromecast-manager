@@ -24,9 +24,9 @@ public class DeviceService {
     Logger logger;
 
     @GET
-    @Path("devices")
-    public Response findAllRooms(){
-        return Response.ok(deviceRepository.findAll()).build();
+    @Path("/devices")
+    public Response findAllDevices(){
+        return Response.ok(deviceRepository.findAllDevices()).build();
     }
 
     @GET
@@ -44,11 +44,13 @@ public class DeviceService {
     }
 
     @POST
+    @Path("/create-device")
     @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Consumes(MediaType.APPLICATION_JSON)
     public Response createDevice(JsonObject device)
     {
-        Device newDevice = new Device(device.getString("name"),device.getString("brand"));
+        var deviceToAdd = new Device(device.getString("name"),device.getString("brand"));
+        Device newDevice = deviceRepository.save(deviceToAdd);
         deviceRepository.save(newDevice);
 
         logger.infof("Device created: %s",newDevice.getName());

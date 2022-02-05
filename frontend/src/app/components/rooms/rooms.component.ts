@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RoomsService } from 'src/app/service/rooms.service';
+import { RoomsService } from 'src/app/service/room.service';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { Router } from '@angular/router';
 import { Room } from 'src/app/model/room';
@@ -12,14 +12,12 @@ import { UpdateRoomComponent } from '../update-room/update-room.component';
 })
 export class RoomsComponent implements OnInit {
   
-
-
-  constructor(public roomsService: RoomsService,
+  constructor(public roomService: RoomsService,
     public router: AppRoutingModule,
     public routerx: Router) { }
 
   async ngOnInit(): Promise<void> {
-    await this.roomsService.getRooms();
+    await this.roomService.getRooms();
   }
 
   async onEdit(element : Room): Promise<void>{
@@ -28,9 +26,7 @@ export class RoomsComponent implements OnInit {
   }
 
   async onDelete(element: Room): Promise<void>{
-    await this.roomsService.deleteRoom(element.roomName);
-    await this.roomsService.getRooms();
-    alert('You deleted a room');
+    await this.roomService.deleteRoom(element.roomName);
   }
 
 }

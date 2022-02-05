@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Room } from 'src/app/model/room';
-import { RoomsService } from 'src/app/service/rooms.service';
+import { RoomsService } from 'src/app/service/room.service';
 
 @Component({
   selector: 'app-create-room',
@@ -14,7 +14,7 @@ export class CreateRoomComponent implements OnInit {
   createRoomForm!: FormGroup;
 
   constructor(private readonly formBuilder: FormBuilder,
-    private roomService: RoomsService,
+    public roomService: RoomsService,
     public router: Router) { }
 
   async ngOnInit(): Promise<void> {
@@ -33,8 +33,11 @@ export class CreateRoomComponent implements OnInit {
     alert('You added following Room: '+ x.roomName);
 
     await this.roomService.postRoom(x);
+
     await this.roomService.getRooms();
   }
 
 
 }
+
+

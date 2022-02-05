@@ -21,7 +21,7 @@
         </div>
 
         <div> 
-          <button type="button" style="margin-left: 10px" [disabled]="!editRoomForm.valid" color="primary" (click)="onSave(); router.navigate(['/rooms/'])" mat-raised-button><mat-icon>save</mat-icon></button>
+          <button type="button" style="margin-left: 10px" [disabled]="!editRoomForm.valid" color="primary" (click)="onSave(); router.navigate(['/rooms/']); roomService.reloadCurrentWindow();" mat-raised-button><mat-icon>save</mat-icon></button>
         </div>
 
     </mat-card-content>

@@ -13,6 +13,8 @@ import { MatInputModule } from '@angular/material/input';
 import { HttpClientModule } from '@angular/common/http';
 import { CreateRoomComponent } from './components/create-room/create-room.component';
 import { UpdateRoomComponent } from './components/update-room/update-room.component';
+import { DevicesComponent } from './components/devices/devices.component';
+import { CreateDeviceComponent } from './components/create-device/create-device.component';
 
 
 @NgModule({
@@ -20,7 +22,9 @@ import { UpdateRoomComponent } from './components/update-room/update-room.compon
     AppComponent,
     RoomsComponent,
     CreateRoomComponent,
-    UpdateRoomComponent
+    UpdateRoomComponent,
+    DevicesComponent,
+    CreateDeviceComponent
   ],
   imports: [
     BrowserModule,
