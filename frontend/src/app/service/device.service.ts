@@ -8,7 +8,7 @@ import { Device } from '../model/device';
 })
 export class DeviceService {
 
-  displayedColumns: string[] = ['name','brand'];
+  displayedColumns: string[] = ['id','name','brand','editDevice','deleteDevice'];
   datasource: MatTableDataSource<Device> = new MatTableDataSource();
   
   url: string;
@@ -35,29 +35,29 @@ export class DeviceService {
       
         this.getDevices();
   }
-  /*
-  async putRoom(room : Room, oldRoomName: string): Promise<void> {
+  
+  async putDevice(device : Device, id: number): Promise<void> {
     const myheader = new HttpHeaders().set('content-type', 'application/json')
-    const body = { roomNumber: room.roomNumber,
-                   roomName: room.roomName};
-    console.log(JSON.stringify(room));            
-    this.httpClient.put<any>(this.url + '/update/' + oldRoomName, JSON.stringify(room), {
+    const body = { 
+                   name: device.name,
+                   brand: device.brand};
+    console.log(JSON.stringify(device));            
+    this.httpClient.put<any>(this.url + '/update-device/' + id, JSON.stringify(device), {
       headers: myheader
       }).subscribe();
-    await this.getRooms();
+    await this.getDevices();
     
     window.location.reload();
   }
 
-  deleteRoom(zName : string) {
+  deleteDevice(id : number) {
     const myheader = new HttpHeaders().set('content-type', 'application/json')
   
-    this.httpClient.delete<Room>(this.url + '/delete/' + zName, {
+    this.httpClient.delete<Device>(this.url + '/delete-device/' + id, {
       headers: myheader
     }).subscribe();
-    alert('Delete Endpoint ausgeführt');
   }
-  */
+  
   public async reloadCurrentWindow(){
     await this.sleep(10);
 

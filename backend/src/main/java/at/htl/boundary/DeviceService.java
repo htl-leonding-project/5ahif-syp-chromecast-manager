@@ -57,18 +57,19 @@ public class DeviceService {
         return Response.ok(newDevice).build();
     }
     @DELETE
-    @Path("delete/{id}")
+    @Path("delete-device/{id}")
     public Response deleteDevice(@PathParam("id") Long id){
         Device d = deviceRepository.delete(id);
         return Response.ok(d.getName()).build();
 
     }
     @PUT
-    @Path("update/{id}")
+    @Path("update-device/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response updateDevice(@PathParam("id") Long id,JsonObject jsonObject)
     {
-        Device device = deviceRepository.update(id,jsonObject.getString("name"),jsonObject.getString("brand"));
+        Device device = deviceRepository.update(id,jsonObject.getString("name"),
+                jsonObject.getString("name"));
         return Response.ok(device).build();
     }
 

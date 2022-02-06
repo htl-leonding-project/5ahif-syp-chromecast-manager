@@ -1,0 +1,36 @@
+<h1>Edit Device</h1>
+
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>
+            Edit Device
+        </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+        <div form [formGroup]="editDeviceForm">
+            <mat-form-field style="min-width: 20px">
+                <mat-label>Device-Id</mat-label>
+                <input formControlName="id" id="id" matInput required>
+              </mat-form-field>
+
+            <mat-form-field style="min-width: 20px">
+                <mat-label>Device-Name</mat-label>
+                <input formControlName="name" id="name" matInput required>
+              </mat-form-field>
+
+              <mat-form-field style="min-width: 20px">
+                <mat-label>Device-Brand</mat-label>
+                <input formControlName="brand" id="brand" matInput unrequired>
+              </mat-form-field>
+        </div>
+
+        <div> 
+          <button type="button" style="margin-left: 10px" [disabled]="!editDeviceForm.valid" color="primary" (click)="onSave(); router.navigate(['/devices/']); deviceService.reloadCurrentWindow();" mat-raised-button><mat-icon>save</mat-icon></button>
+        </div>
+
+    </mat-card-content>
+</mat-card>
+
+<button style="margin-top: 20px;margin-left: 20px;" mat-raised-button color="primary" (click)="router.navigate(['/devices/'])">Go back</button>
+<router-outlet></router-outlet>

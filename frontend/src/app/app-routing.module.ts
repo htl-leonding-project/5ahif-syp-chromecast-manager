@@ -6,6 +6,7 @@ import { CreateRoomComponent } from './components/create-room/create-room.compon
 import { UpdateRoomComponent } from './components/update-room/update-room.component';
 import { DevicesComponent } from './components/devices/devices.component';
 import { CreateDeviceComponent } from './components/create-device/create-device.component';
+import { UpdateDeviceComponent } from './components/update-device/update-device.component';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'rooms'},
@@ -13,7 +14,8 @@ const routes: Routes = [
   {path: 'create-room', component: CreateRoomComponent},
   {path: 'update-room', component: UpdateRoomComponent},
   {path: 'devices', component: DevicesComponent},
-  {path: 'create-device', component: CreateDeviceComponent}
+  {path: 'create-device', component: CreateDeviceComponent},
+  {path: 'update-device', component: UpdateDeviceComponent}
 ];
 
 @NgModule({

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppRoutingModule } from 'src/app/app-routing.module';
+import { Device } from 'src/app/model/device';
 import { DeviceService } from 'src/app/service/device.service';
+import { UpdateDeviceComponent } from '../update-device/update-device.component';
 
 @Component({
   selector: 'app-devices',
@@ -16,15 +18,17 @@ export class DevicesComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     await this.deviceService.getDevices();
   }
-/*
-  async onEdit(element : Room): Promise<void>{
-    UpdateRoomComponent.oldName = element.roomName;
-    UpdateRoomComponent.oldNumber = element.roomNumber;
+
+  async onEdit(element : Device): Promise<void>{
+    UpdateDeviceComponent.id = element.id;
+    UpdateDeviceComponent.oldName = element.name;
+    UpdateDeviceComponent.oldBrand = element.brand;
   }
 
-  async onDelete(element: Room): Promise<void>{
-    await this.roomService.deleteRoom(element.roomName);
-    await this.roomService.getRooms();
+  async onDelete(element: Device): Promise<void>{
+    await this.deviceService.deleteDevice(element.id);
+    await this.deviceService.getDevices();
     alert('You deleted a room');
-    */
+    
+  }
 }
