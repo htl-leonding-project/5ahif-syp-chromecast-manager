@@ -28,11 +28,15 @@ Content-Type: application/json
 
 ###
 
-POST http://localhost:8080/users/create
-Content-Type: application/x-www-form-urlencoded
+POST http://localhost:8080/api/create-user
+Content-Type: application/json
 Accept: application/json
 
-name=Batuhan&passwordHash=Batu123
+{
+  "name":"Felix",
+  "passwordHash": "1249a4589340"
+
+}
 
 ###
 

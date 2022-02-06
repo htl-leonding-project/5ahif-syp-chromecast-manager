@@ -16,6 +16,8 @@ import { UpdateRoomComponent } from './components/update-room/update-room.compon
 import { DevicesComponent } from './components/devices/devices.component';
 import { CreateDeviceComponent } from './components/create-device/create-device.component';
 import { UpdateDeviceComponent } from './components/update-device/update-device.component';
+import { UsersComponent } from './components/users/users.component';
+import { CreateUserComponent } from './components/create-user/create-user.component';
 
 
 @NgModule({
@@ -26,7 +28,9 @@ import { UpdateDeviceComponent } from './components/update-device/update-device.
     UpdateRoomComponent,
     DevicesComponent,
     CreateDeviceComponent,
-    UpdateDeviceComponent
+    UpdateDeviceComponent,
+    UsersComponent,
+    CreateUserComponent
   ],
   imports: [
     BrowserModule,

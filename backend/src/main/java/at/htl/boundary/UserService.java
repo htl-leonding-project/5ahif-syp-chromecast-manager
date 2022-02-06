@@ -15,7 +15,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 @RequestScoped
-@Path("/users")
+@Path("/api")
 public class UserService {
 
 
@@ -26,7 +26,7 @@ public class UserService {
     Logger logger;
 
     @GET
-    @Path("/allUsers")
+    @Path("/users")
     public Response getAllUser()
     {
         return Response.ok(userRepository.findAllUsers()).build();
@@ -47,10 +47,10 @@ public class UserService {
     }
 
     @POST
-    @Path("/create")
+    @Path("/create-user")
     @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public Response createRoom(JsonObject jsonObject)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response createUser(JsonObject jsonObject)
     {
         User newUser = new User(jsonObject.getString("name"),jsonObject.getString("passwordHash"));
         newUser = userRepository.save(newUser);
