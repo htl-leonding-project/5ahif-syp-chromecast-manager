@@ -14,7 +14,7 @@ Accept: application/json
 
 ###
 
-DELETE http://localhost:8080/api/delete/x
+DELETE http://localhost:8080/api/delete/5AHIF
 Content-Type: application/json
 ###
 

@@ -59,7 +59,7 @@ public class UserService {
         return Response.ok(newUser).build();
     }
 
-    @Path("/delete/{id}")
+    @Path("/delete-user/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response delete(@PathParam("id") String userId){
 
@@ -70,7 +70,7 @@ public class UserService {
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/update/{id}")
+    @Path("/update-user/{id}")
     public Response updateRoom(@PathParam("id") Long userId, JsonValue jsonValue)
     {
         var job = jsonValue.asJsonObject();
