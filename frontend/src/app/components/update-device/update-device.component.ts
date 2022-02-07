@@ -10,11 +10,9 @@ import { DeviceService } from 'src/app/service/device.service';
   styleUrls: ['./update-device.component.scss']
 })
 export class UpdateDeviceComponent implements OnInit {
-
-  
-  private static _id : number = 0
-  private static _oldName: string =""
-  private static _oldBrand: string =""
+private static _id : number = 0
+private static _oldName: string =""
+private static _oldBrand: string =""
 
 public static get id() : number {
   return this._id;
