@@ -16,40 +16,50 @@ import java.util.List;
 @ApplicationScoped
 @Transactional
 public class InstallAtRepository implements PanacheRepository<InstallAt> {
-//    @Inject
-//    RoomRepository roomRepository = new RoomRepository();
-//    @Inject
-//    DeviceRepository deviceRepository = new DeviceRepository();
-//    @Inject
-//    UserRepository userRepository = new UserRepository();
+    @Inject
+    RoomRepository roomRepository;
+    @Inject
+    DeviceRepository deviceRepository;
+    @Inject
+    UserRepository userRepository;
 
     @Transactional
     public InstallAt save(InstallAt installAtToSave) {
-        if (installAtToSave == null)
-        {
-            throw new NullPointerException("Installation is null");
+        if(!roomRepository.isPersistent(installAtToSave.getRoom())){
+            roomRepository.save(installAtToSave.getRoom());
+        }
+        if(!deviceRepository.isPersistent(installAtToSave.getDevice())){
+            deviceRepository.save(installAtToSave.getDevice());
+        }
+        if(!userRepository.isPersistent(installAtToSave.getUser())){
+            userRepository.save(installAtToSave.getUser());
         }
 
-        if(Collections.unmodifiableList(listAll()).size()!=0){
-            for(InstallAt currentInstallAt : Collections.unmodifiableList(listAll())){
-                if(installAtToSave.getId() == currentInstallAt.getId() ){
-                    return installAtToSave;
-                }
-            }
+        if (installAtToSave.getId() == null)
+        {
+            persist(installAtToSave);
+            return installAtToSave;
         }
+//        if(Collections.unmodifiableList(listAll()).size()!=0){
+//            for(InstallAt currentInstallAt : Collections.unmodifiableList(listAll())){
+//                if(installAtToSave.getId() == currentInstallAt.getId() ){
+//                    return installAtToSave;
+//                }
+//            }
+//        }
 
 //        if(!deviceRepository.getAllDevices().contains(installAtToSave.getDevice())){
 //                deviceRepository.getEntityManager().merge(installAtToSave.getDevice());
 //        }
-
         return getEntityManager().merge(installAtToSave);
     }
 
     @Transactional
-    public void delete(Long id)
+    public InstallAt delete(Long id)
     {
         InstallAt installAt = findById(id);
         getEntityManager().remove(installAt);
+        return installAt;
     }
 
     public List<InstallAt> getInstallAtListDummy() {

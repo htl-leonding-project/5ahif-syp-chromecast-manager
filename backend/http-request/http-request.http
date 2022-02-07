@@ -41,3 +41,16 @@ Accept: application/json
 ###
 
 DELETE http://localhost:8080/users/delete/1
+###
+
+POST http://localhost:8080/installAt/create-installat
+Content-Type: application/json
+Accept: application/json
+
+{
+  "installDate": "16/08/2016",
+  "removeDate": "19/08/2016",
+  "description": "hahahahhaha hase"
+}
+
+###

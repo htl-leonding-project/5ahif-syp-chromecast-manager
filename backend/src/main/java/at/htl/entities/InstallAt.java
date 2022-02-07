@@ -23,10 +23,10 @@ public class InstallAt {
     @Column(name ="I_DESCRIPTION")
     private String description;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     @JoinColumn(name = "I_U_ID")
     private User user;
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     @JoinColumn(name = "I_R_ID")
     private Room room;
     @ManyToOne
@@ -37,9 +37,9 @@ public class InstallAt {
         this.installDate = installDate;
         this.removeDate = removeDate;
         this.description = description;
+        this.user = user;
         this.room = room;
         this.device = device;
-        this.user = user;
     }
 
     public InstallAt() {
