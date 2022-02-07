@@ -29,6 +29,5 @@ export class DevicesComponent implements OnInit {
     await this.deviceService.deleteDevice(element.id);
     await this.deviceService.getDevices();
     alert('You deleted a room');
-    
   }
 }

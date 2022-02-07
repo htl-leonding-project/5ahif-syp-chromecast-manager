@@ -7,7 +7,7 @@ import { User } from '../model/User';
   providedIn: 'root'
 })
 export class UserService {
-  displayedColumns: string[] = ['name'];
+  displayedColumns: string[] = ['name','editUser','deleteUser'];
   datasource: MatTableDataSource<User> = new MatTableDataSource();
   
   url: string;
@@ -34,7 +34,27 @@ export class UserService {
       }).subscribe();
 
     this.getUsers();
-}
+  }
+
+  async putUser(user : User, oldUserId: number): Promise<void> {
+    const myheader = new HttpHeaders().set('content-type', 'application/json')
+    const body = { name: user.name,
+                   user: user.passwordHash};
+    console.log(JSON.stringify(user));            
+    this.httpClient.put<any>(this.url + '/update-user/' + oldUserId, JSON.stringify(user), {
+      headers: myheader
+      }).subscribe();
+
+    this.getUsers();
+  }
+
+  deleteUser(id : number) {
+    const myheader = new HttpHeaders().set('content-type', 'application/json')
+  
+    this.httpClient.delete<User>(this.url + '/delete-user/' + id, {
+      headers: myheader
+    }).subscribe();
+  }
 
   public async reloadCurrentWindow(){
     await this.sleep(10);

@@ -28,7 +28,7 @@ export class CreateUserComponent implements OnInit {
     const name = this.createUserForm.get('name')?.value;
     const passwordHash = this.createUserForm.get('passwordHash')?.value;
 
-    const x = new User(name, passwordHash);
+    const x = new User(0,name, passwordHash);
 
     alert('You added following Room: '+ x.name);
 

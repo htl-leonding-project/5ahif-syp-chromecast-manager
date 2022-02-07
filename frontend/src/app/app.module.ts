@@ -18,6 +18,7 @@ import { CreateDeviceComponent } from './components/create-device/create-device.
 import { UpdateDeviceComponent } from './components/update-device/update-device.component';
 import { UsersComponent } from './components/users/users.component';
 import { CreateUserComponent } from './components/create-user/create-user.component';
+import { UpdateUserComponent } from './components/update-user/update-user.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { CreateUserComponent } from './components/create-user/create-user.compon
     CreateDeviceComponent,
     UpdateDeviceComponent,
     UsersComponent,
-    CreateUserComponent
+    CreateUserComponent,
+    UpdateUserComponent
   ],
   imports: [
     BrowserModule,
