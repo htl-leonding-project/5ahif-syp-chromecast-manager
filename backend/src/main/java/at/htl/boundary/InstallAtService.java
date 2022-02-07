@@ -31,6 +31,13 @@ public class InstallAtService {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
 
 
+
+    @GET
+    @Path("/installs")
+    public Response findAllInstallAts(){
+        return Response.ok(installAtRepository.findAllRooms()).build();
+    }
+
     @POST
     @Path("/create-installat")
     @Produces(MediaType.APPLICATION_JSON)

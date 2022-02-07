@@ -77,4 +77,8 @@ public class InstallAtRepository implements PanacheRepository<InstallAt> {
         installAt.setDescription("A mouse has been installed on the 1st.january.2021. ON the 11th.november.2021 it was deinstalled");
         return installAt;
     }
+
+    public List<InstallAt> findAllRooms() {
+        return listAll();
+    }
 }
