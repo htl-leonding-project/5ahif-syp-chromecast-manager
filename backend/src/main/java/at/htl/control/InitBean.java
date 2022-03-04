@@ -53,7 +53,7 @@ public class InitBean {
             roomRepository.save(r);
         }
 
-        List<Device> devices = deviceRepository.readCSV(FILE_NAME_DEVICES);
+        //List<Device> devices = deviceRepository.readCSV(FILE_NAME_DEVICES);
        /* log.info(devices);
         devices.forEach(d -> System.out.println(d));
         for(Device d: devices){
@@ -76,12 +76,10 @@ public class InitBean {
         deviceRepository.save(new Device("Microsoft","HP"));
         deviceRepository.save(new Device("Monitor","Medion"));
         deviceRepository.save(new Device("MusikBox","Medion"));
-
-        installAtRepository.save(new InstallAt(LocalDate.now(),LocalDate.now().plusDays(2),"Der Gerät",user1,rooms.get(2),devices.get(2)));
-
-
+        Device currDevice = deviceRepository.findById(2L);
+        InstallAt installAt = new InstallAt(LocalDate.now(),LocalDate.now().plusDays(2),"Der Gerät",userRepository.findById(1L),roomRepository.findById(1001L),deviceRepository.findById(2L));
+        installAtRepository.save(installAt);
     }
-
     void addTestUsers()
     {
         userRepository.save(user1);
