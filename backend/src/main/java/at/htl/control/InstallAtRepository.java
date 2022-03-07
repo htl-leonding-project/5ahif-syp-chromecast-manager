@@ -78,7 +78,19 @@ public class InstallAtRepository implements PanacheRepository<InstallAt> {
         return installAt;
     }
 
-    public List<InstallAt> findAllRooms() {
-        return listAll();
+    public List<InstallAt> findAllInstallAts() {
+        return Collections.unmodifiableList(listAll());
+    }
+
+    public List<InstallAt> findInstallAtsByRoomId(long id) {
+        Room room = roomRepository.findById(id);
+        List<InstallAt> installAts = new LinkedList<>();
+
+        for(InstallAt currentInstallAt : findAllInstallAts()){
+            if(currentInstallAt.getRoom().getId() == id){
+                installAts.add(currentInstallAt);
+            }
+        }
+        return installAts;
     }
 }

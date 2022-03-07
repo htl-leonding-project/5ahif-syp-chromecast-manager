@@ -16,9 +16,10 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 @RequestScoped
-@Path("/installAt")
+@Path("/api")
 public class InstallAtService {
 
     @Inject
@@ -35,7 +36,19 @@ public class InstallAtService {
     @GET
     @Path("/installs")
     public Response findAllInstallAts(){
-        return Response.ok(installAtRepository.findAllRooms()).build();
+        return Response.ok(installAtRepository.findAllInstallAts()).build();
+    }
+
+    @GET
+    @Path("/installAt/room/{id}")
+    public Response findAllInstallAtsByRoomId(@PathParam("id") Long id){
+        List<InstallAt> installAts;
+        installAts = installAtRepository.findInstallAtsByRoomId(id);
+
+        if(installAts.size() > 0){
+            return Response.ok(installAts).build();
+        }
+        return Response.status(Response.Status.NOT_FOUND).build();
     }
 
     @POST
