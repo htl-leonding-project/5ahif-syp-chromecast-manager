@@ -1,0 +1,44 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<h1>RoomDetails</h1>
+
+<div>     
+    <table style="width: 100%; margin: auto; margin-top: 10px" mat-table [dataSource]="installAtService.datasource" class="mat-elevation-z8" matSort>
+
+        <ng-container matColumnDef="deviceName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>DeviceName</th>
+            <td mat-cell *matCellDef="let element">
+            {{ element.deviceName}}
+        </ng-container>
+
+        <ng-container matColumnDef="deviceBrand">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>DeviceBrand</th>
+            <td mat-cell *matCellDef="let element">
+            {{ element.deviceBrand}}
+        </ng-container>
+
+        <ng-container matColumnDef="installedFrom">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>InstalledFrom</th>
+            <td mat-cell *matCellDef="let element">
+            {{ element.installedFrom}}
+        </ng-container>
+        
+        <ng-container matColumnDef="installedDate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>InstallDate</th>
+            <td mat-cell *matCellDef="let element">
+            {{ element.installDate}}
+        </ng-container>
+
+        <!--<ng-container matColumnDef="deinstall">
+            <th mat-header-cell *matHeaderCellDef>Deinstall</th>
+            <td mat-cell *matCellDef="let element">
+                <button type="button" color="primary" (click)="onDelete(element); roomService.getRooms()" mat-raised-button><mat-icon>delete</mat-icon></button>
+        </ng-container>-->
+
+        <tr mat-header-row *matHeaderRowDef="installAtService.displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: installAtService.displayedColumns;"></tr>
+    </table>
+</div>
+
+<button style="margin-top: 20px;margin-left: 20px;" mat-raised-button color="primary" (click)="router.navigate(['/rooms/'])">Go back</button>
+<router-outlet></router-outlet>

@@ -17,6 +17,7 @@ import javax.ws.rs.core.Response;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequestScoped
 @Path("/api")
@@ -46,7 +47,18 @@ public class InstallAtService {
         installAts = installAtRepository.findInstallAtsByRoomId(id);
 
         if(installAts.size() > 0){
-            return Response.ok(installAts).build();
+            return Response.ok(
+                    installAts.stream().map(i -> {
+                        Object dto = new Object() {
+                            public long id = i.getId();
+                            public String deviceName = i.getDevice().getName();
+                            public String  deviceBrand = i.getDevice().getBrand();
+                            public String installedFrom = i.getUser().getName();
+                            public String installDate = i.getInstallDate().toString();
+                        };
+                        return dto;
+                    }).collect(Collectors.toList())
+            ).build();
         }
         return Response.status(Response.Status.NOT_FOUND).build();
     }

@@ -28,7 +28,7 @@ export class CreateRoomComponent implements OnInit {
     const number = this.createRoomForm.get('number')?.value;
     const name = this.createRoomForm.get('name')?.value;
 
-    const x = new Room(name, number);
+    const x = new Room(0, name, number);
 
     alert('You added following Room: '+ x.roomName);
 

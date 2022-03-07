@@ -8,7 +8,7 @@ import { DataSource } from '@angular/cdk/collections';
   providedIn: 'root'
 })
 export class RoomsService {
-  displayedColumns: string[] = ['roomName','roomNumber', 'editRoom', 'deleteRoom'];
+  displayedColumns: string[] = ['roomName','roomNumber', 'editRoom', 'deleteRoom', 'roomDetails'];
   datasource: MatTableDataSource<Room> = new MatTableDataSource();
   
   url: string;
@@ -21,7 +21,8 @@ export class RoomsService {
     await this.sleep(10);
 
     const data: Room[]  = await this.httpClient.get<Room[]>(`${this.url}/rooms`).toPromise();
-    //console.log(x)
+    console.log('The First Room Id is ' + data[0].id)
+    //alert(data[0].id + 'is the First Room Id')
     return this.datasource.data = data;
   }
 

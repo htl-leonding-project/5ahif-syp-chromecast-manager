@@ -1,8 +1,10 @@
-export class Install{
+export class InstallAt{
     constructor(
         public id: number,
-        public name: string,
-        public brand: string
+        public deviceName: string,
+        public deviceBrand: string,
+        public installedFrom: string,
+        public installDate: string
         ){            
     }
 }

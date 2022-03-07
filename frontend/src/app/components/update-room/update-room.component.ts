@@ -11,16 +11,13 @@ import { RoomsService } from 'src/app/service/room.service';
 })
 export class UpdateRoomComponent implements OnInit {
 
-  //private static _id : number = 0
+  private static _id : number = 0
   private static _oldNumber: string =""
   private static _oldName: string =""
 
-/*public static get id() : number {
+public static get id() : number {
   return this._id;
 }
-public static set id(value: number){
-  this._id = value;
-}*/
 
 public static get oldNumber() : string {
   return this._oldNumber;
@@ -53,7 +50,7 @@ public static set oldName(value: string){
     const number = this.editRoomForm.get('number')?.value;
     const name = this.editRoomForm.get('name')?.value;
 
-    const x = new Room(name, number);
+    const x = new Room(0, name, number);
 
     alert('You added following Room: '+ x.roomName);
 
