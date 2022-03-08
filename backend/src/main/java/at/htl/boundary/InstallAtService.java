@@ -52,7 +52,7 @@ public class InstallAtService {
                         Object dto = new Object() {
                             public long id = i.getId();
                             public String deviceName = i.getDevice().getName();
-                            public String  deviceBrand = i.getDevice().getBrand();
+                            public String deviceBrand = i.getDevice().getBrand();
                             public String installedFrom = i.getUser().getName();
                             public String installDate = i.getInstallDate().toString();
                         };
