@@ -83,6 +83,7 @@ public class InstallAtRepository implements PanacheRepository<InstallAt> {
     }
 
     public List<InstallAt> findInstallAtsByRoomId(long id) {
+        //findRoomById
         Room room = roomRepository.findById(id);
         List<InstallAt> installAts = new LinkedList<>();
 
