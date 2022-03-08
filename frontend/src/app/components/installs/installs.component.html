@@ -3,24 +3,42 @@
 <h1>Installations</h1>
 
 <div>     
-    <table style="width: 100%; margin: auto; margin-top: 10px" mat-table [dataSource]="installAtService.datasource" class="mat-elevation-z8" matSort>
+    <table style="width: 100%; margin: auto; margin-top: 10px" mat-table [dataSource]="installAtService.datasourcex" class="mat-elevation-z8" matSort>
+
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+            <td mat-cell *matCellDef="let element">
+            {{ element.id }}
+        </ng-container>
+
+        <ng-container matColumnDef="roomNumber">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>RoomNumber</th>
+            <td mat-cell *matCellDef="let element">
+            {{ element.room.roomNumber }}
+        </ng-container>
+
+        <ng-container matColumnDef="roomName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>RoomName</th>
+            <td mat-cell *matCellDef="let element">
+            {{ element.room.roomName }}
+        </ng-container>
 
         <ng-container matColumnDef="deviceName">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>DeviceName</th>
             <td mat-cell *matCellDef="let element">
-            {{ element.deviceName}}
+            {{ element.device.name }}
         </ng-container>
 
         <ng-container matColumnDef="deviceBrand">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>DeviceBrand</th>
             <td mat-cell *matCellDef="let element">
-            {{ element.deviceBrand}}
+            {{ element.device.brand}}
         </ng-container>
 
         <ng-container matColumnDef="installedFrom">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>InstalledFrom</th>
             <td mat-cell *matCellDef="let element">
-            {{ element.installedFrom}}
+            {{ element.user.name}}
         </ng-container>
         
         <ng-container matColumnDef="installDate">
@@ -35,10 +53,9 @@
                 <button type="button" color="primary" (click)="onDeinstall(element.Id); installAtService.getInstallAts()" mat-raised-button><mat-icon>delete</mat-icon></button>
         </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="installAtService.displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: installAtService.displayedColumns;"></tr>
+        <tr mat-header-row *matHeaderRowDef="installAtService.displayedColumnsx"></tr>
+        <tr mat-row *matRowDef="let row; columns: installAtService.displayedColumnsx;"></tr>
     </table>
 </div>
 
-<button style="margin-top: 20px;margin-left: 20px;" mat-raised-button color="primary" (click)="router.navigate(['/rooms/'])">Go back</button>
 <router-outlet></router-outlet>

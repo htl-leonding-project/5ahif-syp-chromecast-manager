@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { SELECT_PANEL_INDENT_PADDING_X } from '@angular/material/select/select';
 import { MatTableDataSource } from '@angular/material/table';
-import { InstallAt } from '../model/InstallAt';
+import { InstallAt, InstallAtDto } from '../model/InstallAt';
 import { DataSource } from '@angular/cdk/collections';
 
 @Injectable({
@@ -10,7 +10,10 @@ import { DataSource } from '@angular/cdk/collections';
 })
 export class InstallAtService {
   displayedColumns: string[] = ['deviceName','deviceBrand', 'installedFrom', 'installDate','deinstall'];
-  datasource: MatTableDataSource<InstallAt> = new MatTableDataSource();
+  displayedColumnsx: string[] = ['id', 'roomNumber', 'roomName', 'deviceName','deviceBrand', 'installedFrom', 'installDate','deinstall'];
+
+  datasource: MatTableDataSource<InstallAtDto> = new MatTableDataSource();
+  datasourcex: MatTableDataSource<InstallAt> = new MatTableDataSource();
   roomId: number = 0;
   url: string;
   
@@ -20,12 +23,12 @@ export class InstallAtService {
 
   public async getInstallAts(): Promise<InstallAt[]>{
     const data: InstallAt[] = await this.httpClient.get<InstallAt[]>(this.url + '/installs').toPromise()
-    return this.datasource.data = data;
+    return this.datasourcex.data = data;
   }
 
-  public async getInstallAtById(roomId: number): Promise<InstallAt[]> {
+  public async getInstallAtById(roomId: number): Promise<InstallAtDto[]> {
     this.roomId = roomId;
-    const data: InstallAt[] = await this.httpClient.get<InstallAt[]>(`${this.url}/room/${roomId}`).toPromise();
+    const data: InstallAtDto[] = await this.httpClient.get<InstallAtDto[]>(`${this.url}/room/${roomId}`).toPromise();
     console.log('InstallAt Id: ' + data[0].id + ' InstallAtDeviceName: ' + data[0].deviceName );
     return this.datasource.data = data;
   }
@@ -33,7 +36,7 @@ export class InstallAtService {
   deleteInstallAt(installAtId: number) {
     const myheader = new HttpHeaders().set('content-type', 'application/json');
 
-    this.httpClient.delete<InstallAt>(this.url + '/delete/' + installAtId, {
+    this.httpClient.delete<InstallAtDto>(this.url + '/delete/' + installAtId, {
       headers: myheader
     }).subscribe();
 

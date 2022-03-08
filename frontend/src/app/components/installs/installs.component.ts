@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { InstallAt } from 'src/app/model/InstallAt';
+import { InstallAtDto } from 'src/app/model/InstallAt';
 import { InstallAtService } from 'src/app/service/install-at.service';
 
 @Component({
