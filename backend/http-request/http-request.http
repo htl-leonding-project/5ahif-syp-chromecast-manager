@@ -58,3 +58,5 @@ GET http://localhost:8080/installAt/installs
 Accept: application/json
 
 ###
+GET http://localhost:8080//installAt/room/1001
+Accept: application/json
