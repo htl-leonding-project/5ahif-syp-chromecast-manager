@@ -1,22 +1,28 @@
 package at.htl.boundary;
 
+import at.htl.control.InstallAtRepository;
 import at.htl.control.RoomRepository;
+import at.htl.entities.InstallAt;
 import at.htl.entities.Room;
 import org.jboss.logging.Logger;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.json.JsonObject;
-import javax.json.JsonValue;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.List;
 
 @RequestScoped
-@Path("/api")
+@Path("/room")
 public class RoomService {
     @Inject
     RoomRepository roomRepository;
+
+    @Inject
+    InstallAtRepository installAtRepository;
+
 
     @Inject
     Logger logger;
@@ -40,6 +46,21 @@ public class RoomService {
         }
         return Response.status(Response.Status.NOT_FOUND).build();
     }
+
+//    @GET
+//    @Consumes(MediaType.APPLICATION_JSON)
+//    @Produces(MediaType.APPLICATION_JSON)
+//    @Path("/getInstallsByRoom/{id}")
+//    public Response getInstallsByRoomId(@PathParam("id") Long id){
+//        List<InstallAt> installAts = installAtRepository.findAllInstallsById(id);
+//
+//        if (installAts == null){
+//            return Response.status(Response.Status.NOT_FOUND).build();
+//        }
+//        installAts.forEach(i -> System.out.println(i.toString()));
+//        return Response.ok(installAts).build();
+//    }
+
 
     @POST
     @Path("/create-room")

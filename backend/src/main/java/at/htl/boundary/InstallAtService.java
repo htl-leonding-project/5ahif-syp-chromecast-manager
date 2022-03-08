@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RequestScoped
-@Path("/api")
+@Path("/install")
 public class InstallAtService {
 
     @Inject
@@ -41,26 +41,27 @@ public class InstallAtService {
     }
 
     @GET
-    @Path("/installAt/room/{id}")
+    @Path("/room/{id}")
     public Response findAllInstallAtsByRoomId(@PathParam("id") Long id){
         List<InstallAt> installAts;
         installAts = installAtRepository.findInstallAtsByRoomId(id);
 
         if(installAts.size() > 0){
-            return Response.ok(
-                    installAts.stream().map(i -> {
+            return Response.ok(installAts.stream().map(i -> {
                         Object dto = new Object() {
                             public long id = i.getId();
                             public String deviceName = i.getDevice().getName();
-                            public String deviceBrand = i.getDevice().getBrand();
+                            public String  deviceBrand = i.getDevice().getBrand();
                             public String installedFrom = i.getUser().getName();
                             public String installDate = i.getInstallDate().toString();
                         };
                         return dto;
-                    }).collect(Collectors.toList())
-            ).build();
+                    }).collect(Collectors.toList())).build();
         }
         return Response.status(Response.Status.NOT_FOUND).build();
+
+
+
     }
 
     @POST

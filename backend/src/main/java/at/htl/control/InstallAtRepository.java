@@ -12,6 +12,7 @@ import java.time.Month;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @ApplicationScoped
 @Transactional
@@ -82,14 +83,9 @@ public class InstallAtRepository implements PanacheRepository<InstallAt> {
         return Collections.unmodifiableList(listAll());
     }
 
-    public List<InstallAt> findInstallAtsByRoomId(long id) {
-        List<InstallAt> installAts = new LinkedList<>();
-
-        for(InstallAt currentInstallAt : findAllInstallAts()){
-            if(currentInstallAt.getRoom().getId() == id){
-                installAts.add(currentInstallAt);
-            }
-        }
-        return installAts;
+    public List<InstallAt> findInstallAtsByRoomId(Long id) {
+        return findAllInstallAts().stream()
+                .filter(i -> i.getRoom().getId().equals(id))
+                .collect(Collectors.toList());
     }
 }

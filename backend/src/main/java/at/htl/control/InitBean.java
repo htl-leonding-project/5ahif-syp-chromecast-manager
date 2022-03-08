@@ -52,6 +52,7 @@ public class InitBean {
         for (Room r: rooms) {
             roomRepository.save(r);
         }
+        System.out.println("--------------");
 
         //List<Device> devices = deviceRepository.readCSV(FILE_NAME_DEVICES);
        /* log.info(devices);
@@ -79,6 +80,8 @@ public class InitBean {
         Device currDevice = deviceRepository.findById(2L);
         InstallAt installAt = new InstallAt(LocalDate.now(),LocalDate.now().plusDays(2),"Der Gerät",userRepository.findById(1L),roomRepository.findById(1001L),deviceRepository.findById(2L));
         installAtRepository.save(installAt);
+
+
     }
     void addTestUsers()
     {
