@@ -14,7 +14,7 @@ export class DeviceService {
   url: string;
   
   constructor(private httpClient: HttpClient) { 
-    this.url = 'http://localhost:8080/api';
+    this.url = 'http://localhost:8080/device';
   }
 
   public async getDevices(): Promise<Device[]>{

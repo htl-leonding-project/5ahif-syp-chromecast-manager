@@ -14,7 +14,7 @@ export class RoomsService {
   url: string;
   
   constructor(private httpClient: HttpClient) { 
-    this.url = 'http://localhost:8080/api';
+    this.url = 'http://localhost:8080/room';
   }
 
   public async getRooms(): Promise<Room[]>{
@@ -51,7 +51,7 @@ export class RoomsService {
   }
 
   deleteRoom(zName : string) {
-    const myheader = new HttpHeaders().set('content-type', 'application/json')
+    const myheader = new HttpHeaders().set('content-type', 'application/json');
   
     this.httpClient.delete<Room>(this.url + '/delete/' + zName, {
       headers: myheader
