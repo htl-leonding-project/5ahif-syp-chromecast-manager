@@ -15,7 +15,7 @@ import javax.ws.rs.core.Response;
 import java.util.List;
 
 @RequestScoped
-@Path("/api")
+@Path("/room")
 public class RoomService {
     @Inject
     RoomRepository roomRepository;

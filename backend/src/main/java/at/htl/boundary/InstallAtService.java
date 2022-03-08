@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RequestScoped
-@Path("/api")
+@Path("/install")
 public class InstallAtService {
 
     @Inject

@@ -15,7 +15,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 @RequestScoped
-@Path("/api")
+@Path("/device")
 public class DeviceService {
     @Inject
     DeviceRepository deviceRepository;

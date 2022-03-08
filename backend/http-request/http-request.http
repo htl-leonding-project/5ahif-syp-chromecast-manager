@@ -63,5 +63,5 @@ GET http://localhost:8080/api/getInstallsByRoom/1001
 Accept: application/json
 
 ###
-GET http://localhost:8080/install/room/1001
+GET http://localhost:8080/api/room/1001
 Accept: application/json
