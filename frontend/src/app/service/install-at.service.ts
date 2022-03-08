@@ -18,9 +18,10 @@ export class InstallAtService {
     this.url = 'http://localhost:8080/install';
   }
 
-  /*public async getInstallAts(): Promise<InstallAt[]>{
-    const data: InstallAt[] = await this.httpClient.get<InstallAt[]>() {}
-  }*/
+  public async getInstallAts(): Promise<InstallAt[]>{
+    const data: InstallAt[] = await this.httpClient.get<InstallAt[]>(this.url + '/installs').toPromise()
+    return this.datasource.data = data;
+  }
 
   public async getInstallAtById(roomId: number): Promise<InstallAt[]> {
     this.roomId = roomId;

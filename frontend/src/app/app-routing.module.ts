@@ -11,6 +11,7 @@ import { UsersComponent } from './components/users/users.component';
 import { CreateUserComponent } from './components/create-user/create-user.component';
 import { UpdateUserComponent } from './components/update-user/update-user.component';
 import { RoomDetailsComponent } from './components/room-details/room-details.component';
+import { InstallsComponent } from './components/installs/installs.component';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'rooms'},
@@ -23,7 +24,8 @@ const routes: Routes = [
   {path: 'users', component: UsersComponent},
   {path: 'create-user', component: CreateUserComponent},
   {path: 'update-user', component: UpdateUserComponent},
-  {path: 'room-details', component: RoomDetailsComponent}
+  {path: 'room-details', component: RoomDetailsComponent},
+  {path: 'install', component: InstallsComponent}
 ];
 
 @NgModule({
