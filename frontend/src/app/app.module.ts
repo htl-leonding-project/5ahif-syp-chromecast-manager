@@ -21,6 +21,7 @@ import { CreateUserComponent } from './components/create-user/create-user.compon
 import { UpdateUserComponent } from './components/update-user/update-user.component';
 import { RoomDetailsComponent } from './components/room-details/room-details.component';
 import { InstallsComponent } from './components/installs/installs.component';
+import { CreateInstallationComponent } from './components/create-installation/create-installation.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { InstallsComponent } from './components/installs/installs.component';
     CreateUserComponent,
     UpdateUserComponent,
     RoomDetailsComponent,
-    InstallsComponent
+    InstallsComponent,
+    CreateInstallationComponent
   ],
   imports: [
     BrowserModule,
