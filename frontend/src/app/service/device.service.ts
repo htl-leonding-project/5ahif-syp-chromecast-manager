@@ -7,21 +7,26 @@ import { Device } from '../model/device';
   providedIn: 'root'
 })
 export class DeviceService {
-
   displayedColumns: string[] = ['id','name','brand','editDevice','deleteDevice'];
   datasource: MatTableDataSource<Device> = new MatTableDataSource();
-  
+  freeDevices!: Device[];
+
   url: string;
   
   constructor(private httpClient: HttpClient) { 
-    this.url = 'http://localhost:8080/api';
+    this.url = 'http://localhost:8080/device';
   }
 
   public async getDevices(): Promise<Device[]>{
     const data: Device[]  = await this.httpClient.get<Device[]>(`${this.url}/devices`).toPromise();
-    //console.log(x)
+    console.log(data.length + 'devices received')
     return this.datasource.data = data;
+  }
 
+  public async getFreeDevices(): Promise<Device[]> {
+    const data: Device[]  = await this.httpClient.get<Device[]>(`${this.url}/free`).toPromise();
+    console.log(data.length + 'free devices received')
+    return this.freeDevices = data;
   }
 
   public async postDevice(device : Device): Promise<void>{

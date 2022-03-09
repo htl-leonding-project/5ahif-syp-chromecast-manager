@@ -1,10 +1,12 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-<h1>Devices</h1>
-
-<div> 
+<div>
+    <h1>Devices</h1>
     <button type="button" color="primary" (click)="routerx.navigate(['/create-device/'])" mat-raised-button><mat-icon>add</mat-icon></button>
-    
+    <br>
+</div>
+
+<div>     
     <table style="width: 100%; margin: auto; margin-top: 10px" mat-table [dataSource]="deviceService.datasource" class="mat-elevation-z8" matSort>
 
         <ng-container matColumnDef="id">
@@ -41,6 +43,9 @@
         <tr mat-header-row *matHeaderRowDef="deviceService.displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: deviceService.displayedColumns;"></tr>
     </table>
+    
+    <br>
+    <br>
 </div>
 
 <router-outlet></router-outlet>

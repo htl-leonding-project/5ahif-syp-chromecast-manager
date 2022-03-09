@@ -13,7 +13,7 @@ export class UserService {
   url: string;
   
   constructor(private httpClient: HttpClient) { 
-    this.url = 'http://localhost:8080/api';
+    this.url = 'http://localhost:8080/user';
   }
 
   public async getUsers(): Promise<User[]>{
