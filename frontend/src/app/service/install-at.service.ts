@@ -26,7 +26,9 @@ export class InstallAtService {
     return this.datasourcex.data = data;
   }
 
-  public async getInstallAtById(roomId: number): Promise<InstallAtDto[]> {
+  public async getInstallAtsByRoomId(roomId: number): Promise<InstallAtDto[]> {
+    await this.sleep(10);
+
     this.roomId = roomId;
     const data: InstallAtDto[] = await this.httpClient.get<InstallAtDto[]>(`${this.url}/room/${roomId}`).toPromise();
     console.log('InstallAt Id: ' + data[0].id + ' InstallAtDeviceName: ' + data[0].deviceName );
@@ -34,13 +36,30 @@ export class InstallAtService {
   }
 
   deleteInstallAt(installAtId: number) {
+    this.sleep(10)
     const myheader = new HttpHeaders().set('content-type', 'application/json');
 
     this.httpClient.delete<InstallAtDto>(this.url + '/delete/' + installAtId, {
       headers: myheader
     }).subscribe();
 
-    this.getInstallAtById(this.roomId);
+    this.getInstallAtsByRoomId(this.roomId);
+    this.reloadCurrentWindow();
+  }
+
+  public async reloadCurrentWindow(){
+    await this.sleep(10);
+
+    window.location.reload();
+  }
+
+  public sleep(milliseconds:number) {
+    var start = new Date().getTime();
+    for (var i = 0; i < 1e7; i++) {
+      if ((new Date().getTime() - start) > milliseconds){
+        break;
+      }
+    }
   }
 
 }

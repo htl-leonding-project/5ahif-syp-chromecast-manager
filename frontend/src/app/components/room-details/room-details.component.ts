@@ -24,7 +24,7 @@ export class RoomDetailsComponent implements OnInit {
     public router: Router) { }
 
   async ngOnInit(): Promise<void> {
-    await this.installAtService.getInstallAtById(RoomDetailsComponent.Id);
+    await this.installAtService.getInstallAtsByRoomId(RoomDetailsComponent.Id);
   }
 
   async onDeinstall(id: number): Promise<void>{

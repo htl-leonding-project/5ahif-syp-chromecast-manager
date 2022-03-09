@@ -1,10 +1,12 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-<h1>Rooms</h1>
-
-<div> 
+<div margin="25px" id="myTop">
+    <h1 color="primary">Rooms</h1>
     <button type="button" color="primary" (click)="routerx.navigate(['/create-room/'])" mat-raised-button><mat-icon>add</mat-icon></button>
-    
+    <br>
+</div>
+
+<div>     
     <table style="width: 100%; margin: auto; margin-top: 10px" mat-table [dataSource]="roomService.datasource" class="mat-elevation-z8" matSort>
 
         <ng-container matColumnDef="roomName">
@@ -41,6 +43,8 @@
         <tr mat-header-row *matHeaderRowDef="roomService.displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: roomService.displayedColumns;"></tr>
     </table>
+    <br>
+    <br>
 </div>
 
 <router-outlet></router-outlet>
