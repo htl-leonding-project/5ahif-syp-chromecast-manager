@@ -38,6 +38,10 @@ public class InstallAtRepository implements PanacheRepository<InstallAt> {
 
         if (installAtToSave.getId() == null)
         {
+            if (installAtToSave.getInstallDate().isAfter(installAtToSave.getRemoveDate())){
+                throw new IllegalArgumentException("Das Datum zum Installieren ist nicht korrrekt");
+            }
+
             persist(installAtToSave);
             return installAtToSave;
         }

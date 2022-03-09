@@ -7,6 +7,7 @@ import io.quarkus.hibernate.orm.panache.PanacheRepository;
 import io.quarkus.panache.common.Sort;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import javax.transaction.Transactional;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -15,6 +16,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -22,6 +24,11 @@ import java.util.stream.Stream;
 @ApplicationScoped
 @Transactional
 public class DeviceRepository implements PanacheRepository<Device> {
+
+    @Inject
+    InstallAtRepository installAtRepository;
+
+
     public Device save(Device deviceToSave) {
         if (deviceToSave == null)
         {
@@ -60,6 +67,22 @@ public class DeviceRepository implements PanacheRepository<Device> {
     public List<Device> findAllDevices() {
         return Collections.unmodifiableList(listAll());
     }
+
+    public List<Device> findFreedevices(){
+        var notFreeDevices = installAtRepository.findAllInstallAts().stream()
+                .map(i -> i.getDevice())
+                .collect(Collectors.toList());
+
+        var freeDevices = new LinkedList<Device>();
+
+        for (Device d: findAllDevices()){
+            if (!notFreeDevices.contains(d)){
+                freeDevices.add(d);
+            }
+        }
+        return freeDevices;
+    }
+
 
     public List<Device> readCSV(String file_name) {
         try{

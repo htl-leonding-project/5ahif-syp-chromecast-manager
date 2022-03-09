@@ -4,6 +4,7 @@ import at.htl.control.DeviceRepository;
 import at.htl.control.RoomRepository;
 import at.htl.entities.Device;
 import at.htl.entities.Room;
+import jdk.dynalink.linker.LinkerServices;
 import org.jboss.logging.Logger;
 
 import javax.enterprise.context.RequestScoped;
@@ -13,6 +14,7 @@ import javax.json.bind.JsonbBuilder;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.List;
 
 @RequestScoped
 @Path("/device")
@@ -72,7 +74,11 @@ public class DeviceService {
                 jsonObject.getString("name"));
         return Response.ok(device).build();
     }
+    @GET
+    @Path("/freeDevices")
+    public Response findFreeDevices(){
 
-
-
+        List<Device> freeDevices = deviceRepository.findFreedevices();
+        return Response.ok(freeDevices).build();
+    }
 }
