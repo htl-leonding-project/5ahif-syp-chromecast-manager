@@ -1,1 +1,30 @@
-<p>create-installation works!</p>
+<h1>Installations</h1>
+
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>
+            Add Installation
+        </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+        <div form [formGroup]="createInstallForm">
+            <mat-form-field style="min-width: 25px; margin: 25px">
+                <mat-select [formControlName]="'room'" placeholder="Room" floatLabel="never" [(ngModel)]="selectedRoom" name="room">
+                    <mat-select-trigger>Room</mat-select-trigger>
+                    <mat-option *ngFor="let room of rooms" [value]="room.value">
+                        {{room.viewValue}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div> 
+          <button type="button" style="margin-left: 10px" [disabled]="!createInstallForm.valid" color="primary" (click)="onSave(); router.navigate(['/installs/']); installAtService.reloadCurrentWindow()" mat-raised-button><mat-icon>save</mat-icon></button>
+        </div>
+
+    </mat-card-content>
+</mat-card>
+
+<button style="margin-top: 20px;margin-left: 20px;" mat-raised-button color="primary" (click)="router.navigate(['/installs/'])">Go back</button>
+<router-outlet></router-outlet>
