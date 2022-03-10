@@ -11,7 +11,6 @@
         <div form [formGroup]="createInstallForm">
             <mat-form-field style="min-width: 25px; margin: 25px">
                 <mat-select [formControlName]="'room'" placeholder="Room" floatLabel="never" [(ngModel)]="selectedRoom" name="room">
-                    <mat-select-trigger>Room</mat-select-trigger>
                     <mat-option *ngFor="let room of rooms" [value]="room.value">
                         {{room.viewValue}}
                     </mat-option>
@@ -20,7 +19,6 @@
         
             <mat-form-field style="min-width: 25px; margin: 25px">
                 <mat-select [formControlName]="'device'" placeholder="Device" floatLabel="never" [(ngModel)]="selectedDevice" name="device">
-                    <mat-select-trigger>Device</mat-select-trigger>
                     <mat-option *ngFor="let device of devices" [value]="device.value">
                         {{device.viewValue}}
                     </mat-option>
@@ -29,7 +27,6 @@
 
             <mat-form-field style="min-width: 25px; margin: 25px">
                 <mat-select [formControlName]="'user'" placeholder="User" floatLabel="never" [(ngModel)]="selectedUser" name="user">
-                    <mat-select-trigger>User</mat-select-trigger>
                     <mat-option *ngFor="let user of users" [value]="user.value">
                         {{user.viewValue}}
                     </mat-option>
