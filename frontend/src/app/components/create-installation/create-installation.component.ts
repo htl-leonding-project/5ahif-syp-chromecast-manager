@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Device } from 'src/app/model/device';
-import { InstallAt } from 'src/app/model/InstallAt';
+import { DeviceDto } from 'src/app/model/DeviceDto';
 import { Room } from 'src/app/model/room';
+import { RoomDto } from 'src/app/model/RoomDto';
 import { User } from 'src/app/model/User';
+import { UserDto } from 'src/app/model/UserDto';
 import { DeviceService } from 'src/app/service/device.service';
 import { InstallAtService } from 'src/app/service/install-at.service';
 import { RoomsService } from 'src/app/service/room.service';
@@ -19,13 +21,13 @@ export class CreateInstallationComponent implements OnInit {
   createInstallForm!: FormGroup;
 
   selectedRoom!: Room;
-  rooms!: any[];
+  rooms: RoomDto[] = [];
 
   selectedDevice!: Device;
-  devices!: any[];
+  devices: DeviceDto[] = [];
 
   selectedUser!: User;
-  users!: any[];
+  users: UserDto[] = [];
 
   installDate: Date = new Date(Date.now().toString());
 
@@ -44,34 +46,48 @@ export class CreateInstallationComponent implements OnInit {
     this.convertDevArr(devicesArr);
 
     var usersArr: User[] = await this.userService.getUsers();
-    this.
+    this.convertUserArr(usersArr);
     
-    createInstallForm = this.formBuilder.group({
+    
+    this.createInstallForm = this.formBuilder.group({
       rooms: this.rooms,
+      devices: this.devices,
+      users: this.users
+    })
+
+    this.createInstallForm = this.formBuilder.group({
+      room: this.rooms,
       device: this.devices,
       user: this.users,
-      installDate: Date.now
-    })
+      installDate: this.installDate,
+      description: ''
+    });
   }
 
   public convertRoomArr(arr: Room[]):void{
     arr.forEach(element => {
-      var currentRoom = {value: element, viewValue: element.roomNumber + ' ' + element.roomName}
-      this.rooms.push(currentRoom)
+      if(element != null){
+        var currentRoom = {value: element, viewValue: element.roomNumber + ' ' + element.roomName};
+        this.rooms.push(currentRoom);
+      }
     })
   }
 
   public convertDevArr(arr: Device[]): void{
     arr.forEach(element => {
-      var currentDevice = {value: element, viewValue: element.name + ' ' + element.brand}
-      this.devices.push(currentDevice)
+      if(element != null){
+        var currentDevice = {value: element, viewValue: element.name + ' ' + element.brand};
+        this.devices.push(currentDevice);
+      }
     });
   }
 
   public convertUserArr(arr: User[]): void{
     arr.forEach(element =>{
-      var currentUser = {value: element, viewValue: element.name}
-      this.users.push(currentUser);
+      if(element != null){
+        var currentUser = {value: element, viewValue: element.name}
+        this.users.push(currentUser);
+      }
     })
   }
 

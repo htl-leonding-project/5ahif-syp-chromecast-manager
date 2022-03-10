@@ -9,7 +9,7 @@ import { Device } from '../model/device';
 export class DeviceService {
   displayedColumns: string[] = ['id','name','brand','editDevice','deleteDevice'];
   datasource: MatTableDataSource<Device> = new MatTableDataSource();
-  freeDevices!: Device[];
+  freeDevices: Device[] = [];
 
   url: string;
   
