@@ -79,8 +79,9 @@ public class InitBean {
         deviceRepository.save(new Device("MusikBox","Medion"));
         Device currDevice = deviceRepository.findById(2L);
         InstallAt installAt = new InstallAt(LocalDate.now(),LocalDate.now().plusDays(2),"Der Gerät",userRepository.findById(1L),roomRepository.findById(1001L),deviceRepository.findById(2L));
-        InstallAt installAt2 = new InstallAt(LocalDate.now(),LocalDate.now().plusDays(2),"abce",userRepository.findById(1L),roomRepository.findById(1001L),deviceRepository.findById(3L));
+        InstallAt installAt2 = new InstallAt(LocalDate.now(),LocalDate.now().plusDays(2),"Das Gerärt",userRepository.findById(1L),roomRepository.findById(1001L),deviceRepository.findById(3L));
         installAtRepository.save(installAt);
+        installAtRepository.save(installAt2);
 
         var a = deviceRepository.findFreedevices();
         a.forEach(d -> System.out.println(d));
