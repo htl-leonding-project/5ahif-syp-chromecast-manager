@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Device } from 'src/app/model/device';
+import { InstallAt } from 'src/app/model/InstallAt';
 import { Room } from 'src/app/model/room';
 import { User } from 'src/app/model/User';
 import { DeviceService } from 'src/app/service/device.service';
@@ -15,7 +16,6 @@ import { UserService } from 'src/app/service/user.service';
   styleUrls: ['./create-installation.component.scss']
 })
 export class CreateInstallationComponent implements OnInit {
-
   createInstallForm!: FormGroup;
 
   selectedRoom!: Room;
@@ -26,6 +26,8 @@ export class CreateInstallationComponent implements OnInit {
 
   selectedUser!: User;
   users!: any[];
+
+  installDate: Date = new Date(Date.now().toString());
 
   constructor(private readonly formBuilder: FormBuilder,
     public installAtService: InstallAtService,
@@ -71,6 +73,19 @@ export class CreateInstallationComponent implements OnInit {
       var currentUser = {value: element, viewValue: element.name}
       this.users.push(currentUser);
     })
+  }
+
+  async onSave(): Promise<void>{
+    const roomx : Room = this.createInstallForm.get('room')?.value;
+    const devicex : Device = this.createInstallForm.get('device')?.value;
+    const userx : User = this.createInstallForm.get('user')?.value;
+    const descriptionx : string = this.createInstallForm.get('description')?.value;
+
+    const postInstallAt = {id: 0, installDate: this.installDate, removeDate: this.installDate , description: descriptionx, user: userx, room: roomx, device: devicex};
+
+    await this.installAtService.postInstallAt(postInstallAt);
+
+    await this.installAtService.getInstallAts();
   }
 
 }
