@@ -19,6 +19,38 @@
             </mat-form-field>
         </div>
 
+        <div form [formGroup]="createInstallForm">
+            <mat-form-field style="min-width: 25px; margin: 25px">
+                <mat-select [formControlName]="'device'" placeholder="Device" floatLabel="never" [(ngModel)]="selectedDevice" name="device">
+                    <mat-select-trigger>Device</mat-select-trigger>
+                    <mat-option *ngFor="let device of devices" [value]="device.value">
+                        {{device.viewValue}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div form [formGroup]="createInstallForm">
+            <mat-form-field style="min-width: 25px; margin: 25px">
+                <mat-select [formControlName]="'user'" placeholder="User" floatLabel="never" [(ngModel)]="selectedUser" name="user">
+                    <mat-select-trigger>User</mat-select-trigger>
+                    <mat-option *ngFor="let user of users" [value]="user.value">
+                        {{user.viewValue}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <mat-form-field style="min-width: 25px; margin: 25px">
+            <mat-label>InstallDate</mat-label>
+            <input text="installDate" formControlName="installDate" id="installDate" matInput unrequired readonly>
+        </mat-form-field>
+
+        <mat-form-field style="min-width: 25px; margin: 25px">
+            <mat-label>Description</mat-label>
+            <input placeholder="e.g. New Installtion" formControlName="description" id="description" matInput unrequired>
+        </mat-form-field>
+
         <div> 
           <button type="button" style="margin-left: 10px" [disabled]="!createInstallForm.valid" color="primary" (click)="onSave(); router.navigate(['/installs/']); installAtService.reloadCurrentWindow()" mat-raised-button><mat-icon>save</mat-icon></button>
         </div>
