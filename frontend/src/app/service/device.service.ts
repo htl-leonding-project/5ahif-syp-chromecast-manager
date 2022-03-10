@@ -24,9 +24,10 @@ export class DeviceService {
   }
 
   public async getFreeDevices(): Promise<Device[]> {
-    const data: Device[]  = await this.httpClient.get<Device[]>(`${this.url}/free`).toPromise();
+    const data: Device[]  = await this.httpClient.get<Device[]>(`${this.url}/freeDevices`).toPromise();
     console.log(data.length + 'free devices received')
-    return this.freeDevices = data;
+    this.freeDevices = data;
+    return this.freeDevices;
   }
 
   public async postDevice(device : Device): Promise<void>{

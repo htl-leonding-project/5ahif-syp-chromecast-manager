@@ -28,8 +28,7 @@ export class RoomsService {
 
   async postRoom(room : Room): Promise<void>{
       const myheader = new HttpHeaders().set('content-type', 'application/json')
-      const body = { roomNumber: room.roomNumber,
-                     roomName: room.roomName};
+      
       console.log(JSON.stringify(room));            
       this.httpClient.post<any>(this.url + '/create-room', JSON.stringify(room), {
         headers: myheader
