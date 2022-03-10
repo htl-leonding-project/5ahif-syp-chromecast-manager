@@ -23,3 +23,6 @@ asciidoctor-docker-template-master/images/cld.png
 
 ### 3.UCD
 ![image](asciidoctor-docker-template-master/images/ucd.png)
+
+### Slides
+[Device-Manager-Slides](https://paatz.github.io/device-manager-slides/slides/demo.html#/)
