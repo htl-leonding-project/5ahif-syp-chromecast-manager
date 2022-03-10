@@ -1,21 +1,38 @@
 = DeviceManager
-Muhammet Batuhan Oezdogan
+Muhammet Batuhan Oezdogan & Patrick Spisak
 1.0.0, 2022-01-01
 ifndef::sourcedir[:sourcedir: ../src/main/java]
-ifndef::imagesdir[:imagesdir: images]
 ifndef::backend[:backend: html5]
 :icons: font
 ifndef::imagesdir[:imagesdir: ../images]
 
-//image::img.png[]
+
 
 == Ausgangssituation
 
-* Die HTL Leonding hat mehrere Räume, in denen Geräte wie Beamer, Chromecast, usw. installiert sind.
+Die HTL Leonding hat mehrere Räume, in denen Geräte wie Beamer, Chromecast, usw. installiert sind.
 
 
-== Lösung
+== Ziel
 
-* Durch unsere Webapplikation wird die Koordination über alle Geräte und Räume ermöglicht.
+Die Übersicht über allle Räume und Geräte, sowie deren Verwaltung soll ermöglicht werden.
 
-== Titel
+
+== Ergebnis
+
+Unsere Webapplikation, die das Verwalten der Buchungen von Geräte ermöglicht und somit eine klare Übersicht über alle Geräte und Räume verschafft.
+
+== Systemarchitektur
+
+image::system-diagram.png[width=350]
+
+
+== Was haben wir gemacht
+=== Live Demo
+
+
+
+== Wie gehts weiter
+
+* Sicherheit einbauen (Rolle vergeben: Admin)
+* Post Funktion im Frontend in kürzester Zeit lauffähig machen
