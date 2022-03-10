@@ -1,7 +1,10 @@
 package at.htl.boundary;
 
 
+import at.htl.control.DeviceRepository;
 import at.htl.control.InstallAtRepository;
+import at.htl.control.RoomRepository;
+import at.htl.control.UserRepository;
 import at.htl.entities.Device;
 import at.htl.entities.InstallAt;
 import at.htl.entities.Room;
@@ -25,6 +28,14 @@ public class InstallAtService {
 
     @Inject
     InstallAtRepository installAtRepository;
+
+
+    @Inject
+    UserRepository userRepository;
+    @Inject
+    RoomRepository roomRepository;
+    @Inject
+    DeviceRepository deviceRepository;
 
 
     @Inject
@@ -71,8 +82,12 @@ public class InstallAtService {
     public Response createInstallAt(JsonObject installAt)
     {
 
-        var installAtToAdd = new InstallAt(LocalDate.parse(installAt.getString("installDate"),formatter),
-                LocalDate.parse(installAt.getString("removeDate"),formatter), installAt.getString("description"),new User(),new Room(),new Device());
+        var u = userRepository.findById(Long.parseLong(installAt.getString("u_id")));
+        var r = roomRepository.findById(Long.parseLong(installAt.getString("r_id")));
+        var d = deviceRepository.findById(Long.parseLong(installAt.getString("d_id")));
+
+        var installAtToAdd =  new InstallAt(LocalDate.parse(installAt.getString("installDate"),formatter),
+                LocalDate.parse(installAt.getString("removeDate"),formatter), installAt.getString("description"),u,r,d);
         var newInstallAt = installAtRepository.save(installAtToAdd);
         // info
         logger.infof("InstallAt created: %d",newInstallAt.getId());
