@@ -20,16 +20,16 @@ import { UserService } from 'src/app/service/user.service';
 export class CreateInstallationComponent implements OnInit {
   createInstallForm!: FormGroup;
 
-  selectedRoom!: Room;
+  selectedRoom!: string;
   rooms: RoomDto[] = [];
 
-  selectedDevice!: Device;
+  selectedDevice!: string;
   devices: DeviceDto[] = [];
 
-  selectedUser!: User;
+  selectedUser!: string;
   users: UserDto[] = [];
 
-  installDate: Date = new Date(Date.now().toString());
+  installDate: Date = new Date(Date.now());
 
   constructor(private readonly formBuilder: FormBuilder,
     public installAtService: InstallAtService,
@@ -59,7 +59,7 @@ export class CreateInstallationComponent implements OnInit {
       room: this.rooms,
       device: this.devices,
       user: this.users,
-      installDate: this.installDate,
+      installDate: '',
       description: ''
     });
   }
@@ -67,7 +67,7 @@ export class CreateInstallationComponent implements OnInit {
   public convertRoomArr(arr: Room[]):void{
     arr.forEach(element => {
       if(element != null){
-        var currentRoom = {value: element, viewValue: element.roomNumber + ' ' + element.roomName};
+        var currentRoom = {value: element, viewValue: 'Nr.' + element.roomNumber + ' - ' + element.roomName};
         this.rooms.push(currentRoom);
       }
     })
@@ -76,7 +76,7 @@ export class CreateInstallationComponent implements OnInit {
   public convertDevArr(arr: Device[]): void{
     arr.forEach(element => {
       if(element != null){
-        var currentDevice = {value: element, viewValue: element.name + ' ' + element.brand};
+        var currentDevice = {value: element, viewValue: element.brand + ' ' + element.name};
         this.devices.push(currentDevice);
       }
     });
@@ -97,7 +97,12 @@ export class CreateInstallationComponent implements OnInit {
     const userx : User = this.createInstallForm.get('user')?.value;
     const descriptionx : string = this.createInstallForm.get('description')?.value;
 
+    alert('room: ' + roomx.roomName + ' device: ' + devicex + ' user: ' + userx + ' description: ' + descriptionx + ' installDate: ' + this.installDate.toDateString())
+
     const postInstallAt = {id: 0, installDate: this.installDate, removeDate: this.installDate , description: descriptionx, user: userx, room: roomx, device: devicex};
+
+    JSON.stringify({ name: "bob", age: 34, created: new Date() });
+'{"name":"bob","age":34,"created":"2016-03-19T18:15:12.710Z"}'
 
     await this.installAtService.postInstallAt(postInstallAt);
 

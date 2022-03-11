@@ -1,6 +1,6 @@
 <h1>Installations</h1>
 
-<mat-card>
+<mat-card >
     <mat-card-header>
         <mat-card-title>
             Add Installation
@@ -11,7 +11,7 @@
         <div form [formGroup]="createInstallForm">
             <mat-form-field style="min-width: 25px; margin: 25px">
                 <mat-select [formControlName]="'room'" placeholder="Room" floatLabel="never" [(ngModel)]="selectedRoom" name="room">
-                    <mat-option *ngFor="let room of rooms" [value]="room.value">
+                    <mat-option *ngFor="let room of rooms" [value]="room">
                         {{room.viewValue}}
                     </mat-option>
                 </mat-select>
@@ -19,7 +19,7 @@
         
             <mat-form-field style="min-width: 25px; margin: 25px">
                 <mat-select [formControlName]="'device'" placeholder="Device" floatLabel="never" [(ngModel)]="selectedDevice" name="device">
-                    <mat-option *ngFor="let device of devices" [value]="device.value">
+                    <mat-option *ngFor="let device of devices" [value]="device">
                         {{device.viewValue}}
                     </mat-option>
                 </mat-select>
@@ -27,7 +27,7 @@
 
             <mat-form-field style="min-width: 25px; margin: 25px">
                 <mat-select [formControlName]="'user'" placeholder="User" floatLabel="never" [(ngModel)]="selectedUser" name="user">
-                    <mat-option *ngFor="let user of users" [value]="user.value">
+                    <mat-option *ngFor="let user of users" [value]="user">
                         {{user.viewValue}}
                     </mat-option>
                 </mat-select>
@@ -40,7 +40,7 @@
 
             <mat-form-field style="min-width: 25px; margin: 25px">
                 <mat-label>Description</mat-label>
-                <input placeholder="e.g. New Installtion" formControlName="description" id="description" matInput unrequired>
+                <textarea placeholder="e.g. New Installtion" formControlName="description" id="description" matInput unrequired></textarea>
             </mat-form-field>
 
         </div>
