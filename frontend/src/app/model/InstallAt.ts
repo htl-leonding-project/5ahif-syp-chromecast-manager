@@ -5,7 +5,7 @@ import { Device } from "./device";
 export interface InstallAt{
         id: number,
         installDate : Date,
-        removeDate?: Date,
+        removeDate: Date,
         description: string,
         user : User,
         room : Room,
@@ -21,4 +21,14 @@ export class InstallAtDto{
         public installDate: string
         ){            
     }
+}
+
+export interface InstallAtPostDto{
+    id: number,
+    installDate : Date,
+    removeDate: Date,
+    description: string,
+    u_id : number,
+    r_id : number,
+    d_id : number            
 }

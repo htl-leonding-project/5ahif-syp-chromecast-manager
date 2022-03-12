@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Device } from 'src/app/model/device';
 import { DeviceDto } from 'src/app/model/DeviceDto';
+import { InstallAtDto, InstallAtPostDto } from 'src/app/model/InstallAt';
 import { Room } from 'src/app/model/room';
 import { RoomDto } from 'src/app/model/RoomDto';
 import { User } from 'src/app/model/User';
@@ -47,19 +48,12 @@ export class CreateInstallationComponent implements OnInit {
 
     var usersArr: User[] = await this.userService.getUsers();
     this.convertUserArr(usersArr);
-    
-    
-    this.createInstallForm = this.formBuilder.group({
-      rooms: this.rooms,
-      devices: this.devices,
-      users: this.users
-    })
 
     this.createInstallForm = this.formBuilder.group({
       room: this.rooms,
       device: this.devices,
       user: this.users,
-      installDate: '',
+      installdate: 'heute',
       description: ''
     });
   }
@@ -99,10 +93,10 @@ export class CreateInstallationComponent implements OnInit {
 
     alert('room: ' + roomx.roomName + ' device: ' + devicex + ' user: ' + userx + ' description: ' + descriptionx + ' installDate: ' + this.installDate.toDateString())
 
-    const postInstallAt = {id: 0, installDate: this.installDate, removeDate: this.installDate , description: descriptionx, user: userx, room: roomx, device: devicex};
+    const postInstallAt : InstallAtPostDto = {id: 0, installDate: this.installDate, removeDate: this.installDate , description: descriptionx, u_id: userx.id, r_id: roomx.id, d_id: devicex.id};
 
-    JSON.stringify({ name: "bob", age: 34, created: new Date() });
-'{"name":"bob","age":34,"created":"2016-03-19T18:15:12.710Z"}'
+    //JSON.stringify({ name: "bob", age: 34, created: new Date() });
+  //'{"name":"bob","age":34,"created":"2016-03-19T18:15:12.710Z"}'
 
     await this.installAtService.postInstallAt(postInstallAt);
 
