@@ -25,8 +25,8 @@ export class InstallAtDto{
 
 export interface InstallAtPostDto{
     id: number,
-    installDate : Date,
-    removeDate: Date,
+    installDate : string,
+    removeDate: string,
     description: string,
     u_id : number,
     r_id : number,

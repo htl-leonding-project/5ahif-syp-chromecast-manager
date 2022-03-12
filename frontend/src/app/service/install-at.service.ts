@@ -37,7 +37,6 @@ export class InstallAtService {
 
   public async postInstallAt(postInstallAt: InstallAtPostDto):Promise<void> {
     const myheader = new HttpHeaders().set('content-type', 'application/json');
-  
     alert(JSON.stringify(postInstallAt))
     this.httpClient.post<any>(this.url + '/create-installat', JSON.stringify(postInstallAt),{
       headers: myheader

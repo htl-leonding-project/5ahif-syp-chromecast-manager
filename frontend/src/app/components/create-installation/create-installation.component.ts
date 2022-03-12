@@ -94,12 +94,10 @@ export class CreateInstallationComponent implements OnInit {
     */
     const descriptionx : string = this.createInstallForm.get('description')?.value;
 
-    const postInstallAt : InstallAtPostDto = {id: 0, installDate: this.installDate, removeDate: this.installDate , description: descriptionx, u_id: this.selectedUser.id, r_id: this.selectedRoom.id, d_id: this.selectedDevice.id};
+    const postInstallAt : InstallAtPostDto = {id: 0, installDate: this.installDateStr, removeDate: this.installDateStr , description: descriptionx, u_id: this.selectedUser.id, r_id: this.selectedRoom.id, d_id: this.selectedDevice.id};
 
     //JSON.stringify({ name: "bob", age: 34, created: new Date() });
   //'{"name":"bob","age":34,"created":"2016-03-19T18:15:12.710Z"}'
-
-    alert('THIS ROOM + ' + this.selectedRoom.roomName)
 
     await this.installAtService.postInstallAt(postInstallAt);
 
