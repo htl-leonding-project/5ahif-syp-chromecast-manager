@@ -8,10 +8,10 @@
     </mat-card-header>
 
     <mat-card-content>
-        <div form [formGroup]="createInstallForm">
+        <form [formGroup]="createInstallForm" *ngIf="this.createInstallForm">
             <mat-form-field style="min-width: 25px; margin: 25px">
                 <mat-select [formControlName]="'room'" placeholder="Room" floatLabel="never" [(ngModel)]="selectedRoom" name="room">
-                    <mat-option *ngFor="let room of rooms" [value]="room">
+                    <mat-option *ngFor="let room of rooms" [value]="room.value">
                         {{room.viewValue}}
                     </mat-option>
                 </mat-select>
@@ -19,7 +19,7 @@
         
             <mat-form-field style="min-width: 25px; margin: 25px">
                 <mat-select [formControlName]="'device'" placeholder="Device" floatLabel="never" [(ngModel)]="selectedDevice" name="device">
-                    <mat-option *ngFor="let device of devices" [value]="device">
+                    <mat-option *ngFor="let device of devices" [value]="device.value">
                         {{device.viewValue}}
                     </mat-option>
                 </mat-select>
@@ -27,7 +27,7 @@
 
             <mat-form-field style="min-width: 25px; margin: 25px">
                 <mat-select [formControlName]="'user'" placeholder="User" floatLabel="never" [(ngModel)]="selectedUser" name="user">
-                    <mat-option *ngFor="let user of users" [value]="user">
+                    <mat-option *ngFor="let user of users" [value]="user.value">
                         {{user.viewValue}}
                     </mat-option>
                 </mat-select>
@@ -35,18 +35,18 @@
 
             <mat-form-field style="min-width: 25px">
                 <mat-label>InstallDate</mat-label>
-                <input type="text" formControlName="installdate" id="installdate" matInput unrequired readonly>
+                <input [value]="installDateStr" [formControlName]="'installdate'" id="installdate" matInput unrequired readonly>
             </mat-form-field>
 
             <mat-form-field style="min-width: 25px; margin: 25px">
                 <mat-label>Description</mat-label>
-                <textarea formControlName="description" id="description" matInput unrequired></textarea>
+                <textarea [formControlName]="'description'" id="description" matInput unrequired></textarea>
             </mat-form-field>
 
-        </div>
+        </form>
     </mat-card-content>
     <div> 
-        <button type="button" style="margin-left: 10px" [disabled]="!createInstallForm.valid" color="primary" (click)="onSave(); router.navigate(['/installs/'])" mat-raised-button><mat-icon>save</mat-icon></button>
+        <button type="button" style="margin-left: 10px"  color="primary" (click)="onSave(); router.navigate(['/installs/'])" mat-raised-button><mat-icon>save</mat-icon></button>
         <button style="margin-top: 20px;margin-left: 20px;" mat-raised-button color="primary" (click)="router.navigate(['/installs/'])">Go back</button>
     </div>
 </mat-card>

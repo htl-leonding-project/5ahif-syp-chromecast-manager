@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Device } from 'src/app/model/device';
 import { DeviceDto } from 'src/app/model/DeviceDto';
@@ -19,18 +19,20 @@ import { UserService } from 'src/app/service/user.service';
   styleUrls: ['./create-installation.component.scss']
 })
 export class CreateInstallationComponent implements OnInit {
-  createInstallForm!: FormGroup;
+  public createInstallForm!: FormGroup;
 
-  selectedRoom!: string;
+  selectedRoom!: Room;
   rooms: RoomDto[] = [];
 
-  selectedDevice!: string;
+  selectedDevice!: Device;
   devices: DeviceDto[] = [];
 
-  selectedUser!: string;
+  selectedUser!: User;
   users: UserDto[] = [];
 
-  installDate: Date = new Date(Date.now());
+  installDate : Date = new Date(Date.now());
+  installDateStr : string = new Date(Date.now()).toLocaleDateString().replace('/','-').replace('/','-');
+
 
   constructor(private readonly formBuilder: FormBuilder,
     public installAtService: InstallAtService,
@@ -50,10 +52,10 @@ export class CreateInstallationComponent implements OnInit {
     this.convertUserArr(usersArr);
 
     this.createInstallForm = this.formBuilder.group({
-      room: this.rooms,
-      device: this.devices,
-      user: this.users,
-      installdate: 'heute',
+      room: null,
+      device: null,
+      user: null,
+      installdate: this.installDateStr,
       description: ''
     });
   }
@@ -86,17 +88,18 @@ export class CreateInstallationComponent implements OnInit {
   }
 
   async onSave(): Promise<void>{
-    const roomx : Room = this.createInstallForm.get('room')?.value;
+    /*const roomx : Room = this.createInstallForm.get('room')?.value;
     const devicex : Device = this.createInstallForm.get('device')?.value;
     const userx : User = this.createInstallForm.get('user')?.value;
+    */
     const descriptionx : string = this.createInstallForm.get('description')?.value;
 
-    alert('room: ' + roomx.roomName + ' device: ' + devicex + ' user: ' + userx + ' description: ' + descriptionx + ' installDate: ' + this.installDate.toDateString())
-
-    const postInstallAt : InstallAtPostDto = {id: 0, installDate: this.installDate, removeDate: this.installDate , description: descriptionx, u_id: userx.id, r_id: roomx.id, d_id: devicex.id};
+    const postInstallAt : InstallAtPostDto = {id: 0, installDate: this.installDate, removeDate: this.installDate , description: descriptionx, u_id: this.selectedUser.id, r_id: this.selectedRoom.id, d_id: this.selectedDevice.id};
 
     //JSON.stringify({ name: "bob", age: 34, created: new Date() });
   //'{"name":"bob","age":34,"created":"2016-03-19T18:15:12.710Z"}'
+
+    alert('THIS ROOM + ' + this.selectedRoom.roomName)
 
     await this.installAtService.postInstallAt(postInstallAt);
 
