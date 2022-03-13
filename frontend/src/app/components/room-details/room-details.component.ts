@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { InstallAtDto } from 'src/app/model/InstallAt';
 import { InstallAtService } from 'src/app/service/install-at.service';
+import { RoomsComponent } from '../rooms/rooms.component';
 
 @Component({
   selector: 'app-room-details',
@@ -10,21 +11,13 @@ import { InstallAtService } from 'src/app/service/install-at.service';
 })
 export class RoomDetailsComponent implements OnInit {
 
-  private static _id : number = 0;
-
-  public static get Id() : number {
-    return this._id;
-  }
-
-  public static set Id(value : number){
-    this._id = value;
-  }
+  
 
   constructor(public installAtService: InstallAtService,
     public router: Router) { }
 
   async ngOnInit(): Promise<void> {
-    await this.installAtService.getInstallAtsByRoomId(RoomDetailsComponent.Id);
+    await this.installAtService.getInstallAtsByRoomId(this.installAtService.roomId);
   }
 
   async onDeinstall(id: number): Promise<void>{

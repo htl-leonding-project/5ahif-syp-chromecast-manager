@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Room } from 'src/app/model/room';
 import { UpdateRoomComponent } from '../update-room/update-room.component';
 import { RoomDetailsComponent } from '../room-details/room-details.component';
+import { InstallAtService } from 'src/app/service/install-at.service';
 
 @Component({
   selector: 'app-rooms',
@@ -13,7 +14,18 @@ import { RoomDetailsComponent } from '../room-details/room-details.component';
 })
 export class RoomsComponent implements OnInit {
   
+  public static _id : number;
+
+  public static get Id() : number {
+    return this._id;
+  }
+
+  public static set Id(value : number){
+    this._id = value;
+  }
+
   constructor(public roomService: RoomsService,
+    public installAtService: InstallAtService,
     public router: AppRoutingModule,
     public routerx: Router) { }
 
@@ -22,7 +34,7 @@ export class RoomsComponent implements OnInit {
   }
 
   public SetRoomIdInRoomDetails(id : number){
-    RoomDetailsComponent.Id = id;
+    this.installAtService.setRoomId(id);
   }
 
   async onEdit(element : Room): Promise<void>{

@@ -14,8 +14,12 @@ export class InstallAtService {
 
   datasource: MatTableDataSource<InstallAtDto> = new MatTableDataSource();
   datasourcex: MatTableDataSource<InstallAt> = new MatTableDataSource();
-  roomId: number = 0;
+  public roomId: number = 0;
   url: string;
+
+  public setRoomId(id : number):void{
+    this.roomId = id;
+  }
   
   constructor(private httpClient: HttpClient) { 
     this.url = 'http://localhost:8080/install';
