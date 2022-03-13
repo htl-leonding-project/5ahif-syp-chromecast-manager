@@ -41,7 +41,7 @@ public class InstallAtService {
     @Inject
     Logger logger;
 
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
 
 

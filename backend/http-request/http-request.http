@@ -48,11 +48,11 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "installDate": "16/08/2016",
-  "removeDate": "19/08/2016",
+  "installDate": "03/12/2022",
+  "removeDate": "03/12/2022",
   "description": "hahahahhaha hase",
   "u_id": "3",
-  "r_id": "1018",
+  "r_id": "1001",
   "d_id": "4"
 }
 
