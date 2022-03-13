@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { SELECT_PANEL_INDENT_PADDING_X } from '@angular/material/select/select';
 import { MatTableDataSource } from '@angular/material/table';
-import { InstallAt, InstallAtDto } from '../model/InstallAt';
+import { InstallAt, InstallAtDto, InstallAtPostDto } from '../model/InstallAt';
 import { DataSource } from '@angular/cdk/collections';
 
 @Injectable({
@@ -35,10 +35,9 @@ export class InstallAtService {
     return this.datasource.data = data;
   }
 
-  public async postInstallAt(postInstallAt: InstallAt):Promise<void> {
+  public async postInstallAt(postInstallAt: InstallAtPostDto):Promise<void> {
     const myheader = new HttpHeaders().set('content-type', 'application/json');
-    postInstallAt.removeDate;
-    console.log(JSON.stringify(postInstallAt))
+    alert(JSON.stringify(postInstallAt))
     this.httpClient.post<any>(this.url + '/create-installat', JSON.stringify(postInstallAt),{
       headers: myheader
     }).subscribe();
