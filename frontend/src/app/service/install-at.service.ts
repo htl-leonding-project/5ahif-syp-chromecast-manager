@@ -35,12 +35,13 @@ export class InstallAtService {
     return this.datasource.data = data;
   }
 
-  public async postInstallAt(postInstallAt: InstallAtPostDto):Promise<void> {
+  async postInstallAt(postInstallAt: InstallAtPostDto):Promise<void> {
     const myheader = new HttpHeaders().set('content-type', 'application/json');
     alert(JSON.stringify(postInstallAt))
-    this.httpClient.post<any>(this.url + '/create-installat', JSON.stringify(postInstallAt),{
+    this.httpClient.post<any>(this.url + '/create-installat', JSON.stringify(postInstallAt), {
       headers: myheader
     }).subscribe();
+    this.getInstallAts();
   }
 
   deleteInstallAt(installAtId: number) {

@@ -23,12 +23,15 @@ export class InstallAtDto{
     }
 }
 
-export interface InstallAtPostDto{
-    id: number,
-    installDate : string,
-    removeDate: string,
-    description: string,
-    u_id : number,
-    r_id : number,
-    d_id : number            
+export class InstallAtPostDto{
+    constructor(
+        public installDate : string,
+        public removeDate: string,
+        public description: string,
+        public u_id : string,
+        public r_id : string,
+        public d_id : string
+    ){
+
+    }            
 }
