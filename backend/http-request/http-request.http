@@ -1,4 +1,4 @@
-GET http://localhost:8080/api/rooms
+GET http://localhost:8080/room/rooms
 Accept: application/json
 
 ###

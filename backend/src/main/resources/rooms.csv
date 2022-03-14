@@ -1,52 +1,25 @@
 ﻿RoomNumber;RoomName
 3;5BHIF
 4;5AHIF
-19;x
 22;2CHITM
 23;5CHIF
 24;1BHITM
 25;1AHITM
 26;1CHIF
 71;5AHITM
-104;x
-105;x
-106;x
-107;x
 108;108-1
 109;109-a
 109;109-b
-119;x
-120;x
 121;EDV3
 122;EDV4
 123;EDV5
-132;x
-133;x
-134;x
 135;EDV110
 143;FTKL
 144;EDV-Elektronik1
 145;EDV-Elektronik2
-146;x
-147;x
-151;x
 152;Teilungsraum 2
 153;Teilungsraum 1
-154;x
-204;x
-213;x
-214;x
-215;x
-216;x
-217;x
-227;x
-228;x
-229;x
-230;x
-231;x
 239;Lerngruppenraum
-251;x
-252;x
 16;D16
 10;D10
 7;E07
@@ -59,4 +32,3 @@
 25;E25
 26;E26
 39;E39 ILB-Raum
-58;x

@@ -10,7 +10,8 @@ import javax.persistence.*;
         allocationSize = 1, //increment
         initialValue = 1000) //start
 @NamedQueries({
-        @NamedQuery(name = "Room.findByName", query = "select r from Room r where r.roomName = :roomName ")
+        @NamedQuery(name = "Room.findByName", query = "select r from Room r where r.roomName = :roomName "),
+        @NamedQuery(name = "Room.getAllSorted", query = "select r from Room r order by r.roomName" )
 })
 public class Room  {
     @Id

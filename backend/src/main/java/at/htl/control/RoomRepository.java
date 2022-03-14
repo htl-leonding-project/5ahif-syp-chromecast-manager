@@ -101,6 +101,8 @@ public class RoomRepository implements PanacheRepositoryBase<Room, Long> {
     }
 
     public List<Room> findAllRooms() {
-        return Collections.unmodifiableList(listAll());
+        return (List<Room>) getEntityManager()
+                .createNamedQuery("Room.getAllSorted")
+                .getResultList();
     }
 }
