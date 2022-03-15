@@ -52,7 +52,6 @@ public static set oldName(value: string){
 
     const x = new Room(0, name, number);
 
-    alert('You added following Room: '+ x.roomName);
 
     await this.roomService.putRoom(x, UpdateRoomComponent._oldName);
 

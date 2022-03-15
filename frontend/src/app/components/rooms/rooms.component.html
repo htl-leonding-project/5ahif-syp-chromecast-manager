@@ -33,6 +33,8 @@
                 <button type="button" color="primary" (click)="onDelete(element); roomService.getRooms()" mat-raised-button><mat-icon>delete</mat-icon></button>
         </ng-container>
 
+        <!--<button mat-icon-button type="button" (click)="onDelete(element); roomService.getRooms()" mat-raised-button><mat-icon>delete_outline</mat-icon></button>-->
+
         <ng-container matColumnDef="roomDetails">
             <th mat-header-cell *matHeaderCellDef>Details</th>
             <td mat-cell *matCellDef="let element">

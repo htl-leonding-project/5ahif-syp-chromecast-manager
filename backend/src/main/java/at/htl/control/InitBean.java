@@ -78,10 +78,18 @@ public class InitBean {
         deviceRepository.save(new Device("Monitor","Medion"));
         deviceRepository.save(new Device("MusikBox","Medion"));
         Device currDevice = deviceRepository.findById(2L);
-        InstallAt installAt = new InstallAt(LocalDate.now(),LocalDate.now().plusDays(2),"Der Gerät",userRepository.findById(1L),roomRepository.findById(1001L),deviceRepository.findById(2L));
-        InstallAt installAt2 = new InstallAt(LocalDate.now(),LocalDate.now().plusDays(2),"Das Gerärt",userRepository.findById(1L),roomRepository.findById(1001L),deviceRepository.findById(3L));
+        InstallAt installAt = new InstallAt(LocalDate.now(),LocalDate.now().plusDays(2),"Neues Gerät",userRepository.findById(1L),roomRepository.findById(1014L),deviceRepository.findById(2L));
+        InstallAt installAt2 = new InstallAt(LocalDate.now(),LocalDate.now().plusDays(2),"2tes neues Gerärt",userRepository.findById(1L),roomRepository.findById(1014L),deviceRepository.findById(3L));
+        InstallAt installAt3 = new InstallAt(LocalDate.now(),LocalDate.now().plusDays(2),"Noch ein neues Gerät",userRepository.findById(1L),roomRepository.findById(1015L),deviceRepository.findById(4L));
+        InstallAt installAt4 = new InstallAt(LocalDate.now(),LocalDate.now().plusDays(2),"Noch ein neues Gerät",userRepository.findById(1L),roomRepository.findById(1015L),deviceRepository.findById(5L));
+        InstallAt installAt5 = new InstallAt(LocalDate.now(),LocalDate.now().plusDays(2),"Noch ein neues Gerät",userRepository.findById(1L),roomRepository.findById(1048L),deviceRepository.findById(6L));
+
+
         installAtRepository.save(installAt);
         installAtRepository.save(installAt2);
+        installAtRepository.save(installAt3);
+        installAtRepository.save(installAt4);
+        installAtRepository.save(installAt5);
 
         var a = deviceRepository.findFreedevices();
         a.forEach(d -> System.out.println(d));

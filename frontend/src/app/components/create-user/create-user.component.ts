@@ -30,7 +30,6 @@ export class CreateUserComponent implements OnInit {
 
     const x = new User(0,name, passwordHash);
 
-    alert('You added following Room: '+ x.name);
 
     await this.userService.postUser(x);
 

@@ -9,7 +9,7 @@ import { DataSource } from '@angular/cdk/collections';
   providedIn: 'root'
 })
 export class InstallAtService {
-  displayedColumns: string[] = ['deviceName','deviceBrand', 'installedFrom', 'installDate','deinstall'];
+  displayedColumns: string[] = ['deviceName','deviceBrand', 'installedFrom', 'installDate'];
   displayedColumnsx: string[] = ['id', 'roomNumber', 'roomName', 'deviceName','deviceBrand', 'installedFrom', 'installDate','deinstall'];
 
   datasource: MatTableDataSource<InstallAtDto> = new MatTableDataSource();
@@ -41,7 +41,6 @@ export class InstallAtService {
 
   async postInstallAt(postInstallAt: InstallAtPostDto):Promise<void> {
     const myheader = new HttpHeaders().set('content-type', 'application/json');
-    alert(JSON.stringify(postInstallAt))
     this.httpClient.post<any>(this.url + '/create-installat', JSON.stringify(postInstallAt), {
       headers: myheader
     }).subscribe();
@@ -56,7 +55,6 @@ export class InstallAtService {
       headers: myheader
     }).subscribe();
 
-    this.getInstallAtsByRoomId(this.roomId);
     this.reloadCurrentWindow();
   }
 

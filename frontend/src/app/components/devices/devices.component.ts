@@ -28,6 +28,5 @@ export class DevicesComponent implements OnInit {
   async onDelete(element: Device): Promise<void>{
     await this.deviceService.deleteDevice(element.id);
     await this.deviceService.getDevices();
-    alert('You deleted a room');
   }
 }

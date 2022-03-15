@@ -105,4 +105,8 @@ public class RoomRepository implements PanacheRepositoryBase<Room, Long> {
                 .createNamedQuery("Room.getAllSorted")
                 .getResultList();
     }
+
+    public long findIdByName(String roomName) {
+        return findAllRooms().stream().filter(r -> r.getRoomName().contains(roomName)).collect(Collectors.toList()).stream().findFirst().map(r -> r.getId()).get();
+    }
 }

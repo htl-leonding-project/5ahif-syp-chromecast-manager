@@ -92,4 +92,13 @@ public class InstallAtRepository implements PanacheRepository<InstallAt> {
                 .filter(i -> i.getRoom().getId().equals(id))
                 .collect(Collectors.toList());
     }
+
+    public void deleteByRoomId(long id) {
+        List<InstallAt> installs = findAllInstallAts().stream().collect(Collectors.toList());
+        for (InstallAt installAt : installs){
+            if(installAt.getRoom().getId() == id || installAt.getRoom().getId().equals(id)){
+                delete(installAt);
+            }
+        }
+    }
 }

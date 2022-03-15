@@ -21,7 +21,12 @@ export class RoomDetailsComponent implements OnInit {
   }
 
   async onDeinstall(id: number): Promise<void>{
+    alert(this.installAtService.roomId)
+
     await this.installAtService.deleteInstallAt(id);
+    alert(this.installAtService.roomId)
+    await this.installAtService.getInstallAtsByRoomId(this.installAtService.roomId);
+
   }
 
 }

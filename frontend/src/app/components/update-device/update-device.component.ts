@@ -56,7 +56,6 @@ public static set oldBrand(value: string){
 
     const x = new Device(id, name, brand);
 
-    alert('You added following Room: '+ x.name);
 
     await this.deviceService.putDevice(x, UpdateDeviceComponent._id);
 

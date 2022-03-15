@@ -30,7 +30,6 @@ export class CreateDeviceComponent implements OnInit {
 
     const x = new Device(0,name, brand);
 
-    alert('You added following Device: '+ x.name);
 
     await this.deviceService.postDevice(x);
 

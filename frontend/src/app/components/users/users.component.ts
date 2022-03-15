@@ -29,7 +29,6 @@ export class UsersComponent implements OnInit {
   async onDelete(element: User): Promise<void>{
     await this.userService.deleteUser(element.id);
     await this.userService.getUsers();
-    alert('You deleted a room');
     
   }
 }

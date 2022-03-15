@@ -29,7 +29,6 @@ export class RoomsService {
   async postRoom(room : Room): Promise<void>{
       const myheader = new HttpHeaders().set('content-type', 'application/json')
       
-      alert(JSON.stringify(room));            
       this.httpClient.post<any>(this.url + '/create-room', JSON.stringify(room), {
         headers: myheader
         }).subscribe();
@@ -62,6 +61,7 @@ export class RoomsService {
   public async reloadCurrentWindow(){
     await this.sleep(10);
 
+    this.getRooms();
     window.location.reload();
   }
 

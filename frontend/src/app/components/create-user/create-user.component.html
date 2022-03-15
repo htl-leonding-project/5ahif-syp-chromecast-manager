@@ -22,10 +22,10 @@
 
         <div> 
           <button type="button" style="margin-left: 10px" [disabled]="!createUserForm.valid" color="primary" (click)="onSave(); router.navigate(['/users/']); userService.reloadCurrentWindow()" mat-raised-button><mat-icon>save</mat-icon></button>
+          <button style="margin-top: 20px;margin-left: 20px;" mat-raised-button color="primary" (click)="router.navigate(['/users/'])">Go back</button>
         </div>
 
     </mat-card-content>
 </mat-card>
 
-<button style="margin-top: 20px;margin-left: 20px;" mat-raised-button color="primary" (click)="router.navigate(['/users/'])">Go back</button>
 <router-outlet></router-outlet>

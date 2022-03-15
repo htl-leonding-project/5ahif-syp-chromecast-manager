@@ -18,6 +18,12 @@ DELETE http://localhost:8080/api/delete/5AHIF
 Content-Type: application/json
 ###
 
+###
+
+DELETE http://localhost:8080/room/delete/AULA
+Content-Type: application/json
+###
+
 PUT http://localhost:8080/api/update/5BHIF
 Content-Type: application/json
 

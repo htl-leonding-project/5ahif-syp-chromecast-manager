@@ -81,6 +81,8 @@ public class RoomService {
     @Path("/delete/{name}")
     public Response deleteRoom(@PathParam("name") String roomName)
     {
+        long roomId = roomRepository.findIdByName(roomName);
+        installAtRepository.deleteByRoomId(roomId);
         Room room = roomRepository.delete(roomName);
         return Response.ok(room.getRoomName()).build();
     }
