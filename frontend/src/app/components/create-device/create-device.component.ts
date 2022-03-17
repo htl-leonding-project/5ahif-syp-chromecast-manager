@@ -28,7 +28,7 @@ export class CreateDeviceComponent implements OnInit {
     const name = this.createDeviceForm.get('name')?.value;
     const brand = this.createDeviceForm.get('brand')?.value;
 
-    const x = new Device(0,name, brand);
+    const x = new Device(0,name, brand,'');
 
 
     await this.deviceService.postDevice(x);

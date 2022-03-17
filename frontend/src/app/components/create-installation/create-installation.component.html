@@ -18,6 +18,14 @@
             </mat-form-field>
         
             <mat-form-field style="min-width: 25px; margin: 25px">
+                <mat-select [formControlName]="'category'" placeholder="Category" floatLabel="never" [(ngModel)]="selectedCategory" name="category">
+                    <mat-option *ngFor="let category of categories" [value]="category.value">
+                        {{category.viewValue}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field style="min-width: 25px; margin: 25px">
                 <mat-select [formControlName]="'device'" placeholder="Device" floatLabel="never" [(ngModel)]="selectedDevice" name="device">
                     <mat-option *ngFor="let device of devices" [value]="device.value">
                         {{device.viewValue}}

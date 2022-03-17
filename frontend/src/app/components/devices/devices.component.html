@@ -2,7 +2,15 @@
 
 <div>
     <h1>Devices</h1>
-    <button type="button" color="primary" (click)="routerx.navigate(['/create-device/'])" mat-raised-button><mat-icon>add</mat-icon></button>
+        <button type="button" color="primary" (click)="routerx.navigate(['/create-device/'])" mat-raised-button><mat-icon>add</mat-icon></button>
+        <mat-form-field style="min-width: 25px; margin: 25px">
+            <mat-select [formControlName]="'category'" placeholder="Category" floatLabel="never" [(ngModel)]="selectedCategory" name="category">
+                <mat-option *ngFor="let category of categories" [value]="category.value">
+                    {{category.viewValue}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <button type="button" color="primary" (click)="setCategory()" mat-raised-button><mat-icon>search</mat-icon></button>
     <br>
 </div>
 

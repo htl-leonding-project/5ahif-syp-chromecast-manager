@@ -54,7 +54,7 @@ public static set oldBrand(value: string){
     const name = this.editDeviceForm.get('name')?.value;
     const brand = this.editDeviceForm.get('brand')?.value;
 
-    const x = new Device(id, name, brand);
+    const x = new Device(id, name, brand, '');
 
 
     await this.deviceService.putDevice(x, UpdateDeviceComponent._id);
