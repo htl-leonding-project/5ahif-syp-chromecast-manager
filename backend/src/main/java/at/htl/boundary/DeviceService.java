@@ -32,6 +32,11 @@ public class DeviceService {
     }
 
     @GET
+    @Path("/sortByCategories/{category}")
+    public Response sortedByCategories(@PathParam("category") String category){
+        return Response.ok(deviceRepository.searchByCategory(category)).build();
+    }
+    @GET
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Path("device/{id}")
@@ -51,7 +56,8 @@ public class DeviceService {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createDevice(JsonObject device)
     {
-        var deviceToAdd = new Device(device.getString("name"),device.getString("brand"));
+        var deviceToAdd = new Device(device.getString("name"),device.getString("brand"),device.getString("ean")
+                ,device.getString("category"));
         Device newDevice = deviceRepository.save(deviceToAdd);
         deviceRepository.save(newDevice);
 

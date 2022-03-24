@@ -13,6 +13,21 @@ Accept: application/json
 }
 
 ###
+POST http://localhost:8080/device/create-device
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Laptop",
+  "brand": "HP",
+  "ean" : "12341521ADS",
+  "category": "Streaming"
+}
+
+###
+
+GET http://localhost:8080/device/sortByCategories/Streaming
+
 
 DELETE http://localhost:8080/api/delete/5AHIF
 Content-Type: application/json

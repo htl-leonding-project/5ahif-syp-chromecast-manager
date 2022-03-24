@@ -83,6 +83,13 @@ public class DeviceRepository implements PanacheRepository<Device> {
         return freeDevices;
     }
 
+    public List<Device> searchByCategory(String category){
+
+        return findAllDevices().stream().filter(d -> d.getCategory().equals(category))
+                .collect(Collectors.toList());
+
+    }
+
 
     public List<Device> readCSV(String file_name) {
         try{

@@ -16,9 +16,17 @@ public class Device {
     @Column(name = "D_BRAND")
     private String brand;
 
-    public Device(String name, String brand) {
+    @Column(name = "D_EAN")
+    private String ean;
+
+    @Column(name = "D_CATEGORY")
+    private String category;
+
+    public Device(String name, String brand,String ean,String category) {
         this.name = name;
         this.brand = brand;
+        this.ean = ean;
+        this.category = category;
     }
 
     public Device() {
@@ -48,6 +56,21 @@ public class Device {
         this.brand = brand;
     }
 
+    public String getEan() {
+        return ean;
+    }
+
+    public void setEan(String ean) {
+        this.ean = ean;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
 
     @Override
     public String toString() {
