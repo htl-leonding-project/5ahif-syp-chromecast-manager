@@ -61,22 +61,22 @@ public class InitBean {
             deviceRepository.save(d);
         }*/
 
-        deviceRepository.save(new Device("Beamer","Microsoft"));
-        deviceRepository.save(new Device("Maus","Lenovo"));
-        deviceRepository.save(new Device("Tastatur","HP"));
-        deviceRepository.save(new Device("Maus","Aspire"));
-        deviceRepository.save(new Device("Maus","HP"));
-        deviceRepository.save(new Device("Maus","Thinkpad"));
-        deviceRepository.save(new Device("Beamer","Microsoft"));
-        deviceRepository.save(new Device("Drucker","Dell"));
-        deviceRepository.save(new Device("Drucker","Microsoft"));
-        deviceRepository.save(new Device("Chromecast","Google"));
-        deviceRepository.save(new Device("Chromecast","Google"));
-        deviceRepository.save(new Device("Chromecast","Google"));
-        deviceRepository.save(new Device("Maus","Apple"));
-        deviceRepository.save(new Device("Microsoft","HP"));
-        deviceRepository.save(new Device("Monitor","Medion"));
-        deviceRepository.save(new Device("MusikBox","Medion"));
+        deviceRepository.save(new Device("Beamer","Microsoft","132124","Streaming"));
+        deviceRepository.save(new Device("Maus","Lenovo","132124","Streaming"));
+        deviceRepository.save(new Device("Tastatur","HP","132124","Streaming"));
+        deviceRepository.save(new Device("Maus","Aspire","132124","Streaming"));
+        deviceRepository.save(new Device("Maus","HP","132124","Streaming"));
+        deviceRepository.save(new Device("Maus","Thinkpad","132124","Streaming"));
+        deviceRepository.save(new Device("Beamer","Microsoft","132124","Streaming"));
+        deviceRepository.save(new Device("Drucker","Dell","132124","Streaming"));
+        deviceRepository.save(new Device("Drucker","Microsoft","132124","Streaming"));
+        deviceRepository.save(new Device("Chromecast","Google","132124","Streaming"));
+        deviceRepository.save(new Device("Chromecast","Google","132124","Streaming"));
+        deviceRepository.save(new Device("Chromecast","Google","132124","Streaming"));
+        deviceRepository.save(new Device("Maus","Apple","132124","Streaming"));
+        deviceRepository.save(new Device("Microsoft","HP","132124","Streaming"));
+        deviceRepository.save(new Device("Monitor","Medion","132124","Streaming"));
+        deviceRepository.save(new Device("MusikBox","Medion","132124","Streaming"));
         Device currDevice = deviceRepository.findById(2L);
         InstallAt installAt = new InstallAt(LocalDate.now(),LocalDate.now().plusDays(2),"Neues Gerät",userRepository.findById(1L),roomRepository.findById(1014L),deviceRepository.findById(2L));
         InstallAt installAt2 = new InstallAt(LocalDate.now(),LocalDate.now().plusDays(2),"2tes neues Gerärt",userRepository.findById(1L),roomRepository.findById(1014L),deviceRepository.findById(3L));
