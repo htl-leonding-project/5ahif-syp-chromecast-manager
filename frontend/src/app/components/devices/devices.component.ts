@@ -5,6 +5,7 @@ import { Device } from 'src/app/model/device';
 import { DeviceService } from 'src/app/service/device.service';
 import { UpdateDeviceComponent } from '../update-device/update-device.component';
 import { CategoryDto} from '../../model/CategoryDto'
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-devices',
@@ -13,19 +14,24 @@ import { CategoryDto} from '../../model/CategoryDto'
 })
 
 export class DevicesComponent implements OnInit {
+  public deviceForm!: FormGroup;
   selectedCategory!: string;
   categories: CategoryDto[] = []
 
-  constructor(public deviceService: DeviceService,
+  constructor(private readonly formBuilder: FormBuilder,
+    public deviceService: DeviceService,
     public router: AppRoutingModule,
     public routerx: Router) { }
 
   async ngOnInit(): Promise<void> {
-    var catArr: string[] = await this.deviceService.getAllCategories(this.selectedCategory); 
+    var catArr: string[] = await this.deviceService.getAllCategories();
     this.convertCatArr(catArr);
     await this.deviceService.getDevices();
+    this.deviceForm = this.formBuilder.group({
+      category: null
+    });
   }
-  
+
   public convertCatArr(arr: string[]):void {
     arr.forEach(element => {
       if(element != null){
@@ -39,6 +45,8 @@ export class DevicesComponent implements OnInit {
     UpdateDeviceComponent.id = element.id;
     UpdateDeviceComponent.oldName = element.name;
     UpdateDeviceComponent.oldBrand = element.brand;
+    UpdateDeviceComponent.oldEan = element.ean;
+    UpdateDeviceComponent.oldCategory = element.category;
   }
 
   async onDelete(element: Device): Promise<void>{

@@ -10,10 +10,10 @@ import { DataSource } from '@angular/cdk/collections';
 export class RoomsService {
   displayedColumns: string[] = ['roomName','roomNumber', 'editRoom', 'deleteRoom', 'roomDetails'];
   datasource: MatTableDataSource<Room> = new MatTableDataSource();
-  
+
   url: string;
-  
-  constructor(private httpClient: HttpClient) { 
+
+  constructor(private httpClient: HttpClient) {
     this.url = 'http://localhost:8080/room';
   }
 
@@ -22,25 +22,25 @@ export class RoomsService {
 
     const data: Room[]  = await this.httpClient.get<Room[]>(`${this.url}/rooms`).toPromise();
     console.log('The First Room Id is ' + data[0].id)
-    //alert(data[0].id + 'is the First Room Id')
+
     return this.datasource.data = data;
   }
 
   async postRoom(room : Room): Promise<void>{
       const myheader = new HttpHeaders().set('content-type', 'application/json')
-      
+
       this.httpClient.post<any>(this.url + '/create-room', JSON.stringify(room), {
         headers: myheader
         }).subscribe();
 
       this.getRooms();
   }
-  
+
   async putRoom(room : Room, oldRoomName: string): Promise<void> {
     const myheader = new HttpHeaders().set('content-type', 'application/json')
     const body = { roomNumber: room.roomNumber,
                    roomName: room.roomName};
-    console.log(JSON.stringify(room));            
+    console.log(JSON.stringify(room));
     this.httpClient.put<any>(this.url + '/update/' + oldRoomName, JSON.stringify(room), {
       headers: myheader
       }).subscribe();
@@ -50,14 +50,14 @@ export class RoomsService {
 
   deleteRoom(zName : string) {
     const myheader = new HttpHeaders().set('content-type', 'application/json');
-  
+
     this.httpClient.delete<Room>(this.url + '/delete/' + zName, {
       headers: myheader
     }).subscribe();
 
     this.getRooms();
   }
-  
+
   public async reloadCurrentWindow(){
     await this.sleep(10);
 

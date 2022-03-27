@@ -10,11 +10,6 @@
     <mat-card-content>
         <div form [formGroup]="editDeviceForm">
             <mat-form-field style="min-width: 20px">
-                <mat-label>Device-Id</mat-label>
-                <input formControlName="id" id="id" matInput required>
-              </mat-form-field>
-
-            <mat-form-field style="min-width: 20px">
                 <mat-label>Device-Name</mat-label>
                 <input formControlName="name" id="name" matInput required>
               </mat-form-field>
@@ -23,6 +18,19 @@
                 <mat-label>Device-Brand</mat-label>
                 <input formControlName="brand" id="brand" matInput unrequired>
               </mat-form-field>
+
+              <mat-form-field style="min-width: 20px">
+                <mat-label>Device-Ean</mat-label>
+                <input formControlName="ean" id="ean" matInput unrequired>
+              </mat-form-field>
+
+              <mat-form-field style="min-width: 25px; margin: 25px">
+                <mat-select [formControlName]="'category'" placeholder="Category" floatLabel="never" [(ngModel)]="selectedCategory" name="category">
+                    <mat-option *ngFor="let category of categories" [value]="category.value">
+                        {{category.viewValue}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
         </div>
 
         <div> 

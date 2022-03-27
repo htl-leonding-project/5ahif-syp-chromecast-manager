@@ -31,17 +31,16 @@ export class DeviceService {
     return this.freeDevices;
   }
 
-  public async getAllCategories(selectedCategory: string): Promise<string[]> {
-    const data: string[]  = await this.httpClient.get<string[]>(`${this.url}/categories`).toPromise();
+  public async getAllCategories(): Promise<string[]> {
+    const data: string[]  = await this.httpClient.get<string[]>(`${this.url}/getAllCategories`).toPromise();
     return data;
   }
 
   public async getByCategory(category: string): Promise<void>{
-    const data: Device[]  = await this.httpClient.get<Device[]>(this.url + '/' + category).toPromise();
+    const data: Device[]  = await this.httpClient.get<Device[]>(this.url + '/sortByCategories/' + category.toLocaleUpperCase()).toPromise();
     console.log(data.length + 'categorized devices received')
     this.datasource.data = data;
 
-    this.reloadCurrentWindow();
   }
 
   public async postDevice(device : Device): Promise<void>{
