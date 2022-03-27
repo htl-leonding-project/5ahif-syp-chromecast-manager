@@ -2,6 +2,8 @@ package at.htl.entities;
 
 import javax.persistence.*;
 
+
+
 @Entity
 @Table(name = "HTL_DEVICE")
 public class Device {
@@ -20,9 +22,10 @@ public class Device {
     private String ean;
 
     @Column(name = "D_CATEGORY")
-    private String category;
+    @Enumerated(EnumType.STRING)
+    private Category category;
 
-    public Device(String name, String brand,String ean,String category) {
+    public Device(String name, String brand,String ean,Category category) {
         this.name = name;
         this.brand = brand;
         this.ean = ean;
@@ -64,11 +67,11 @@ public class Device {
         this.ean = ean;
     }
 
-    public String getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 

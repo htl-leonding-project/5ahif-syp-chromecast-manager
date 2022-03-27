@@ -26,14 +26,17 @@ Accept: application/json
 
 ###
 
-GET http://localhost:8080/device/sortByCategories/Streaming
+GET http://localhost:8080/device/sortByCategories/STREAMING
 
+###
+
+GET http://localhost:8080/device/getAllCategories
+###
 
 DELETE http://localhost:8080/api/delete/5AHIF
 Content-Type: application/json
 ###
 
-###
 
 DELETE http://localhost:8080/room/delete/AULA
 Content-Type: application/json

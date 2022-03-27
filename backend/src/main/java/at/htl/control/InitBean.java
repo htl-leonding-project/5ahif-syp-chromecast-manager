@@ -1,9 +1,6 @@
 package at.htl.control;
 
-import at.htl.entities.Device;
-import at.htl.entities.InstallAt;
-import at.htl.entities.Room;
-import at.htl.entities.User;
+import at.htl.entities.*;
 import io.quarkus.runtime.StartupEvent;
 import org.jboss.logging.Logger;
 
@@ -61,22 +58,22 @@ public class InitBean {
             deviceRepository.save(d);
         }*/
 
-        deviceRepository.save(new Device("Beamer","Microsoft","132124","Streaming"));
-        deviceRepository.save(new Device("Maus","Lenovo","132124","Streaming"));
-        deviceRepository.save(new Device("Tastatur","HP","132124","Streaming"));
-        deviceRepository.save(new Device("Maus","Aspire","132124","Streaming"));
-        deviceRepository.save(new Device("Maus","HP","132124","Streaming"));
-        deviceRepository.save(new Device("Maus","Thinkpad","132124","Streaming"));
-        deviceRepository.save(new Device("Beamer","Microsoft","132124","Streaming"));
-        deviceRepository.save(new Device("Drucker","Dell","132124","Streaming"));
-        deviceRepository.save(new Device("Drucker","Microsoft","132124","Streaming"));
-        deviceRepository.save(new Device("Chromecast","Google","132124","Streaming"));
-        deviceRepository.save(new Device("Chromecast","Google","132124","Streaming"));
-        deviceRepository.save(new Device("Chromecast","Google","132124","Streaming"));
-        deviceRepository.save(new Device("Maus","Apple","132124","Streaming"));
-        deviceRepository.save(new Device("Microsoft","HP","132124","Streaming"));
-        deviceRepository.save(new Device("Monitor","Medion","132124","Streaming"));
-        deviceRepository.save(new Device("MusikBox","Medion","132124","Streaming"));
+        deviceRepository.save(new Device("Beamer","Microsoft","132124", Category.AUDIO));
+        deviceRepository.save(new Device("Maus","Lenovo","132124",Category.COMPUTER));
+        deviceRepository.save(new Device("Tastatur","HP","132124",Category.DRONE));
+        deviceRepository.save(new Device("Maus","Aspire","132124",Category.MOBILE));
+        deviceRepository.save(new Device("Maus","HP","132124",Category.MEDIA));
+        deviceRepository.save(new Device("Maus","Thinkpad","132124",Category.STORAGE));
+        deviceRepository.save(new Device("Beamer","Microsoft","132124",Category.STORAGE));
+        deviceRepository.save(new Device("Drucker","Dell","132124",Category.STREAMING));
+        deviceRepository.save(new Device("Drucker","Microsoft","132124",Category.DRONE));
+        deviceRepository.save(new Device("Chromecast","Google","132124",Category.MEDIA));
+        deviceRepository.save(new Device("Chromecast","Google","132124",Category.STORAGE));
+//        deviceRepository.save(new Device("Chromecast","Google","132124","Streaming"));
+//        deviceRepository.save(new Device("Maus","Apple","132124","Streaming"));
+//        deviceRepository.save(new Device("Microsoft","HP","132124","Streaming"));
+//        deviceRepository.save(new Device("Monitor","Medion","132124","Streaming"));
+//        deviceRepository.save(new Device("MusikBox","Medion","132124","Streaming"));
         Device currDevice = deviceRepository.findById(2L);
         InstallAt installAt = new InstallAt(LocalDate.now(),LocalDate.now().plusDays(2),"Neues Gerät",userRepository.findById(1L),roomRepository.findById(1014L),deviceRepository.findById(2L));
         InstallAt installAt2 = new InstallAt(LocalDate.now(),LocalDate.now().plusDays(2),"2tes neues Gerärt",userRepository.findById(1L),roomRepository.findById(1014L),deviceRepository.findById(3L));
