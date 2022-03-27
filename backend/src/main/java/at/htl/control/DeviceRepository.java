@@ -1,5 +1,6 @@
 package at.htl.control;
 
+import at.htl.entities.Category;
 import at.htl.entities.Device;
 import at.htl.entities.Room;
 import at.htl.entities.User;
@@ -85,7 +86,7 @@ public class DeviceRepository implements PanacheRepository<Device> {
 
     public List<Device> searchByCategory(String category){
 
-        return findAllDevices().stream().filter(d -> d.getCategory().equals(category))
+        return findAllDevices().stream().filter(d -> d.getCategory().equals(Category.valueOf(category)))
                 .collect(Collectors.toList());
 
     }

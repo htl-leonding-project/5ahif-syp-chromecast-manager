@@ -2,6 +2,7 @@ package at.htl.boundary;
 
 import at.htl.control.DeviceRepository;
 import at.htl.control.RoomRepository;
+import at.htl.entities.Category;
 import at.htl.entities.Device;
 import at.htl.entities.Room;
 import jdk.dynalink.linker.LinkerServices;
@@ -36,6 +37,14 @@ public class DeviceService {
     public Response sortedByCategories(@PathParam("category") String category){
         return Response.ok(deviceRepository.searchByCategory(category)).build();
     }
+
+
+    @GET
+    @Path("/getAllCategories")
+    public Response getAllCategories(){
+        return Response.ok(Category.values()).build();
+    }
+
     @GET
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -57,7 +66,7 @@ public class DeviceService {
     public Response createDevice(JsonObject device)
     {
         var deviceToAdd = new Device(device.getString("name"),device.getString("brand"),device.getString("ean")
-                ,device.getString("category"));
+                , Category.valueOf(device.getString("category")));
         Device newDevice = deviceRepository.save(deviceToAdd);
         deviceRepository.save(newDevice);
 
