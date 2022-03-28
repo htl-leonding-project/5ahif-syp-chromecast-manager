@@ -26,6 +26,16 @@ Accept: application/json
 
 ###
 
+PUT http://localhost:8080/device/update-device/1
+Content-Type: application/json
+
+{
+  "name": "HD Camera",
+  "brand": "XIOAMI",
+  "ean" : "1231252asda",
+  "category": "MEDIA"
+}
+###
 GET http://localhost:8080/device/sortByCategories/STREAMING
 
 ###

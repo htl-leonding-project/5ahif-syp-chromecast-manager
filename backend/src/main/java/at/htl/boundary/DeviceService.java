@@ -86,7 +86,8 @@ public class DeviceService {
     public Response updateDevice(@PathParam("id") Long id,JsonObject jsonObject)
     {
         Device device = deviceRepository.update(id,jsonObject.getString("name"),
-                jsonObject.getString("name"));
+                jsonObject.getString("brand"),jsonObject.getString("ean"),
+                Category.valueOf(jsonObject.getString("category")));
         return Response.ok(device).build();
     }
     @GET

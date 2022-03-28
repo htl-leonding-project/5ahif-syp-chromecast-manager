@@ -46,11 +46,13 @@ public class DeviceRepository implements PanacheRepository<Device> {
         return device;
     }
 
-    public Device update(Long userId, String name, String brand)
+    public Device update(Long userId, String name, String brand, String ean, Category category)
     {
         Device deviceToChange = findById(userId);
         deviceToChange.setName(name);
         deviceToChange.setBrand(brand);
+        deviceToChange.setEan(ean);
+        deviceToChange.setCategory(category);
         getEntityManager().merge(deviceToChange);
 
         return deviceToChange;
@@ -90,7 +92,6 @@ public class DeviceRepository implements PanacheRepository<Device> {
                 .collect(Collectors.toList());
 
     }
-
 
     public List<Device> readCSV(String file_name) {
         try{
