@@ -2,11 +2,21 @@
 
 <div>
     <h1>Devices</h1>
-    <button type="button" color="primary" (click)="routerx.navigate(['/create-device/'])" mat-raised-button><mat-icon>add</mat-icon></button>
+        <form [formGroup]="deviceForm" *ngIf="this.deviceForm">
+            <button type="button" color="primary" (click)="routerx.navigate(['/create-device/'])" mat-raised-button><mat-icon>add</mat-icon></button>
+            <mat-form-field style="min-width: 25px; margin: 25px">
+                <mat-select [formControlName]="'category'" placeholder="Category" floatLabel="never" [(ngModel)]="selectedCategory" name="category">
+                    <mat-option *ngFor="let category of categories" [value]="category.value">
+                        {{category.viewValue}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <button type="button" color="primary" (click)="setCategory()" mat-raised-button><mat-icon>search</mat-icon></button>
+        </form>
     <br>
 </div>
 
-<div>     
+<div>
     <table style="width: 100%; margin: auto; margin-top: 10px" mat-table [dataSource]="deviceService.datasource" class="mat-elevation-z8" matSort>
 
         <ng-container matColumnDef="id">
@@ -26,24 +36,24 @@
             <td mat-cell *matCellDef="let element">
             {{ element.brand}}
         </ng-container>
-        
+
         <ng-container matColumnDef="editDevice">
             <th mat-header-cell *matHeaderCellDef>edit</th>
             <td mat-cell *matCellDef="let element">
                 <button type="button" color="primary" (click)="onEdit(element); routerx.navigate(['/update-device/'])" mat-raised-button><mat-icon>edit</mat-icon></button>
         </ng-container>
- 
+
         <ng-container matColumnDef="deleteDevice">
             <th mat-header-cell *matHeaderCellDef>delete</th>
             <td mat-cell *matCellDef="let element">
                 <button type="button" color="primary" (click)="onDelete(element); deviceService.reloadCurrentWindow()" mat-raised-button><mat-icon>delete</mat-icon></button>
         </ng-container>
-    
+
 
         <tr mat-header-row *matHeaderRowDef="deviceService.displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: deviceService.displayedColumns;"></tr>
     </table>
-    
+
     <br>
     <br>
 </div>

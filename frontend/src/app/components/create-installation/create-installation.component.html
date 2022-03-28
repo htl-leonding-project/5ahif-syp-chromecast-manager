@@ -16,7 +16,7 @@
                     </mat-option>
                 </mat-select>
             </mat-form-field>
-        
+
             <mat-form-field style="min-width: 25px; margin: 25px">
                 <mat-select [formControlName]="'device'" placeholder="Device" floatLabel="never" [(ngModel)]="selectedDevice" name="device">
                     <mat-option *ngFor="let device of devices" [value]="device.value">
@@ -45,7 +45,7 @@
 
         </form>
     </mat-card-content>
-    <div> 
+    <div>
         <button type="button" style="margin-left: 10px"  color="primary" (click)="onSave(); router.navigate(['/installs/']); installAtService.reloadCurrentWindow()" mat-raised-button><mat-icon>save</mat-icon></button>
         <button style="margin-top: 20px;margin-left: 20px;" mat-raised-button color="primary" (click)="router.navigate(['/installs/'])">Go back</button>
     </div>

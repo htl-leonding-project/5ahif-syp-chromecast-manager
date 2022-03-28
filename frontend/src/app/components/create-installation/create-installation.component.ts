@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CategoryDto } from 'src/app/model/CategoryDto';
 import { Device } from 'src/app/model/device';
 import { DeviceDto } from 'src/app/model/DeviceDto';
 import { InstallAtDto, InstallAtPostDto } from 'src/app/model/InstallAt';
@@ -30,6 +31,9 @@ export class CreateInstallationComponent implements OnInit {
   selectedUser!: User;
   users: UserDto[] = [];
 
+  selectedCategory!: string;
+  categories: CategoryDto[] = []
+
   installDate : Date = new Date(Date.now());
   installDateStr = new Date(Date.now()).toLocaleDateString();
 
@@ -44,11 +48,17 @@ export class CreateInstallationComponent implements OnInit {
     var roomsArr = await this.roomService.getRooms();
     this.convertRoomArr(roomsArr);
 
-    var devicesArr: Device[] = await this.deviceService.getFreeDevices(); 
+    var devicesArr: Device[] = await this.deviceService.getFreeDevices();
     this.convertDevArr(devicesArr);
 
     var usersArr: User[] = await this.userService.getUsers();
     this.convertUserArr(usersArr);
+
+    //var catArr: string[] = await this.deviceService.getAllCategories(this.selectedCategory);
+    //this.convertCatArr(catArr);
+
+    /*var catArr: string[] = await this.deviceService.getAllCategories(this.selectedCategory);
+    this.convertCatArr(catArr);*/
 
     this.createInstallForm = this.formBuilder.group({
       room: null,
@@ -82,6 +92,15 @@ export class CreateInstallationComponent implements OnInit {
       if(element != null){
         var currentUser = {value: element, viewValue: element.name}
         this.users.push(currentUser);
+      }
+    })
+  }
+
+  public convertCatArr(arr: string[]):void {
+    arr.forEach(element => {
+      if(element != null){
+        var currentCategory = {value: element, viewValue : element}
+        this.categories.push(currentCategory)
       }
     })
   }

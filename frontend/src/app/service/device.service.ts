@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { CategoryDto } from '../model/CategoryDto';
 import { Device } from '../model/device';
 
 @Injectable({
@@ -28,6 +29,18 @@ export class DeviceService {
     console.log(data.length + 'free devices received')
     this.freeDevices = data;
     return this.freeDevices;
+  }
+
+  public async getAllCategories(): Promise<string[]> {
+    const data: string[]  = await this.httpClient.get<string[]>(`${this.url}/getAllCategories`).toPromise();
+    return data;
+  }
+
+  public async getByCategory(category: string): Promise<void>{
+    const data: Device[]  = await this.httpClient.get<Device[]>(this.url + '/sortByCategories/' + category.toLocaleUpperCase()).toPromise();
+    console.log(data.length + 'categorized devices received')
+    this.datasource.data = data;
+
   }
 
   public async postDevice(device : Device): Promise<void>{
