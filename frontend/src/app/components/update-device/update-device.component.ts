@@ -93,7 +93,7 @@ export class UpdateDeviceComponent implements OnInit {
     const brand = this.editDeviceForm.get('brand')?.value;
     const ean = this.editDeviceForm.get('ean')?.value;
 
-    const x = new Device(id, name, ean, brand, '');
+    const x = new Device(id, name, ean, brand, this.selectedCategory);
 
     await this.deviceService.putDevice(x, UpdateDeviceComponent._id);
 
