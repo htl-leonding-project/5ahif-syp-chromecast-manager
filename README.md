@@ -5,6 +5,8 @@ A Device Manager for our school has to be implemented.
 
 Many Devices should be registered in our school, and each of this devices is in a Class
 
+## Systemarchitektur
+![image](asciidoctor-convert-template-main/img/sys-archi-new.png)
 
 ## User Stories
 
