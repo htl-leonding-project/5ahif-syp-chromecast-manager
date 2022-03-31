@@ -9,10 +9,10 @@ jobs:
     name: Build frontend
     runs-on: ubuntu-latest
     env:
-      IMAGE_NAME: beeyond-frontend
+      IMAGE_NAME: devicemanager-frontend
     defaults:
       run:
-        working-directory: ./frontend-beeyond
+        working-directory: ./frontend
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
@@ -21,7 +21,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.GH_TOKEN }}
       - name: Build image
         run: docker build . --tag $IMAGE_NAME
       - name: Push image
@@ -37,15 +37,13 @@ jobs:
     name: Build backend
     runs-on: ubuntu-latest
     env:
-      IMAGE_NAME: beeyond-backend
+      IMAGE_NAME: devicemanager-backend
     defaults:
       run:
-        working-directory: ./backend-beeyond
+        working-directory: ./backend
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
-      - name: Create file list
-        run: ./src/main/resources/templates/create-file-list.sh
       - name: Package
         run: mvn package
       - name: Login to GitHub Packages
@@ -56,34 +54,6 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build image
         run: docker build . -f src/main/docker/Dockerfile.jvm --tag $IMAGE_NAME
-      - name: Push image
-        run: |
-          IMAGE_ID=ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME
-          IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
-          VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
-          echo IMAGE_ID=$IMAGE_ID
-          echo VERSION=$VERSION
-          docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
-          docker push $IMAGE_ID:$VERSION
-  build_yaml_validation:
-    name: Build kubernetes validation
-    runs-on: ubuntu-latest
-    env:
-      IMAGE_NAME: beeyond-kubernetes-validation
-    defaults:
-      run:
-        working-directory: ./kubernetes-validation-beeyond
-    steps:
-      - name: Check out the repo
-        uses: actions/checkout@v2
-      - name: Login to GitHub Packages
-        uses: docker/login-action@v1
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Build image
-        run: docker build . --tag $IMAGE_NAME
       - name: Push image
         run: |
           IMAGE_ID=ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME

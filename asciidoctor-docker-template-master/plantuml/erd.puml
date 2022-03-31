@@ -3,19 +3,23 @@ entity User {
    * id
    - name
    - passwordHash
+
 }
 
 entity Device{
    * id
    - name
    - brand
+   - category
+   - ean
 }
 
 entity InstallAt {
    * id
    - installDate
    - removeDate
-   -  description
+   - description
+
 }
 
 entity Room{
