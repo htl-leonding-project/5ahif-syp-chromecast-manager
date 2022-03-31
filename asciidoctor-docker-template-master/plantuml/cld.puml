@@ -4,6 +4,10 @@ class Device{
   String serialNumber
   String name
   String brand
+  String ean
+}
+
+enum Category{
 }
 
 class Room{
@@ -13,7 +17,7 @@ class Room{
 class User
 {
     String name
-    String password
+    String passwordHash
 }
 
 class installedAt{
@@ -23,6 +27,7 @@ class installedAt{
 }
 
 Device "1" -  installedAt
+Device "*" -left- "1" Category
 Room "1" -left- installedAt
 User "1" --  installedAt
 
