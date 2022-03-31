@@ -21,7 +21,7 @@ Many Devices should be registered in our school, and each of this devices is in 
 
 ### 1.ERD
 asciidoctor-docker-template-master/images/cld.png
-![image](asciidoctor-docker-template-master/images/erd.png)
+![image](asciidoctor-docker-template-master/images/erd2.png)
 
 ### 2.CLD
 ![image](asciidoctor-docker-template-master/images/cld2.png)
