@@ -26,3 +26,9 @@ asciidoctor-docker-template-master/images/cld.png
 
 ### Slides
 [Device-Manager-Slides](https://paatz.github.io/device-manager-slides/slides/demo.html#/)
+
+### Live-Presentation
+[Live-Presentation 30:40](https://www.youtube.com/watch?v=-oZP3VJ7W_c&t=30m40s)
+
+### Youtrack
+[Youtrack](https://vm81.htl-leonding.ac.at/agiles/99-275/current)
