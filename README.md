@@ -24,7 +24,7 @@ asciidoctor-docker-template-master/images/cld.png
 ![image](asciidoctor-docker-template-master/images/erd.png)
 
 ### 2.CLD
-![image](asciidoctor-docker-template-master/images/cld1.png)
+![image](asciidoctor-docker-template-master/images/cld2.png)
 
 ### 3.UCD
 ![image](asciidoctor-docker-template-master/images/ucd.png)
